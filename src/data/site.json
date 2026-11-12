@@ -29,20 +29,20 @@
     "duration": "PT58S",
     "uploadDate": "2026-11-12",
     "bron": "Provincie Noord-Brabant",
-    "toestemming": false
+    "toestemming": true
   },
   "credits": [
     {
       "label": "Powered by",
       "name": "Silver Power",
-      "url": "https://silverpower.nl",
-      "logo": null
+      "url": "https://silverpower.nl/",
+      "logo": "/logos/silver-power-wit.png"
     },
     {
       "label": "Support website powered by",
       "name": "Van Gestel Digitaal",
-      "url": null,
-      "logo": null
+      "url": "https://vangesteldigitaal.nl/",
+      "logo": "/logos/van-gestel-digitaal-wit.svg"
     }
   ]
 }
