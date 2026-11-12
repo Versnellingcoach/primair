@@ -58,3 +58,5 @@ Alleen nodig voor ontwikkelaars: Node 22, dan `npm ci`, `npm run dev` en `npm ru
 - [ ] `ALLOW_INDEXING=true` in Vercel Production
 - [ ] Headers testen op securityheaders.com en developer.mozilla.org/observatory
 - [ ] HSTS preload overwegen (hstspreload.org) als alle subdomeinen HTTPS gebruiken
+
+> Lighthouse in CI test de gebouwde bestanden op `localhost`. De SEO-categorie scoort daar lager omdat de pagina's (bewust) op noindex staan en de canonical naar het echte domein wijst. CI controleert daarom de afzonderlijke SEO-onderdelen in plaats van de totaalscore.
