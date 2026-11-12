@@ -71,7 +71,7 @@ for (const file of htmlFiles) {
 
   // Afbeeldingen: alt-tekst en afmetingen (tegen layoutverschuiving).
   for (const img of html.matchAll(/<img\s[^>]*>/g)) {
-    if (!/\salt="/.test(img[0])) errors.push(`${rel}: <img> zonder alt`);
+    if (!/\salt(="|[\s>/])/.test(img[0])) errors.push(`${rel}: <img> zonder alt`);
     if (!/\swidth="/.test(img[0]) || !/\sheight="/.test(img[0])) warnings.push(`${rel}: <img> zonder width/height`);
   }
 
