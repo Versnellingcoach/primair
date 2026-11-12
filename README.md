@@ -41,7 +41,7 @@ Bij elke push en pull request draait GitHub Actions:
 - **CodeQL:** wekelijkse en per-wijziging codescan.
 - **Dependabot:** wekelijkse updates voor npm-pakketten en GitHub Actions.
 
-Na een wijziging in `package.json`: start onder Actions de workflow **Lockfile bijwerken**.
+Na een wijziging in `package.json`: start onder Actions de workflow **Lockfile bijwerken** en open een pull request van de branch `lockfile-bijwerken`.
 
 ## Lokaal ontwikkelen (optioneel)
 
