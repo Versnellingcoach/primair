@@ -2,21 +2,21 @@
   {
     "name": "Gemeente Breda",
     "logo": "/logos/gemeente-breda.svg",
-    "toestemming": false
+    "toestemming": true
   },
   {
     "name": "Gemeente Moerdijk",
     "logo": "/logos/gemeente-moerdijk.svg",
-    "toestemming": false
+    "toestemming": true
   },
   {
     "name": "Gemeente Roosendaal",
     "logo": "/logos/gemeente-roosendaal.svg",
-    "toestemming": false
+    "toestemming": true
   },
   {
     "name": "Maas & Jacobs",
     "logo": "/logos/maas-jacobs.svg",
-    "toestemming": false
+    "toestemming": true
   }
 ]

@@ -58,7 +58,7 @@ Alleen nodig voor ontwikkelaars: Node 22, dan `npm ci`, `npm run dev` en `npm ru
 
 ## Checklist vóór livegang
 
-- [ ] Toestemming voor de logo's van Gemeente Breda, Gemeente Moerdijk, Gemeente Roosendaal (vraagt dit expliciet) en Maas & Jacobs. Zet daarna per logo `"toestemming": true` in `src/data/klanten.json`.
+- [x] Toestemming logo's opdrachtgevers: getekend bij het afnemen van de opdracht
 - [ ] Toestemming van de Provincie Noord-Brabant om de video zelf te hosten. Zet daarna `"toestemming": true` bij `video` in `src/data/site.json`.
 - [ ] Logo en link van Van Gestel Digitaal in de credits
 - [ ] Privacyverklaring juridisch laten toetsen
