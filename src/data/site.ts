@@ -2,7 +2,7 @@ import data from "./site.json";
 import coachData from "./coaches.json";
 
 export interface Address { street: string; postalCode: string; city: string }
-export interface Video { src: string; poster: string; captions?: string; duration: string; uploadDate: string }
+export interface Video { src: string; poster: string; captions?: string; duration: string; uploadDate: string; bron: string; toestemming: boolean }
 
 export interface Credit { label: string; name: string; url: string | null; logo: string | null }
 
@@ -34,6 +34,14 @@ export function mail(subject: string, body: string = defaultBody): string {
 
 export const kennismaking = mail("Kennismaking Versnellingscoach", kennismakingBody);
 
+/**
+ * Beeld waarvoor nog geen toestemming is bevestigd (klantlogo's, video) tonen we alleen op
+ * Vercel-previews (afgeschermd) of als SHOW_UNCONFIRMED=true. Op productie blijft het weg
+ * totdat in de data "toestemming": true staat.
+ */
+export const showUnconfirmed = process.env.VERCEL_ENV === "preview" || process.env.SHOW_UNCONFIRMED === "true";
+export const mag = (item: { toestemming?: boolean }) => item.toestemming === true || showUnconfirmed;
+
 /** Alleen indexeren op de productieomgeving als dat expliciet is aangezet (ALLOW_INDEXING=true in Vercel). */
 export const indexable = process.env.VERCEL_ENV === "production" && process.env.ALLOW_INDEXING === "true";
 
@@ -54,7 +62,7 @@ export function serviceSchema(name: string, description: string, path: string) {
 
 export function videoSchema() {
   const v = site.video;
-  if (!v) return [];
+  if (!v || !mag(v)) return [];
   return [{
     "@type": "VideoObject",
     name: "Zo brengt een Versnellingscoach woningbouw in beweging",

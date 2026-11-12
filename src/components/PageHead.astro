@@ -1,11 +1,16 @@
 ---
-interface Props { crumb: string; h1: string; lead?: string }
-const { crumb, h1, lead } = Astro.props;
+import { Picture } from "astro:assets";
+import type { ImageMetadata } from "astro";
+interface Props { crumb: string; h1: string; lead?: string; image?: ImageMetadata; imageAlt?: string }
+const { crumb, h1, lead, image, imageAlt = "" } = Astro.props;
 ---
-<section class="page-head">
-  <div class="wrap stack">
-    <nav class="crumbs" aria-label="Kruimelpad"><a href="/">Home</a> <span aria-hidden="true">/</span> <span aria-current="page">{crumb}</span></nav>
-    <h1>{h1}</h1>
-    {lead && <p class="lead">{lead}</p>}
+<section class={image ? "page-head has-image" : "page-head"}>
+  <div class="wrap">
+    <div class="stack">
+      <nav class="crumbs" aria-label="Kruimelpad"><a href="/">Home</a> <span aria-hidden="true">/</span> <span aria-current="page">{crumb}</span></nav>
+      <h1>{h1}</h1>
+      {lead && <p class="lead">{lead}</p>}
+    </div>
+    {image && <Picture class="rounded head-img" src={image} alt={imageAlt} widths={[480, 720]} sizes="(max-width: 820px) 92vw, 440px" formats={["avif", "webp"]} loading="eager" />}
   </div>
 </section>

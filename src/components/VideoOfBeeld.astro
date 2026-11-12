@@ -1,19 +1,21 @@
 ---
 import { Picture } from "astro:assets";
-import { site } from "../data/site";
+import { site, mag } from "../data/site";
+import ExtLink from "./ExtLink.astro";
 import bouwplaats from "../assets/beeld/bouwplaats-marleen.jpg";
 const v = site.video;
+const toon = v && mag(v);
 ---
-{v ? (
+{toon ? (
   <figure class="video">
-    <video controls preload="none" playsinline poster={v.poster} width="1280" height="720">
+    <video controls preload="none" playsinline poster={v.poster} width="1280" height="720" aria-label="Video: zo brengt een Versnellingscoach woningbouw in beweging">
       <source src={v.src} type="video/mp4" />
-      {v.captions && <track kind="captions" src={v.captions} srclang="nl" label="Nederlands" default />}
     </video>
-    <figcaption class="small muted">Video: Provincie Noord-Brabant</figcaption>
+    <figcaption class="small muted">Video: {v.bron}. Met ondertiteling in beeld.</figcaption>
   </figure>
 ) : (
   <figure class="beeld">
     <Picture src={bouwplaats} alt="Marleen, Versnellingscoach, op de bouwplaats" widths={[480, 720]} sizes="(max-width: 820px) 92vw, 420px" formats={["avif", "webp"]} loading="lazy" />
+    <figcaption class="small muted"><ExtLink href={site.links.magazine} class="">Bekijk de video bij Brabant Magazine</ExtLink></figcaption>
   </figure>
 )}

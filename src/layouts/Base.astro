@@ -1,6 +1,5 @@
 ---
 import "../styles/global.css";
-import Logo from "../components/Logo.astro";
 import { site, nav, mail, telHref, kennismaking, indexable, orgId, serviceId } from "../data/site";
 
 interface Props {
@@ -28,7 +27,7 @@ const graph = [
   { "@type": "Organization", "@id": orgId, name: site.owner.name, email: site.email, telephone: site.phone.e164, brand: { "@id": serviceId }, ...(address && { address }) },
   {
     "@type": "ProfessionalService", "@id": serviceId, name: site.name, url: site.url + "/",
-    description: site.description, logo: site.url + "/apple-touch-icon.png", image: ogImage,
+    description: site.description, logo: site.url + "/img/brand/icon-512.png", image: ogImage,
     telephone: site.phone.e164, email: site.email, parentOrganization: { "@id": orgId },
     areaServed: [{ "@type": "AdministrativeArea", name: "Noord-Brabant" }, { "@type": "Country", name: "Nederland" }],
     knowsAbout: ["woningbouw", "procesregie", "gebiedsontwikkeling", "gebiedsperspectief", "ontwikkelvisie"],
@@ -71,7 +70,6 @@ const contactMail = mail("Vraag via de website");
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Versnellingscoach: versnel uw woningbouwproject">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preload" href="/fonts/lato-bold.woff" as="font" type="font/woff" crossorigin>
@@ -82,7 +80,7 @@ const contactMail = mail("Vraag via de website");
   <a class="skip" href="#inhoud">Naar de inhoud</a>
   <header class="site-header">
     <div class="wrap">
-      <a class="logo" href="/" aria-label={`${site.name}, naar de homepage`}><Logo />{site.name}</a>
+      <a class="logo" href="/"><img src="/img/brand/versnellingscoach-logo.png" alt="Versnellingscoach.nl, naar de homepage" width="192" height="48"></a>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="hoofdmenu">Menu</button>
       <nav class="nav" id="hoofdmenu" aria-label="Hoofdmenu">
         {nav.map((n) => <a href={n.href} aria-current={path === n.href ? "page" : undefined}>{n.label}</a>)}
@@ -98,7 +96,7 @@ const contactMail = mail("Vraag via de website");
   <footer class="site-footer">
     <div class="wrap">
       <div class="stack-s">
-        <a class="logo logo-light" href="/"><Logo light />{site.name}</a>
+        <a class="logo" href="/"><img src="/img/brand/versnellingscoach-logo-licht.png" alt="Versnellingscoach.nl" width="160" height="40" loading="lazy"></a>
         <p>{site.tagline}. {site.name} is een merk van {site.owner.name}.</p>
         <p class="num">
           <a href={telHref}>{site.phone.display}</a><br>

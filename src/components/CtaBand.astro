@@ -1,5 +1,7 @@
 ---
+import { Picture } from "astro:assets";
 import { site, telHref, kennismaking } from "../data/site";
+import wijk from "../assets/sfeer/nieuwe-wijk.jpg";
 interface Props { title?: string; text?: string }
 const {
   title = "Zit uw woningbouwproject vast? Laten we het vlottrekken.",
@@ -7,6 +9,7 @@ const {
 } = Astro.props;
 ---
 <section class="cta-band" aria-labelledby="cta-titel">
+  <Picture class="cta-bg" src={wijk} alt="" widths={[768, 1280, 1672]} sizes="100vw" formats={["avif", "webp"]} loading="lazy" />
   <div class="wrap cta-inner">
     <div class="stack">
       <h2 id="cta-titel">{title}</h2>

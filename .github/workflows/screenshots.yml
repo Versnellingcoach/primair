@@ -22,6 +22,8 @@ jobs:
           cache: npm
       - run: npm ci --no-audit --no-fund
       - run: npm run build
+        env:
+          SHOW_UNCONFIRMED: "true"
       - name: Playwright
         run: |
           npm install --no-save --no-audit --no-fund playwright@1.49.0

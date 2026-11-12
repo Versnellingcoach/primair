@@ -23,7 +23,14 @@
     "magazine": "https://publicaties.brabant.nl/brabant-magazine/68/versnellingscoach",
     "flyer": "https://www.brabant.nl/publish/pages/16480/flyer_versnellingscoach.pdf"
   },
-  "video": null,
+  "video": {
+    "src": "/video/versnellingscoach-blossem.mp4",
+    "poster": "/video/versnellingscoach-blossem.jpg",
+    "duration": "PT58S",
+    "uploadDate": "2026-11-12",
+    "bron": "Provincie Noord-Brabant",
+    "toestemming": false
+  },
   "credits": [
     {
       "label": "Powered by",
