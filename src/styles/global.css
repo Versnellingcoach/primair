@@ -50,7 +50,7 @@ a { color: var(--blue); text-underline-offset: 3px; }
 .small { font-size: 0.9rem; }
 .num { font-variant-numeric: tabular-nums; }
 .figure { font-weight: 700; color: var(--blue); }
-.rounded img { border-radius: var(--r); }
+img.rounded, .rounded img { border-radius: var(--r); }
 .list { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
 
 /* Header */
@@ -154,8 +154,8 @@ a { color: var(--blue); text-underline-offset: 3px; }
 /* Team: kleine portretten zodat ze niet domineren */
 .team { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
 .coach { display: flex; gap: 18px; align-items: center; background: var(--white); border-radius: var(--r); padding: 18px; }
-.coach .avatar { flex: none; }
-.coach .avatar img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; object-position: center 25%; border: 3px solid var(--orange); }
+.coach picture { flex: none; }
+.coach img.avatar { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; object-position: center 25%; border: 3px solid var(--orange); }
 .coach h3 { font-size: 1.15rem; }
 .coach .role { font-weight: 700; color: var(--muted); font-size: 0.9rem; }
 
@@ -233,7 +233,8 @@ a { color: var(--blue); text-underline-offset: 3px; }
 
 /* Traject */
 .traject { margin: 0; overflow-x: auto; }
-.traject svg { min-width: 560px; width: 100%; }
+.traject svg { width: 100%; }
+@media (max-width: 640px) { .traject { display: none; } }
 .milestone { border-radius: var(--r); padding: 26px; background: var(--bluegrey); display: grid; gap: 10px; align-content: start; border-top: 6px solid var(--orange); }
 .milestone-dark { background: var(--blue); color: var(--white); border-top-color: var(--blue-soft); }
 .milestone-dark h3, .milestone-dark .tag { color: var(--white); }
