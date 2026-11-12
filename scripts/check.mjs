@@ -71,7 +71,7 @@ for (const file of htmlFiles) {
 
   // Afbeeldingen: alt-tekst en afmetingen (tegen layoutverschuiving).
   for (const img of html.matchAll(/<img\s[^>]*>/g)) {
-    if (!/\salt="/.test(img[0])) errors.push(`${rel}: <img> zonder alt`);
+    if (!/\salt(="|[\s>/])/.test(img[0])) errors.push(`${rel}: <img> zonder alt`);
     if (!/\swidth="/.test(img[0]) || !/\sheight="/.test(img[0])) warnings.push(`${rel}: <img> zonder width/height`);
   }
 
@@ -90,7 +90,7 @@ for (const file of htmlFiles) {
 }
 
 // Vereiste bestanden.
-for (const f of ["robots.txt", "sitemap-index.xml", "404.html", ".well-known/security.txt", "favicon.svg"]) {
+for (const f of ["robots.txt", "sitemap-index.xml", "404.html", ".well-known/security.txt", "favicon-32.png"]) {
   if (!existsSync(join(dist, f))) errors.push(`ontbrekend bestand: /${f}`);
 }
 const sec = existsSync(join(dist, ".well-known/security.txt")) ? readFileSync(join(dist, ".well-known/security.txt"), "utf8") : "";
@@ -115,8 +115,12 @@ if (!site.owner.address) warnings.push("Openstaand: bedrijfsadres (src/data/site
 if (!site.owner.kvk) warnings.push("Openstaand: KvK-nummer (src/data/site.json → owner.kvk)");
 if (!site.owner.btw) warnings.push("Openstaand: btw-nummer (src/data/site.json → owner.btw)");
 if (!site.video) warnings.push("Openstaand: video Blossem (MP4 in public/video/ en src/data/site.json → video)");
+else if (!site.video.toestemming) warnings.push("Toestemming nodig: video Blossem opnieuw hosten (Provincie Noord-Brabant). Alleen zichtbaar op previews.");
 const klanten = JSON.parse(readFileSync(new URL("../src/data/klanten.json", import.meta.url), "utf8"));
-for (const k of klanten) if (!k.logo) warnings.push(`Openstaand: logo van ${k.name} (public/logos/ en src/data/klanten.json)`);
+for (const k of klanten) {
+  if (!k.logo) warnings.push(`Openstaand: logo van ${k.name} (public/logos/ en src/data/klanten.json)`);
+  else if (!k.toestemming) warnings.push(`Toestemming nodig: logo van ${k.name}. Alleen zichtbaar op previews.`);
+}
 for (const c of site.credits) {
   if (!c.url) warnings.push(`Openstaand: website-link van ${c.name} (src/data/site.json → credits)`);
   if (!c.logo) warnings.push(`Openstaand: logo van ${c.name} (src/data/site.json → credits)`);

@@ -4,6 +4,7 @@ import PageHead from "../components/PageHead.astro";
 import Traject from "../components/Traject.astro";
 import CtaBand from "../components/CtaBand.astro";
 import { site, mail, kennismaking } from "../data/site";
+import wijk from "../assets/sfeer/nieuwe-wijk.jpg";
 const schema = [{
   "@type": "Service",
   "@id": site.url + "/aanpak#versnellingscoach",
@@ -16,7 +17,7 @@ const schema = [{
 ---
 <Base title="De aanpak: in 100 of 200 dagen" crumb="Aanpak" schema={schema}
   description="Eén Versnellingscoach, een traject van 100 of 200 dagen. Na 100 dagen een gebiedsperspectief, na 200 dagen een gedragen ontwikkelvisie.">
-  <PageHead crumb="Aanpak" h1="Eén coach. Een traject van 100 of 200 dagen." lead="U krijgt altijd hetzelfde: een onafhankelijke Versnellingscoach die de samenwerking regisseert. U kiest alleen hoe ver u in één traject wilt komen." />
+  <PageHead crumb="Aanpak" h1="Eén coach. Een traject van 100 of 200 dagen." lead="U krijgt altijd hetzelfde: een onafhankelijke Versnellingscoach die de samenwerking regisseert. U kiest alleen hoe ver u in één traject wilt komen." image={wijk} imageAlt="Nieuwe woonwijk met groen en een fietspad" />
 
   <section class="band" aria-labelledby="wat-u-krijgt">
     <div class="wrap grid-2">

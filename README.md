@@ -25,6 +25,12 @@ Website van Versnellingscoach, een merk van Silver Power. Gebouwd met [Astro](ht
 
 Een coach toevoegen: zet een portret als `src/assets/coaches/<slug>.jpg` en voeg een regel toe aan `coaches.json` met dezelfde `slug`. Astro maakt er automatisch AVIF- en WebP-versies in de juiste maten van.
 
+## Beeld zonder bevestigde toestemming
+
+Klantlogo's en de video verschijnen alleen op Vercel-previews (die zijn afgeschermd) zolang in de data `"toestemming": false` staat. Bij een productiebuild worden ze niet getoond en ook niet meegepubliceerd. Zet de vlag op `true` zodra de toestemming binnen is.
+
+De sfeerbeelden in `src/assets/sfeer/` zijn illustratief en tonen geen specifieke projecten.
+
 ## Zoekmachines
 
 De site staat standaard op **noindex**: Google indexeert niets, ook de productieomgeving niet. Indexeren gaat pas aan als in Vercel de omgevingsvariabele `ALLOW_INDEXING=true` is gezet voor Production. Previews blijven altijd op noindex.
@@ -52,9 +58,9 @@ Alleen nodig voor ontwikkelaars: Node 22, dan `npm ci`, `npm run dev` en `npm ru
 
 ## Checklist vóór livegang
 
-- [ ] Logo's van Gemeente Breda, Gemeente Moerdijk, Gemeente Roosendaal en Maas & Jacobs (met toestemming voor gebruik)
-- [ ] Logo's en link voor Silver Power en Van Gestel Digitaal in de credits
-- [ ] Video Blossem (MP4, poster en ondertiteling) in `public/video/`
+- [ ] Toestemming voor de logo's van Gemeente Breda, Gemeente Moerdijk, Gemeente Roosendaal (vraagt dit expliciet) en Maas & Jacobs. Zet daarna per logo `"toestemming": true` in `src/data/klanten.json`.
+- [ ] Toestemming van de Provincie Noord-Brabant om de video zelf te hosten. Zet daarna `"toestemming": true` bij `video` in `src/data/site.json`.
+- [ ] Logo en link van Van Gestel Digitaal in de credits
 - [ ] Privacyverklaring juridisch laten toetsen
 - [ ] Domein in Vercel: `versnellingscoach.nl` als hoofddomein, `www` met 301 daarnaartoe
 - [ ] DNS: DNSSEC aan; SPF `v=spf1 -all` en DMARC `p=reject` als het domein zelf geen mail verstuurt
