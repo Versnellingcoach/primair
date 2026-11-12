@@ -1,0 +1,63 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHead from "../components/PageHead.astro";
+import { mail, serviceSchema } from "../data/site";
+const schema = [
+  serviceSchema("Versnellingscoach", "Onafhankelijke procesregie die de samenwerking organiseert en het team helpt besluiten voor te bereiden.", "/aanpak#coach"),
+  serviceSchema("100-dagenaanpak: gebiedsperspectief", "Toets de haalbaarheid van uw woningbouwplan en maak een gebiedsperspectief in 100 dagen.", "/aanpak#100-dagen"),
+  serviceSchema("200-dagenaanpak: ontwikkelvisie", "Werk in 200 dagen toe naar een gedragen ontwikkelvisie en bereid bestuurlijke besluitvorming voor.", "/aanpak#200-dagen"),
+];
+---
+<Base title="De aanpak: coach, 100 of 200 dagen" crumb="Aanpak" schema={schema}
+  description="Zet een Versnellingscoach in of kies de 100-dagenaanpak (gebiedsperspectief) of 200-dagenaanpak (ontwikkelvisie). De fases zijn los inzetbaar.">
+  <PageHead crumb="Aanpak" h1="De aanpak" lead="Een Versnellingscoach voor de samenwerking, of een afgebakende aanpak van 100 of 200 dagen. De fases zijn los inzetbaar." />
+  <section class="band" id="coach" aria-labelledby="coach-inzetten">
+    <div class="wrap grid-2">
+      <div class="stack">
+        <h2 id="coach-inzetten">Zet een Versnellingscoach in</h2>
+        <p>Haal onafhankelijke procesregie in huis. Uw coach brengt gemeente, ontwikkelaar en woningcorporatie aan tafel, maakt knelpunten zichtbaar en organiseert de samenwerking.</p>
+        <p>Waar het kan, lopen onderzoeken en afstemming parallel in plaats van na elkaar. Zo bereidt het team besluiten eerder en beter voor.</p>
+      </div>
+      <div class="card">
+        <h3>Wat de coach doet</h3>
+        <ul class="list">
+          <li>Brengt de juiste mensen aan tafel</li>
+          <li>Maakt knelpunten zichtbaar</li>
+          <li>Laat onderzoek en afstemming parallel lopen</li>
+          <li>Helpt het team besluiten voor te bereiden</li>
+        </ul>
+        <a class="link-cta" href="/coaches">Spreek een coach</a>
+      </div>
+    </div>
+  </section>
+  <section class="band sand" aria-label="100- en 200-dagenaanpak">
+    <div class="wrap grid-2">
+      <article class="card" id="100-dagen">
+        <p class="tag">100<small>dagen</small></p>
+        <h2 class="h-card">Gebiedsperspectief</h2>
+        <p>Toets de haalbaarheid van uw plan en maak een gebiedsperspectief. Na 100 dagen weet u of en hoe het project verder kan.</p>
+        <a class="btn btn-primary" href={mail("100-dagenaanpak")}>Bespreek de 100-dagenaanpak</a>
+      </article>
+      <article class="card" id="200-dagen">
+        <p class="tag">200<small>dagen</small></p>
+        <h2 class="h-card">Ontwikkelvisie</h2>
+        <p>Werk toe naar een gedragen ontwikkelvisie en bereid bestuurlijke besluitvorming voor.</p>
+        <a class="btn btn-primary" href={mail("200-dagenaanpak")}>Bespreek de 200-dagenaanpak</a>
+      </article>
+    </div>
+  </section>
+  <section class="band" aria-label="Resultaat">
+    <div class="wrap grid-2">
+      <div class="stack">
+        <h2>Tijdwinst in de praktijk</h2>
+        <p>Bij Rucphen Noordwest, een wijk van circa 265 woningen, pakte het team de planontwikkeling aan in twee trajecten van 100 dagen. De ontwikkelmanager van Thuisvester noemt vier jaar als gebruikelijke doorlooptijd voor zo’n project.</p>
+        <a class="link-cta self-start" href="/praktijk">Bekijk de praktijkcases</a>
+      </div>
+      <div class="stack">
+        <h2>Wat levert het u op?</h2>
+        <p>Bereken in twee velden een indicatie van de besparing voor uw project.</p>
+        <a class="btn btn-primary self-start" href="/#rekentool">Bekijk uw besparingsindicatie</a>
+      </div>
+    </div>
+  </section>
+</Base>

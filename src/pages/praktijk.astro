@@ -1,0 +1,48 @@
+---
+import { Picture } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import PageHead from "../components/PageHead.astro";
+import ExtLink from "../components/ExtLink.astro";
+import { site } from "../data/site";
+import bouwplaats from "../assets/beeld/bouwplaats-marleen.jpg";
+---
+<Base title="Praktijkcases uit Brabant" crumb="Praktijk"
+  description="Rucphen Noordwest, Wouwse Weide, Zevenbergen Noord en Blossem: zo hielp een Versnellingscoach woningbouwprojecten in Brabant vooruit.">
+  <PageHead crumb="Praktijk" h1="Praktijkcases" lead="Betrokkenen bij Brabantse woningbouwprojecten vertellen in Brabant Magazine nr. 68 wat de aanpak opleverde." />
+  <section class="band" aria-labelledby="rucphen">
+    <div class="wrap grid-2">
+      <Picture class="rounded" src={bouwplaats} alt="Bouwplaats van een woningbouwproject in ontwikkeling" widths={[640, 960, 1280]} sizes="(max-width: 820px) 92vw, 520px" formats={["avif", "webp"]} />
+      <div class="stack">
+        <p class="eyebrow">Gemeente Rucphen · Thuisvester en Somnium</p>
+        <h2 id="rucphen">Rucphen Noordwest</h2>
+        <p class="figure num">ca. 265 woningen · 2 × 100 dagen</p>
+        <p>Thuisvester beschrijft hoe het team de planontwikkeling in twee trajecten van 100 dagen oppakte. De ontwikkelmanager noemt vier jaar als gebruikelijke doorlooptijd voor zo’n project.</p>
+        <ExtLink href={site.links.magazine} class="link-cta self-start">Lees de praktijkcase in Brabant Magazine</ExtLink>
+      </div>
+    </div>
+  </section>
+  <section class="band sand" aria-label="Meer praktijkcases">
+    <div class="wrap grid-3">
+      <article class="card">
+        <p class="eyebrow">Gemeente Roosendaal</p>
+        <h2 class="h-card">Wouwse Weide</h2>
+        <p class="figure num">ca. 300 woningen</p>
+        <p>Met de 100- en 200-dagenaanpak en een Versnellingscoach zette het project grote stappen richting verkoop.</p>
+        <ExtLink href={site.links.magazine}>Lees het interview</ExtLink>
+      </article>
+      <article class="card">
+        <p class="eyebrow">Van Agtmaal en Gebroeders Blokland</p>
+        <h2 class="h-card">Zevenbergen Noord</h2>
+        <p class="figure num">ca. 320 woningen</p>
+        <p>Het overleg met de gemeente kwam moeizaam op gang. Met een Versnellingscoach lag er in korte tijd een ontwikkelvisie.</p>
+        <ExtLink href={site.links.magazine}>Lees het interview</ExtLink>
+      </article>
+      <article class="card">
+        <p class="eyebrow">Breda</p>
+        <h2 class="h-card">Blossem</h2>
+        <p>Op de bouwplaats laat Marleen Zantingh zien hoe een onafhankelijke procesregisseur gemeente, ontwikkelaar en woningcorporatie samen laat werken.</p>
+        <a class="link-cta" href="/brabant">{site.video ? "Bekijk de video" : "Meer over Brabant"}</a>
+      </article>
+    </div>
+  </section>
+</Base>

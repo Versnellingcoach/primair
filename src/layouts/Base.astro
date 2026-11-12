@@ -1,0 +1,142 @@
+---
+import "../styles/global.css";
+import Logo from "../components/Logo.astro";
+import { site, nav, mail, telHref, indexable, orgId, serviceId } from "../data/site";
+
+interface Props {
+  title: string;          // paginatitel zonder merknaam (homepage: volledige titel)
+  description?: string;
+  crumb?: string;         // naam in het kruimelpad; leeg op de homepage
+  schema?: object[];      // extra JSON-LD voor deze pagina
+  noindex?: boolean;
+}
+
+const { title, description = site.description, crumb, schema = [], noindex = false } = Astro.props;
+const path = Astro.url.pathname.replace(/\.html$/, "").replace(/\/index$/, "/") || "/";
+const isHome = path === "/";
+const fullTitle = isHome ? title : `${title} | ${site.name}`;
+const canonical = isHome ? site.url + "/" : site.url + path.replace(/\/$/, "");
+const ogImage = new URL("/img/og-versnellingscoach.jpg", site.url).href;
+const robotsNoindex = noindex || !indexable;
+
+const a = site.owner.address;
+const address = a
+  ? { "@type": "PostalAddress", streetAddress: a.street, postalCode: a.postalCode, addressLocality: a.city, addressCountry: "NL" }
+  : undefined;
+
+const graph = [
+  { "@type": "Organization", "@id": orgId, name: site.owner.name, email: site.email, telephone: site.phone.e164, brand: { "@id": serviceId }, ...(address && { address }) },
+  {
+    "@type": "ProfessionalService", "@id": serviceId, name: site.name, url: site.url + "/",
+    description: site.description, logo: site.url + "/apple-touch-icon.png", image: ogImage,
+    telephone: site.phone.e164, email: site.email, parentOrganization: { "@id": orgId },
+    areaServed: [{ "@type": "AdministrativeArea", name: "Noord-Brabant" }, { "@type": "Country", name: "Nederland" }],
+    knowsAbout: ["woningbouw", "procesregie", "gebiedsontwikkeling", "gebiedsperspectief", "ontwikkelvisie"],
+    ...(address && { address }),
+  },
+  { "@type": "WebSite", "@id": site.url + "/#website", url: site.url + "/", name: site.name, inLanguage: "nl-NL", publisher: { "@id": orgId } },
+  {
+    "@type": "WebPage", "@id": canonical + "#webpagina", url: canonical, name: fullTitle, description,
+    inLanguage: "nl-NL", isPartOf: { "@id": site.url + "/#website" }, about: { "@id": serviceId },
+  },
+  ...(crumb && !noindex
+    ? [{ "@type": "BreadcrumbList", itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: site.url + "/" },
+        { "@type": "ListItem", position: 2, name: crumb, item: canonical },
+      ] }]
+    : []),
+  ...schema,
+];
+const jsonld = JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(/</g, "\\u003c");
+const contactMail = mail("Vraag via de website");
+---
+<!doctype html>
+<html lang="nl-NL">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{fullTitle}</title>
+  <meta name="description" content={description}>
+  <link rel="canonical" href={canonical}>
+  {robotsNoindex && <meta name="robots" content="noindex, nofollow">}
+  <meta name="theme-color" content="#002D66">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="og:site_name" content={site.name}>
+  <meta property="og:title" content={fullTitle}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={canonical}>
+  <meta property="og:image" content={ogImage}>
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Versnellingscoach: versnel uw woningbouwproject">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/lato-bold.woff" as="font" type="font/woff" crossorigin>
+  <script src="/js/site.js" defer></script>
+  <script type="application/ld+json" set:html={jsonld} />
+</head>
+<body>
+  <a class="skip" href="#inhoud">Naar de inhoud</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="/" aria-label={`${site.name}, naar de homepage`}><Logo />{site.name}</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="hoofdmenu">Menu</button>
+      <nav class="nav" id="hoofdmenu" aria-label="Hoofdmenu">
+        {nav.map((n) => <a href={n.href} aria-current={path === n.href ? "page" : undefined}>{n.label}</a>)}
+        <a class="btn btn-primary" href="/#rekentool">Bereken uw besparing</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inhoud">
+    <slot />
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="stack-s">
+        <a class="logo logo-light" href="/"><Logo light />{site.name}</a>
+        <p>{site.tagline}. {site.name} is een merk van {site.owner.name}.</p>
+        <p class="num">
+          <a href={telHref}>{site.phone.display}</a><br>
+          <a href={contactMail}>{site.email}</a>
+          {a && <><br>{a.street}, {a.postalCode} {a.city}</>}
+        </p>
+      </div>
+      <div>
+        <h2>Aanbod</h2>
+        <ul>
+          <li><a href="/aanpak">Aanpak</a></li>
+          <li><a href="/trainingen">Trainingen</a></li>
+          <li><a href="/#rekentool">Rekentool</a></li>
+          <li><a href="/brabant">Subsidie Brabant</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Over</h2>
+        <ul>
+          <li><a href="/praktijk">Praktijkcases</a></li>
+          <li><a href="/coaches">Coaches</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/privacy">Privacy</a></li>
+          <li><a href="/colofon">Colofon</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <div class="fab">
+    <div class="fab-panel" id="contactpaneel" hidden>
+      <a class="btn btn-primary" href={telHref}>Bel nu</a>
+      <a class="btn btn-secondary" href={contactMail}>Mail ons</a>
+      <p>Telefoon <span class="val num">{site.phone.display}</span><br>E-mail <span class="val">{site.email}</span></p>
+    </div>
+    <button class="fab-toggle" type="button" aria-expanded="false" aria-controls="contactpaneel" aria-label="Contact: bel of mail ons">
+      <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16v11H8l-4 4z" fill="none" stroke="#002D66" stroke-width="2.2" stroke-linejoin="round"/><circle cx="9" cy="10.5" r="1.2" fill="#002D66"/><circle cx="12" cy="10.5" r="1.2" fill="#002D66"/><circle cx="15" cy="10.5" r="1.2" fill="#002D66"/></svg>
+    </button>
+  </div>
+</body>
+</html>

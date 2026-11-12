@@ -1,0 +1,32 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHead from "../components/PageHead.astro";
+import ExtLink from "../components/ExtLink.astro";
+import { site, mail, telHref } from "../data/site";
+const o = site.owner;
+---
+<Base title="Colofon" crumb="Colofon" description="Bedrijfsgegevens, bronnen en het melden van beveiligingsproblemen voor versnellingscoach.nl.">
+  <PageHead crumb="Colofon" h1="Colofon" />
+  <section class="band">
+    <div class="wrap prose">
+      <h2>Bedrijfsgegevens</h2>
+      <p>
+        {site.name} is een merk van {o.name}.
+        {o.address && <><br>{o.address.street}, {o.address.postalCode} {o.address.city}</>}
+        {o.kvk && <><br>KvK-nummer: {o.kvk}</>}
+        {o.btw && <><br>Btw-nummer: {o.btw}</>}
+      </p>
+      <p>Telefoon <a href={telHref}>{site.phone.display}</a><br>E-mail <a href={mail("Vraag via de website")}>{site.email}</a></p>
+      <h2>Bronnen</h2>
+      <ul class="list">
+        <li>Interviews en praktijkcases: <ExtLink href={site.links.magazine} class="">Brabant Magazine nr. 68</ExtLink>, Provincie Noord-Brabant</li>
+        <li>Subsidie: <ExtLink href={site.links.flyer} class="">provinciale flyer Versnellingscoach</ExtLink></li>
+        {site.video && <li>Video Blossem, Breda: Provincie Noord-Brabant</li>}
+        <li>Portretten: geplaatst met toestemming van de geportretteerden</li>
+        <li>Lettertype: Lato door Łukasz Dziedzic, SIL Open Font License 1.1</li>
+      </ul>
+      <h2>Beveiliging</h2>
+      <p>Hebt u een kwetsbaarheid in deze website gevonden? Meld het via <a href={mail("Melding kwetsbaarheid")}>{site.email}</a>. Zie ook <a href="/.well-known/security.txt">security.txt</a>.</p>
+    </div>
+  </section>
+</Base>

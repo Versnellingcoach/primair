@@ -1,0 +1,6 @@
+---
+// Externe link: opent in nieuw venster, met melding voor schermlezers.
+interface Props { href: string; class?: string }
+const { href, class: cls = "link-cta" } = Astro.props;
+---
+<a class={cls || undefined} href={href} target="_blank" rel="noopener"><slot /><span class="sr-only"> (opent in nieuw venster)</span></a>

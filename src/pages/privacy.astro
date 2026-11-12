@@ -1,0 +1,23 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHead from "../components/PageHead.astro";
+import { site, mail } from "../data/site";
+---
+<Base title="Privacyverklaring" crumb="Privacy" description="Hoe versnellingscoach.nl omgaat met uw gegevens: geen trackingcookies, en de rekentool verstuurt niets.">
+  <PageHead crumb="Privacy" h1="Privacyverklaring" />
+  <section class="band">
+    <div class="wrap prose">
+      <h2>Wie is verantwoordelijk</h2>
+      <p>{site.name} is een merk van {site.owner.name}. {site.owner.name} is verantwoordelijk voor de verwerking van persoonsgegevens via deze website.</p>
+      <h2>Wat deze website verwerkt</h2>
+      <p>Deze website gebruikt geen trackingcookies en geen advertentie- of socialmediapixels. U hoeft daarom geen cookies te accepteren.</p>
+      <p>De rekentool rekent volledig in uw eigen browser. De cijfers die u invult, worden niet verstuurd en niet opgeslagen.</p>
+      <h2>Hosting</h2>
+      <p>De website wordt gehost door Vercel. Zoals bij elke website verwerkt de hostingpartij technische gegevens, zoals IP-adressen, om de site veilig en bereikbaar te houden.</p>
+      <h2>Contact per telefoon of e-mail</h2>
+      <p>Als u ons belt of mailt, gebruiken we uw gegevens alleen om uw vraag te beantwoorden en uw project te bespreken. We bewaren ze niet langer dan nodig.</p>
+      <h2>Uw rechten</h2>
+      <p>U kunt ons vragen welke gegevens we van u hebben, en vragen om ze te corrigeren of te verwijderen. Mail daarvoor naar <a href={mail("Privacyverzoek")}>{site.email}</a>. U kunt ook een klacht indienen bij de Autoriteit Persoonsgegevens.</p>
+    </div>
+  </section>
+</Base>

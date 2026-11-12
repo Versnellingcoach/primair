@@ -1,0 +1,14 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHead from "../components/PageHead.astro";
+---
+<Base title="Pagina niet gevonden" description="Deze pagina van versnellingscoach.nl bestaat niet (meer). Ga naar de homepage, de rekentool of de contactpagina." noindex>
+  <PageHead crumb="Pagina niet gevonden" h1="Deze pagina bestaat niet" lead="Misschien is de pagina verplaatst. Kies hieronder waar u verder wilt." />
+  <section class="band">
+    <div class="wrap btn-row">
+      <a class="btn btn-primary" href="/">Naar de homepage</a>
+      <a class="btn btn-secondary" href="/#rekentool">Bekijk uw besparingsindicatie</a>
+      <a class="btn btn-secondary" href="/contact">Contact</a>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,9 @@
+---
+import { site, mail, telHref } from "../data/site";
+const a = site.owner.address;
+---
+<div class="contact-lines">
+  <div class="cline"><span class="label">Telefoon</span><a class="val num" href={telHref}>{site.phone.display}</a><button class="copy" type="button" data-copy={site.phone.display}>Kopieer</button></div>
+  <div class="cline"><span class="label">E-mail</span><a class="val" href={mail("Vraag via de website")}>{site.email}</a><button class="copy" type="button" data-copy={site.email}>Kopieer</button></div>
+  {a && <div class="cline"><span class="label">Adres</span><span class="val">{a.street}, {a.postalCode} {a.city}</span></div>}
+</div>
