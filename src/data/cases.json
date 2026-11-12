@@ -1,0 +1,38 @@
+[
+  {
+    "id": "rucphen-noordwest",
+    "project": "Rucphen Noordwest",
+    "plaats": "Gemeente Rucphen",
+    "partners": "Thuisvester en Somnium",
+    "woningen": 265,
+    "kernpunt": "2 × 100 dagen in plaats van 4 jaar",
+    "tekst": "Thuisvester, Somnium en de gemeente pakten de planontwikkeling aan in twee trajecten van 100 dagen. De ontwikkelmanager van Thuisvester noemt vier jaar als gebruikelijke doorlooptijd voor zo’n project."
+  },
+  {
+    "id": "wouwse-weide",
+    "project": "Wouwse Weide",
+    "plaats": "Gemeente Roosendaal",
+    "partners": null,
+    "woningen": 300,
+    "kernpunt": "Met 100 + 200 dagen richting verkoop",
+    "tekst": "Met de 100- en 200-dagenaanpak en een Versnellingscoach zette het project grote stappen. Als alles meezit, gaan de woningen snel in de verkoop."
+  },
+  {
+    "id": "zevenbergen-noord",
+    "project": "Zevenbergen Noord",
+    "plaats": "Gemeente Moerdijk",
+    "partners": "Van Agtmaal en Gebroeders Blokland",
+    "woningen": 320,
+    "kernpunt": "In korte tijd een ontwikkelvisie",
+    "tekst": "Het overleg met de gemeente kwam moeizaam op gang. Met een Versnellingscoach lag er in korte tijd een gedragen ontwikkelvisie."
+  },
+  {
+    "id": "blossem",
+    "project": "Blossem",
+    "plaats": "Gemeente Breda",
+    "partners": null,
+    "woningen": null,
+    "kernpunt": "Samenwerking op de bouwplaats",
+    "tekst": "Op de bouwplaats van Blossem laat Marleen zien hoe een onafhankelijke procesregisseur gemeente, ontwikkelaar en woningcorporatie samen laat werken."
+  }
+]

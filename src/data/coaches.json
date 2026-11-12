@@ -1,11 +1,23 @@
 [
   {
     "slug": "marleen-zantingh",
-    "name": "Marleen Zantingh",
+    "name": "Marleen",
     "role": "Versnellingscoach",
     "experience": "Begeleidt woningbouwprojecten in Brabant, zoals op de bouwplaats van Blossem in Breda.",
-    "alt": "Marleen Zantingh op een bouwplaats in ontwikkeling"
+    "alt": "Marleen, Versnellingscoach, op een bouwplaats"
   },
-  { "slug": "nora", "name": "Nora", "role": "Versnellingscoach", "experience": null, "alt": "Portret van Nora" },
-  { "slug": "paul", "name": "Paul", "role": "Versnellingscoach", "experience": null, "alt": "Portret van Paul" }
+  {
+    "slug": "nora",
+    "name": "Nora",
+    "role": "Versnellingscoach",
+    "experience": null,
+    "alt": "Nora, Versnellingscoach"
+  },
+  {
+    "slug": "paul",
+    "name": "Paul",
+    "role": "Versnellingscoach",
+    "experience": null,
+    "alt": "Paul, Versnellingscoach"
+  }
 ]

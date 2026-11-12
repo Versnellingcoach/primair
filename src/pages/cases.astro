@@ -1,0 +1,33 @@
+---
+import { Picture } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import PageHead from "../components/PageHead.astro";
+import LogoMarquee from "../components/LogoMarquee.astro";
+import CaseCards from "../components/CaseCards.astro";
+import CtaBand from "../components/CtaBand.astro";
+import ExtLink from "../components/ExtLink.astro";
+import { site } from "../data/site";
+import bouwplaats from "../assets/beeld/bouwplaats-marleen.jpg";
+---
+<Base title="Cases: woningbouw versneld in Brabant" crumb="Cases"
+  description="Rucphen Noordwest, Wouwse Weide, Zevenbergen Noord en Blossem: zo versnelden gemeenten en ontwikkelaars hun woningbouw met een Versnellingscoach.">
+  <PageHead crumb="Cases" h1="Woningbouw die weer in beweging kwam" lead="Gemeenten, corporaties en ontwikkelaars in Brabant gingen u voor. Betrokkenen vertellen in Brabant Magazine nr. 68 wat de aanpak opleverde." />
+  <LogoMarquee title="Opdrachtgevers en partners" />
+  <section class="band" aria-label="Cases">
+    <div class="wrap stack-lg">
+      <CaseCards />
+    </div>
+  </section>
+  <section class="band sand" aria-labelledby="bouwplaats">
+    <div class="wrap grid-2 align-center">
+      <Picture class="rounded media-small" src={bouwplaats} alt="Marleen, Versnellingscoach, op de bouwplaats" widths={[480, 720]} sizes="(max-width: 820px) 92vw, 420px" formats={["avif", "webp"]} />
+      <div class="stack">
+        <p class="eyebrow">Gemeente Breda</p>
+        <h2 id="bouwplaats">Van de bouwplaats</h2>
+        <p>Op de bouwplaats van Blossem laat Marleen zien hoe een onafhankelijke procesregisseur gemeente, ontwikkelaar en woningcorporatie samen laat werken.</p>
+        <ExtLink href={site.links.magazine} class="link-cta self-start">Lees alle interviews in Brabant Magazine</ExtLink>
+      </div>
+    </div>
+  </section>
+  <CtaBand title="Wordt uw project de volgende case?" />
+</Base>

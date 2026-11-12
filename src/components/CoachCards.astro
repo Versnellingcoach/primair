@@ -10,15 +10,15 @@ const imageFor = (slug: string) => {
   return img.default;
 };
 ---
-<div class="grid-3">
+<div class="team">
   {coaches.map((c) => (
-    <article class="card coach">
-      <Picture class="portrait" src={imageFor(c.slug)} alt={c.alt} widths={[400, 640, 900]} sizes="(max-width: 900px) 92vw, 340px" formats={["avif", "webp"]} loading="lazy" />
+    <article class="coach">
+      <Picture class="avatar" src={imageFor(c.slug)} alt={c.alt} widths={[160, 320]} sizes="160px" formats={["avif", "webp"]} loading="lazy" />
       <div class="stack-xs">
         <h3>{c.name}</h3>
         <p class="role">{c.role}</p>
+        {c.experience && <p class="small">{c.experience}</p>}
       </div>
-      {c.experience && <p>{c.experience}</p>}
     </article>
   ))}
 </div>

@@ -7,7 +7,8 @@
         "http://localhost/aanpak.html",
         "http://localhost/trainingen.html",
         "http://localhost/brabant.html",
-        "http://localhost/coaches.html"
+        "http://localhost/cases.html",
+        "http://localhost/team.html"
       ],
       "numberOfRuns": 1
     },

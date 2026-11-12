@@ -3,6 +3,7 @@ import Base from "../layouts/Base.astro";
 import PageHead from "../components/PageHead.astro";
 import ExtLink from "../components/ExtLink.astro";
 import VideoOfBeeld from "../components/VideoOfBeeld.astro";
+import CtaBand from "../components/CtaBand.astro";
 import { site, mail, videoSchema } from "../data/site";
 ---
 <Base title="Subsidie Versnellingscoach Brabant" crumb="Brabant" schema={videoSchema()}
@@ -15,15 +16,15 @@ import { site, mail, videoSchema } from "../data/site";
         <p>Stem met uw Woondealregio af of er ruimte is om uw project aan te melden. Volgens de provinciale flyer kan per gemeente maximaal één project worden aangemeld voor begeleiding.</p>
         <p>Twijfelt u of uw project in aanmerking komt? Bespreek het met ons, dan kijken we samen naar de mogelijkheden.</p>
         <div class="btn-row">
-          <a class="btn btn-primary" href={mail("Subsidie Versnellingscoach Brabant")}>Bespreek uw project per mail</a>
+          <a class="btn btn-primary" href={mail("Komt ons project in aanmerking voor de subsidie?")}>Check of uw project in aanmerking komt</a>
           <ExtLink href={site.links.flyer} class="btn btn-secondary">Bekijk de provinciale flyer</ExtLink>
         </div>
       </div>
       <div class="card">
         <h3>Vragen over de subsidie?</h3>
-        <p>Uw Woondealregio vraagt de subsidie aan bij de provincie. Bij de provincie Noord-Brabant is Christel Tax-Gloudemans, adviseur Ruimte en Wonen, het aanspreekpunt.</p>
+        <p>Uw Woondealregio vraagt de subsidie aan bij de provincie. Bij de provincie Noord-Brabant is Christel Tax-Gloudemans, adviseur Ruimte en Wonen, het aanspreekpunt. Per gemeente kan maximaal één project worden aangemeld.</p>
         <p>Wilt u eerst weten of uw project geschikt is? Bespreek het met ons.</p>
-        <a class="link-cta" href={mail("Subsidie Versnellingscoach Brabant")}>Mail ons over uw project</a>
+        <a class="link-cta" href={mail("Komt ons project in aanmerking voor de subsidie?")}>Laat ons meekijken</a>
       </div>
     </div>
   </section>
@@ -32,15 +33,16 @@ import { site, mail, videoSchema } from "../data/site";
       <div class="stack">
         <p class="eyebrow">Van de bouwplaats</p>
         <h2 id="bouwplaats">Zo brengt een Versnellingscoach woningbouw in beweging</h2>
-        <p>Op de bouwplaats van Blossem in Breda laat Marleen Zantingh zien hoe een onafhankelijke procesregisseur gemeente, ontwikkelaar en woningcorporatie samen laat werken. In Brabant Magazine vertellen ook betrokkenen bij Wouwse Weide, Rucphen Noordwest en Zevenbergen Noord wat de aanpak opleverde.</p>
+        <p>Op de bouwplaats van Blossem in Breda laat Marleen zien hoe een onafhankelijke procesregisseur gemeente, ontwikkelaar en woningcorporatie samen laat werken. In Brabant Magazine vertellen ook betrokkenen bij Wouwse Weide, Rucphen Noordwest en Zevenbergen Noord wat de aanpak opleverde.</p>
         <div class="btn-row mt">
           <ExtLink href={site.links.magazine} class="btn btn-primary">Lees de interviews</ExtLink>
-          <a class="btn btn-secondary" href="/praktijk">Bekijk de praktijkcases</a>
+          <a class="btn btn-secondary" href="/cases">Bekijk de cases</a>
         </div>
       </div>
-      <div class="stack">
+      <div class="stack media-small">
         <VideoOfBeeld />
       </div>
     </div>
   </section>
+  <CtaBand title="Uw project aanmelden voor de subsidie?" text="We helpen u bepalen of uw project geschikt is en wat u bij uw Woondealregio moet aanleveren." />
 </Base>

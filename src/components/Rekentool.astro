@@ -1,16 +1,16 @@
 ---
-import { site, mail } from "../data/site";
+import { site, mail, telHref } from "../data/site";
 import staffel from "../data/staffel.json";
 import ExtLink from "./ExtLink.astro";
-import TelButton from "./TelButton.astro";
 // Alleen de rekendata gaat naar de browser, zonder interne toelichting.
 const rekendata = JSON.stringify({ prijsGrenzen: staffel.prijsGrenzen, rijen: staffel.rijen });
 ---
 <section class="band" id="rekentool" aria-labelledby="rekentool-titel">
   <div class="wrap stack-lg">
-    <div class="stack">
-      <p class="eyebrow">Besparingsindicatie in twee velden</p>
+    <div class="stack measure">
+      <p class="eyebrow">Besparingsindicatie in 10 seconden</p>
       <h2 id="rekentool-titel">Wat kunt u besparen op uw woningbouwplan?</h2>
+      <p>Vul twee getallen in en zie direct wat versnellen uw project kan opleveren.</p>
     </div>
     <div class="calc" data-calc data-staffel={rekendata} data-email={site.email}>
       <div class="calc-in">
@@ -23,29 +23,29 @@ const rekendata = JSON.stringify({ prijsGrenzen: staffel.prijsGrenzen, rijen: st
         <div class="field">
           <label for="verkoopprijs">Gemiddelde verkoopprijs per woning</label>
           <div class="input-wrap"><span aria-hidden="true">€</span><input id="verkoopprijs" name="prijs" inputmode="numeric" autocomplete="off" value="420.000" aria-describedby="hint-prijs fout-prijs"></div>
-          <p class="hint" id="hint-prijs">Een schatting is voldoende. We gebruiken de prijs als schaalindicator.</p>
+          <p class="hint" id="hint-prijs">Een schatting is voldoende.</p>
           <p class="err" id="fout-prijs" hidden></p>
         </div>
-        <p class="hint">De rekentool rekent in uw browser. Er worden geen gegevens verstuurd of opgeslagen.</p>
+        <p class="hint privacy-hint">Uw cijfers blijven in uw browser. Er wordt niets verstuurd of opgeslagen.</p>
       </div>
       <div class="calc-out" aria-live="polite">
         <div class="stack-xs">
-          <p class="result-amt" data-calc-out>€ 32.500</p>
           <p class="result-label">Indicatieve brutobesparing per project</p>
+          <p class="result-amt" data-calc-out>€ 32.500</p>
         </div>
         <div class="phases">
           <span class="chip"><b>100 dagen</b> · Gebiedsperspectief</span>
           <span class="chip"><b>200 dagen</b> · Ontwikkelvisie</span>
         </div>
         <div class="timewin">
-          <strong>Tijdwinst in de praktijk</strong>
+          <strong>Plus tijdwinst</strong>
           <p>Rucphen Noordwest pakte de planontwikkeling aan in 2 × 100 dagen. Thuisvester noemt 4 jaar gebruikelijk voor zo’n project.</p>
         </div>
-        <p class="small muted">Dit is een inschatting. De besparing hangt af van het project en van hoeveel externe diensten u afneemt voor de voorbereiding.</p>
         <div class="btn-row">
-          <TelButton />
-          <a class="btn btn-secondary" data-calc-mail href={mail("Bespreek mijn woningbouwproject")}>Bespreek mijn project per mail</a>
+          <a class="btn btn-primary" data-calc-mail href={mail("Bespreek mijn woningbouwproject")}>Bespreek deze besparing</a>
+          <a class="btn btn-secondary" href={telHref}>Bel {site.phone.display}</a>
         </div>
+        <p class="small muted">Dit is een inschatting. De besparing hangt af van het project en van hoeveel externe diensten u afneemt voor de voorbereiding.</p>
         <noscript><p class="small">Zet JavaScript aan voor een directe indicatie, of bel ons voor een inschatting van uw project.</p></noscript>
       </div>
     </div>

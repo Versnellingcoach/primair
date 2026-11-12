@@ -1,0 +1,18 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHead from "../components/PageHead.astro";
+import CoachCards from "../components/CoachCards.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { coaches, orgId } from "../data/site";
+const schema = coaches.map((c) => ({ "@type": "Person", name: c.name, jobTitle: c.role, worksFor: { "@id": orgId } }));
+---
+<Base title="Het team" crumb="Team" schema={schema}
+  description="Maak kennis met de Versnellingscoaches: hands-on, onafhankelijk en met de voeten in de klei. Plan een kennismaking of bel direct.">
+  <PageHead crumb="Team" h1="Hands-on coaches die partijen in beweging krijgen" lead="Onafhankelijk, praktisch en met de voeten in de klei. Uw coach staat tussen gemeente, ontwikkelaar en woningcorporatie in." />
+  <section class="band" aria-label="Coaches">
+    <div class="wrap">
+      <CoachCards />
+    </div>
+  </section>
+  <CtaBand title="Spreek een coach over uw project" />
+</Base>

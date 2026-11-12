@@ -1,0 +1,22 @@
+---
+import cases from "../data/cases.json";
+import ExtLink from "./ExtLink.astro";
+import { site } from "../data/site";
+interface Props { limit?: number }
+const { limit } = Astro.props;
+const list = limit ? cases.filter((c) => c.woningen).slice(0, limit) : cases;
+const nl = new Intl.NumberFormat("nl-NL");
+---
+<div class="cases">
+  {list.map((c) => (
+    <article class="case" id={c.id}>
+      <p class="eyebrow">{c.plaats}</p>
+      <h3>{c.project}</h3>
+      {c.woningen && <p class="case-num num">ca. {nl.format(c.woningen)}<span> woningen</span></p>}
+      <p class="case-key">{c.kernpunt}</p>
+      {!limit && <p>{c.tekst}</p>}
+      {!limit && c.partners && <p class="small muted">Met {c.partners}</p>}
+      {!limit && <ExtLink href={site.links.magazine} class="link-cta">Lees het interview</ExtLink>}
+    </article>
+  ))}
+</div>

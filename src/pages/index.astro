@@ -1,14 +1,16 @@
 ---
 import Base from "../layouts/Base.astro";
 import Plan from "../components/Plan.astro";
+import LogoMarquee from "../components/LogoMarquee.astro";
 import Rekentool from "../components/Rekentool.astro";
-import OfferCards from "../components/OfferCards.astro";
+import Traject from "../components/Traject.astro";
+import CaseCards from "../components/CaseCards.astro";
 import CoachCards from "../components/CoachCards.astro";
 import VideoOfBeeld from "../components/VideoOfBeeld.astro";
+import CtaBand from "../components/CtaBand.astro";
 import ExtLink from "../components/ExtLink.astro";
-import TelButton from "../components/TelButton.astro";
 import trainingen from "../data/trainingen.json";
-import { site, mail, videoSchema } from "../data/site";
+import { site, mail, kennismaking, telHref, videoSchema } from "../data/site";
 ---
 <Base title="Versnellingscoach | Versnel uw woningbouwproject" schema={videoSchema()}>
   <section class="hero dark" aria-labelledby="home-titel">
@@ -16,26 +18,105 @@ import { site, mail, videoSchema } from "../data/site";
       <div class="stack-lg">
         <p class="eyebrow">Voor gemeenten, ontwikkelaars en woningcorporaties</p>
         <h1 id="home-titel">Versnel uw woningbouwproject<span class="dot">.</span></h1>
-        <p class="lead">Loopt uw woningbouwplan vast? Een Versnellingscoach brengt de juiste mensen aan tafel, maakt knelpunten zichtbaar en laat onderzoeken en afstemming waar mogelijk parallel lopen.</p>
+        <p class="lead">Loopt uw woningbouwplan vast? Een Versnellingscoach brengt de juiste mensen aan tafel, maakt knelpunten zichtbaar en laat onderzoek en afstemming parallel lopen. In 100 of 200 dagen komt uw project weer in beweging.</p>
         <div class="btn-row">
-          <a class="btn btn-primary" href="/contact">Start de versnelling</a>
-          <a class="btn btn-secondary" href="#rekentool">Bekijk uw besparingsindicatie</a>
+          <a class="btn btn-primary btn-lg" href={kennismaking}>Plan een kennismaking</a>
+          <a class="btn btn-ghost btn-lg" href="#rekentool">Bereken uw besparing</a>
         </div>
+        <ul class="checks">
+          <li>Onafhankelijke procesregie</li>
+          <li>Resultaat in 100 of 200 dagen</li>
+          <li>Actief in Breda, Moerdijk en Roosendaal</li>
+        </ul>
       </div>
       <Plan />
     </div>
   </section>
 
+  <LogoMarquee />
+
   <Rekentool />
 
-  <section class="band sand" aria-labelledby="aanbod-titel">
+  <section class="band sand" aria-labelledby="herkent-titel">
+    <div class="wrap grid-2">
+      <div class="stack">
+        <p class="eyebrow">Herkent u dit?</p>
+        <h2 id="herkent-titel">Iedereen wil bouwen. Toch staat het plan stil.</h2>
+        <ul class="pains">
+          <li>Gemeente, ontwikkelaar en corporatie wachten op elkaar.</li>
+          <li>Onderzoeken lopen na elkaar in plaats van tegelijk.</li>
+          <li>Besluiten schuiven steeds een overleg op.</li>
+        </ul>
+      </div>
+      <div class="stack">
+        <p class="eyebrow">Zo trekt de Versnellingscoach uw project vlot</p>
+        <ol class="steps">
+          <li><strong>De juiste mensen aan tafel.</strong> Uw coach brengt alle partijen bij elkaar en houdt de regie.</li>
+          <li><strong>Knelpunten op tafel.</strong> Wat het project ophoudt, wordt zichtbaar en bespreekbaar.</li>
+          <li><strong>Parallel werken, eerder besluiten.</strong> Onderzoek en afstemming lopen tegelijk, zodat besluiten eerder klaarliggen.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="product-titel">
     <div class="wrap stack-lg">
       <div class="stack measure">
-        <p class="eyebrow">Aanbod</p>
-        <h2 id="aanbod-titel">Een coach of een afgebakende aanpak</h2>
-        <p>Kies wat uw project nu nodig heeft. De fases zijn los inzetbaar.</p>
+        <p class="eyebrow">De Versnellingscoach</p>
+        <h2 id="product-titel">Eén coach. Een traject van 100 of 200 dagen.</h2>
+        <p class="lead">U krijgt altijd hetzelfde: een onafhankelijke coach die de samenwerking regisseert en het team helpt besluiten voor te bereiden. U kiest alleen hoe ver u wilt komen.</p>
       </div>
-      <OfferCards />
+      <Traject />
+      <div class="grid-2">
+        <div class="milestone">
+          <p class="tag">100<small>dagen</small></p>
+          <h3>Gebiedsperspectief</h3>
+          <p>De haalbaarheid is getoetst en er ligt een gebiedsperspectief waar alle partijen mee verder kunnen.</p>
+        </div>
+        <div class="milestone milestone-dark">
+          <p class="tag">200<small>dagen</small></p>
+          <h3>Ontwikkelvisie</h3>
+          <p>Er ligt een gedragen ontwikkelvisie en de bestuurlijke besluitvorming is voorbereid.</p>
+        </div>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-primary" href={mail("Welk traject past bij ons project?", "Beste Versnellingscoach,\n\nWe twijfelen tussen 100 en 200 dagen. Kunnen we dat samen bespreken?\n\nOrganisatie:\nProject en aantal woningen:\nTelefoonnummer:\n")}>Ontdek welk traject bij u past</a>
+        <a class="link-cta" href="/aanpak">Zo werkt de aanpak</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band sand" aria-labelledby="cases-titel">
+    <div class="wrap stack-lg">
+      <div class="stack measure">
+        <p class="eyebrow">Resultaten uit de praktijk</p>
+        <h2 id="cases-titel">Ruim 880 woningen weer in beweging</h2>
+        <p>Drie Brabantse projecten die met een Versnellingscoach versnelden, beschreven in Brabant Magazine.</p>
+      </div>
+      <CaseCards limit={3} />
+      <div class="btn-row">
+        <a class="btn btn-secondary" href="/cases">Bekijk alle cases</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band dark" aria-labelledby="brabant-titel">
+    <div class="wrap grid-2">
+      <div class="stack">
+        <p class="eyebrow">Subsidie voor Brabantse gemeenten</p>
+        <h2 id="brabant-titel">Brabantse gemeente? Check de subsidie.</h2>
+        <p>Wilt u een woningbouwproject versnellen? Uw Woondealregio kan bij de provincie subsidie aanvragen voor een regionale Versnellingscoach. Stem met uw regio af of er ruimte is om uw project aan te melden.</p>
+        <p class="note">Volgens de provinciale flyer kan per gemeente maximaal één project worden aangemeld. Wacht dus niet te lang.</p>
+        <div class="btn-row mt">
+          <a class="btn btn-primary" href={mail("Komt ons project in aanmerking voor de subsidie?")}>Check of uw project in aanmerking komt</a>
+          <ExtLink href={site.links.flyer} class="link-cta">Bekijk de provinciale flyer</ExtLink>
+        </div>
+      </div>
+      <div class="stack media-small">
+        <VideoOfBeeld />
+        <p class="small muted">Op de bouwplaats van Blossem in Breda laat Marleen zien hoe een onafhankelijke procesregisseur gemeente, ontwikkelaar en woningcorporatie samen laat werken.</p>
+        <ExtLink href={site.links.magazine} class="link-cta">Lees de interviews in Brabant Magazine</ExtLink>
+      </div>
     </div>
   </section>
 
@@ -47,7 +128,7 @@ import { site, mail, videoSchema } from "../data/site";
         <p>Breng een eigen project mee. Oefen hoe u werk parallel organiseert, rollen scherp maakt en besluiten eerder voorbereidt.</p>
         <div class="btn-row mt">
           <a class="btn btn-primary" href={mail("Aanmelding training")}>Meld uw team aan</a>
-          <TelButton variant="secondary" />
+          <a class="link-cta" href="/trainingen">Bekijk de trainingen</a>
         </div>
       </div>
       <div class="training-list">
@@ -56,42 +137,20 @@ import { site, mail, videoSchema } from "../data/site";
     </div>
   </section>
 
-  <section class="band dark" aria-labelledby="brabant-titel">
-    <div class="wrap grid-2">
-      <div class="stack">
-        <p class="eyebrow">Brabant in beeld</p>
-        <h2 id="brabant-titel">Brabantse gemeente? Check de subsidie.</h2>
-        <p>Wilt u een woningbouwproject versnellen? Uw Woondealregio kan bij de provincie subsidie aanvragen voor een regionale Versnellingscoach. Stem met uw regio af of er ruimte is om uw project aan te melden.</p>
-        <p class="note">Volgens de provinciale flyer kan per gemeente maximaal één project worden aangemeld voor begeleiding.</p>
-        <div class="btn-row mt">
-          <ExtLink href={site.links.flyer} class="btn btn-primary">Bekijk de provinciale flyer</ExtLink>
-          <a class="btn btn-secondary" href={mail("Subsidie Versnellingscoach Brabant")}>Bespreek uw project per mail</a>
-        </div>
+  <section class="band sand" aria-labelledby="team-titel">
+    <div class="wrap stack-lg">
+      <div class="stack measure">
+        <p class="eyebrow">Het team</p>
+        <h2 id="team-titel">Hands-on coaches die partijen in beweging krijgen</h2>
+        <p>Onafhankelijk, praktisch en met de voeten in de klei. Uw coach staat tussen gemeente, ontwikkelaar en woningcorporatie in.</p>
       </div>
-      <div class="stack">
-        <VideoOfBeeld />
-        <h3>Zo brengt een Versnellingscoach woningbouw in beweging</h3>
-        <p class="muted">Op de bouwplaats van Blossem in Breda laat Marleen Zantingh zien hoe een onafhankelijke procesregisseur gemeente, ontwikkelaar en woningcorporatie samen laat werken. In Brabant Magazine vertellen ook betrokkenen bij Wouwse Weide, Rucphen Noordwest en Zevenbergen Noord wat de aanpak opleverde.</p>
-        <div class="btn-row">
-          <ExtLink href={site.links.magazine} class="btn btn-secondary">Lees de interviews</ExtLink>
-          <a class="link-cta" href="/praktijk">Bekijk de praktijkcases</a>
-        </div>
+      <CoachCards />
+      <div class="btn-row">
+        <a class="btn btn-primary" href={kennismaking}>Spreek een coach</a>
+        <a class="btn btn-secondary" href={telHref}>Bel {site.phone.display}</a>
       </div>
     </div>
   </section>
 
-  <section class="band sand" aria-labelledby="coach-titel">
-    <div class="wrap stack-lg">
-      <div class="stack measure">
-        <p class="eyebrow">Coaches</p>
-        <h2 id="coach-titel">Spreek een coach</h2>
-        <p>Onze coaches werken onafhankelijk tussen gemeente, ontwikkelaar en woningcorporatie. Bel of mail, dan bespreken we uw project.</p>
-      </div>
-      <CoachCards />
-      <div class="btn-row">
-        <TelButton />
-        <a class="btn btn-secondary" href={mail("Kennismaking met een Versnellingscoach")}>Mail ons</a>
-      </div>
-    </div>
-  </section>
+  <CtaBand />
 </Base>

@@ -2,9 +2,8 @@
 import Base from "../layouts/Base.astro";
 import PageHead from "../components/PageHead.astro";
 import ContactLines from "../components/ContactLines.astro";
-import TelButton from "../components/TelButton.astro";
 import trainingen from "../data/trainingen.json";
-import { mail, serviceSchema } from "../data/site";
+import { site, mail, telHref, serviceSchema } from "../data/site";
 const schema = trainingen.map((t) => serviceSchema(t.naam, t.tekst, "/trainingen#" + t.id));
 ---
 <Base title="Trainingen voor projectteams" crumb="Trainingen" schema={schema}
@@ -24,11 +23,11 @@ const schema = trainingen.map((t) => serviceSchema(t.naam, t.tekst, "/trainingen
   <section class="band dark" aria-labelledby="aanmelden">
     <div class="wrap grid-2">
       <div class="stack">
-        <h2 id="aanmelden">Meld uw team aan</h2>
+        <h2 id="aanmelden">Klaar om sneller samen te werken?</h2>
         <p>Mail ons de gewenste training en organisatie. We stemmen de datum en prijs met u af.</p>
         <div class="btn-row mt">
           <a class="btn btn-primary" href={mail("Aanmelding training", "Beste Versnellingscoach,\n\nWij willen graag een training aanvragen.\n\nGewenste training:\nOrganisatie:\nAantal deelnemers:\nTelefoonnummer:\n")}>Meld uw team aan</a>
-          <TelButton variant="secondary" />
+          <a class="btn btn-ghost" href={telHref}>Bel {site.phone.display}</a>
         </div>
       </div>
       <ContactLines />

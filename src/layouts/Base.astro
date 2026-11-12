@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import Logo from "../components/Logo.astro";
-import { site, nav, mail, telHref, indexable, orgId, serviceId } from "../data/site";
+import { site, nav, mail, telHref, kennismaking, indexable, orgId, serviceId } from "../data/site";
 
 interface Props {
   title: string;          // paginatitel zonder merknaam (homepage: volledige titel)
@@ -86,7 +86,7 @@ const contactMail = mail("Vraag via de website");
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="hoofdmenu">Menu</button>
       <nav class="nav" id="hoofdmenu" aria-label="Hoofdmenu">
         {nav.map((n) => <a href={n.href} aria-current={path === n.href ? "page" : undefined}>{n.label}</a>)}
-        <a class="btn btn-primary" href="/#rekentool">Bereken uw besparing</a>
+        <a class="btn btn-primary" href={kennismaking}>Plan een kennismaking</a>
       </nav>
     </div>
   </header>
@@ -118,20 +118,30 @@ const contactMail = mail("Vraag via de website");
       <div>
         <h2>Over</h2>
         <ul>
-          <li><a href="/praktijk">Praktijkcases</a></li>
-          <li><a href="/coaches">Coaches</a></li>
+          <li><a href="/cases">Cases</a></li>
+          <li><a href="/team">Team</a></li>
           <li><a href="/contact">Contact</a></li>
           <li><a href="/privacy">Privacy</a></li>
           <li><a href="/colofon">Colofon</a></li>
         </ul>
       </div>
     </div>
+    <div class="wrap credits">
+      {site.credits.map((c) => (
+        <p>
+          <span>{c.label}</span>{" "}
+          {c.url
+            ? <a href={c.url} target="_blank" rel="noopener">{c.logo ? <img src={c.logo} alt={c.name} height="28" width="120" loading="lazy" decoding="async" /> : c.name}<span class="sr-only"> (opent in nieuw venster)</span></a>
+            : (c.logo ? <img src={c.logo} alt={c.name} height="28" width="120" loading="lazy" decoding="async" /> : <strong>{c.name}</strong>)}
+        </p>
+      ))}
+    </div>
   </footer>
 
   <div class="fab">
     <div class="fab-panel" id="contactpaneel" hidden>
       <a class="btn btn-primary" href={telHref}>Bel nu</a>
-      <a class="btn btn-secondary" href={contactMail}>Mail ons</a>
+      <a class="btn btn-secondary" href={kennismaking}>Mail ons</a>
       <p>Telefoon <span class="val num">{site.phone.display}</span><br>E-mail <span class="val">{site.email}</span></p>
     </div>
     <button class="fab-toggle" type="button" aria-expanded="false" aria-controls="contactpaneel" aria-label="Contact: bel of mail ons">
