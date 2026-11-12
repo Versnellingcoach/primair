@@ -129,8 +129,8 @@ const contactMail = mail("Vraag via de website");
         <p>
           <span>{c.label}</span>{" "}
           {c.url
-            ? <a href={c.url} target="_blank" rel="noopener">{c.logo ? <img src={c.logo} alt={c.name} height="28" width="120" loading="lazy" decoding="async" /> : c.name}<span class="sr-only"> (opent in nieuw venster)</span></a>
-            : (c.logo ? <img src={c.logo} alt={c.name} height="28" width="120" loading="lazy" decoding="async" /> : <strong>{c.name}</strong>)}
+            ? <a href={c.url} target="_blank" rel="noopener">{c.logo ? <img src={c.logo} alt={c.name} height="28" width="94" loading="lazy" decoding="async" /> : c.name}<span class="sr-only"> (opent in nieuw venster)</span></a>
+            : (c.logo ? <img src={c.logo} alt={c.name} height="28" width="94" loading="lazy" decoding="async" /> : <strong>{c.name}</strong>)}
         </p>
       ))}
     </div>

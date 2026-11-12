@@ -59,8 +59,7 @@ Alleen nodig voor ontwikkelaars: Node 22, dan `npm ci`, `npm run dev` en `npm ru
 ## Checklist vóór livegang
 
 - [x] Toestemming logo's opdrachtgevers: getekend bij het afnemen van de opdracht
-- [ ] Toestemming van de Provincie Noord-Brabant om de video zelf te hosten. Zet daarna `"toestemming": true` bij `video` in `src/data/site.json`.
-- [ ] Logo en link van Van Gestel Digitaal in de credits
+- [x] Toestemming video: afgestemd met de Provincie Noord-Brabant
 - [ ] Privacyverklaring juridisch laten toetsen
 - [ ] Domein in Vercel: `versnellingscoach.nl` als hoofddomein, `www` met 301 daarnaartoe
 - [ ] DNS: DNSSEC aan; SPF `v=spf1 -all` en DMARC `p=reject` als het domein zelf geen mail verstuurt
