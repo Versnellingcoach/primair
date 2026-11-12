@@ -4,7 +4,10 @@ import coachData from "./coaches.json";
 export interface Address { street: string; postalCode: string; city: string }
 export interface Video { src: string; poster: string; captions?: string; duration: string; uploadDate: string }
 
+export interface Credit { label: string; name: string; url: string | null; logo: string | null }
+
 export const site = data as typeof data & {
+  credits: Credit[];
   owner: { name: string; address: Address | null; kvk: string | null; btw: string | null };
   video: Video | null;
 };
@@ -13,12 +16,14 @@ export const telHref = "tel:" + site.phone.e164;
 
 export const nav = [
   { href: "/aanpak", label: "Aanpak" },
+  { href: "/cases", label: "Cases" },
   { href: "/trainingen", label: "Trainingen" },
-  { href: "/praktijk", label: "Praktijk" },
-  { href: "/brabant", label: "Brabant" },
-  { href: "/coaches", label: "Coaches" },
+  { href: "/brabant", label: "Subsidie Brabant" },
+  { href: "/team", label: "Team" },
   { href: "/contact", label: "Contact" },
 ];
+
+export const kennismakingBody = "Beste Versnellingscoach,\n\nIk wil graag kennismaken en ons woningbouwproject bespreken.\n\nOrganisatie:\nProject en aantal woningen:\nWaar loopt het nu vast:\nTelefoonnummer:\n";
 
 const defaultBody = "Beste Versnellingscoach,\n\n\n\nOrganisatie:\nTelefoonnummer:\n";
 
@@ -26,6 +31,8 @@ const defaultBody = "Beste Versnellingscoach,\n\n\n\nOrganisatie:\nTelefoonnumme
 export function mail(subject: string, body: string = defaultBody): string {
   return `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
+
+export const kennismaking = mail("Kennismaking Versnellingscoach", kennismakingBody);
 
 /** Alleen indexeren op de productieomgeving als dat expliciet is aangezet (ALLOW_INDEXING=true in Vercel). */
 export const indexable = process.env.VERCEL_ENV === "production" && process.env.ALLOW_INDEXING === "true";

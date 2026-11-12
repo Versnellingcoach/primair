@@ -1,0 +1,25 @@
+---
+// Schuivende banner met opdrachtgevers. Logo's: zet een SVG of PNG in public/logos/
+// en vul in src/data/klanten.json het pad in bij "logo". Zonder logo verschijnt de naam.
+import klanten from "../data/klanten.json";
+interface Props { title?: string }
+const { title = "Zij gingen u voor" } = Astro.props;
+const items = klanten as { name: string; logo: string | null }[];
+---
+<section class="logos" aria-labelledby="logos-titel">
+  <div class="wrap logos-head">
+    <p class="eyebrow" id="logos-titel">{title}</p>
+  </div>
+  <div class="marquee">
+    <ul class="marquee-track">
+      {items.map((k) => (
+        <li class="logo-item">{k.logo ? <img src={k.logo} alt={k.name} height="48" width="160" loading="lazy" decoding="async" /> : <span class="logo-name">{k.name}</span>}</li>
+      ))}
+    </ul>
+    <ul class="marquee-track" aria-hidden="true">
+      {items.map((k) => (
+        <li class="logo-item">{k.logo ? <img src={k.logo} alt="" height="48" width="160" loading="lazy" decoding="async" /> : <span class="logo-name">{k.name}</span>}</li>
+      ))}
+    </ul>
+  </div>
+</section>

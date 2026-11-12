@@ -13,14 +13,17 @@ Website van Versnellingscoach, een merk van Silver Power. Gebouwd met [Astro](ht
 | Wat je wilt wijzigen | Bestand |
 |---|---|
 | Telefoon, e-mail, adres, KvK, links, video | `src/data/site.json` |
-| Coaches (naam, rol, ervaring) | `src/data/coaches.json` + portret in `src/assets/coaches/<slug>.jpg` |
+| Team (voornaam, rol, ervaring) | `src/data/coaches.json` + portret in `src/assets/coaches/<slug>.jpg` |
+| Logo's in de schuivende banner | `src/data/klanten.json` + bestand in `public/logos/` |
+| Cases | `src/data/cases.json` |
+| Credits onderaan (Silver Power, Van Gestel Digitaal) | `src/data/site.json` → `credits` |
 | Trainingen | `src/data/trainingen.json` |
 | Staffel van de rekentool | `src/data/staffel.json` |
 | Teksten per pagina | `src/pages/*.astro` |
 | Kleuren, lettertype, opmaak | `src/styles/global.css` |
 | Security headers | `vercel.json` |
 
-Een coach toevoegen: zet een staand portret (4:5) als `src/assets/coaches/<slug>.jpg` en voeg een regel toe aan `coaches.json` met dezelfde `slug`. Astro maakt er automatisch AVIF- en WebP-versies in de juiste maten van.
+Een coach toevoegen: zet een portret als `src/assets/coaches/<slug>.jpg` en voeg een regel toe aan `coaches.json` met dezelfde `slug`. Astro maakt er automatisch AVIF- en WebP-versies in de juiste maten van.
 
 ## Zoekmachines
 
@@ -49,8 +52,8 @@ Alleen nodig voor ontwikkelaars: Node 22, dan `npm ci`, `npm run dev` en `npm ru
 
 ## Checklist vóór livegang
 
-- [ ] Bedrijfsadres, KvK- en btw-nummer in `src/data/site.json`
-- [ ] Achternaam, specialisme en projectervaring van Nora en Paul
+- [ ] Logo's van Gemeente Breda, Gemeente Moerdijk, Gemeente Roosendaal en Maas & Jacobs (met toestemming voor gebruik)
+- [ ] Logo's en link voor Silver Power en Van Gestel Digitaal in de credits
 - [ ] Video Blossem (MP4, poster en ondertiteling) in `public/video/`
 - [ ] Privacyverklaring juridisch laten toetsen
 - [ ] Domein in Vercel: `versnellingscoach.nl` als hoofddomein, `www` met 301 daarnaartoe

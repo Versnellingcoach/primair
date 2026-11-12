@@ -2,19 +2,19 @@
 import Base from "../layouts/Base.astro";
 import PageHead from "../components/PageHead.astro";
 import ContactLines from "../components/ContactLines.astro";
-import { site, mail } from "../data/site";
+import { site, mail, kennismaking } from "../data/site";
 ---
 <Base title="Contact" crumb="Contact" description={`Start de versnelling van uw woningbouwproject. Bel ${site.phone.display} of mail ${site.email}.`}>
-  <PageHead crumb="Contact" h1="Start de versnelling" lead="Bel ons direct of mail kort waar uw project staat. We nemen snel contact met u op." />
+  <PageHead crumb="Contact" h1="Start de versnelling" lead="Bel direct of mail kort waar uw project staat. Dan plannen we een kennismaking." />
   <section class="band" aria-label="Contactgegevens">
     <div class="wrap grid-2">
       <ContactLines />
       <div class="stack">
-        <h2 class="h-card">Waar wilt u het over hebben?</h2>
+        <h2 class="h-card">Kies uw onderwerp</h2>
         <p class="muted">Elke knop opent een e-mail met een passend onderwerp.</p>
         <div class="stack-s">
-          <a class="btn btn-secondary" href={mail("Versnellingscoach inzetten")}>Een Versnellingscoach inzetten</a>
-          <a class="btn btn-secondary" href={mail("100- of 200-dagenaanpak")}>De 100- of 200-dagenaanpak</a>
+          <a class="btn btn-primary" href={kennismaking}>Plan een kennismaking</a>
+          <a class="btn btn-secondary" href={mail("Welk traject past bij ons project?")}>Welk traject past bij ons: 100 of 200 dagen?</a>
           <a class="btn btn-secondary" href={mail("Aanmelding training")}>Een training voor ons team</a>
           <a class="btn btn-secondary" href={mail("Subsidie Versnellingscoach Brabant")}>De Brabantse subsidie</a>
         </div>

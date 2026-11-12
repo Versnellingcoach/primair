@@ -115,7 +115,13 @@ if (!site.owner.address) warnings.push("Openstaand: bedrijfsadres (src/data/site
 if (!site.owner.kvk) warnings.push("Openstaand: KvK-nummer (src/data/site.json → owner.kvk)");
 if (!site.owner.btw) warnings.push("Openstaand: btw-nummer (src/data/site.json → owner.btw)");
 if (!site.video) warnings.push("Openstaand: video Blossem (MP4 in public/video/ en src/data/site.json → video)");
-for (const c of coaches) if (!c.experience) warnings.push(`Openstaand: projectervaring van coach ${c.name} (src/data/coaches.json)`);
+const klanten = JSON.parse(readFileSync(new URL("../src/data/klanten.json", import.meta.url), "utf8"));
+for (const k of klanten) if (!k.logo) warnings.push(`Openstaand: logo van ${k.name} (public/logos/ en src/data/klanten.json)`);
+for (const c of site.credits) {
+  if (!c.url) warnings.push(`Openstaand: website-link van ${c.name} (src/data/site.json → credits)`);
+  if (!c.logo) warnings.push(`Openstaand: logo van ${c.name} (src/data/site.json → credits)`);
+}
+void coaches;
 
 console.log(`Gecontroleerd: ${htmlFiles.length} pagina's.`);
 for (const w of warnings) console.log("::warning::" + w);

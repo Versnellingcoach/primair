@@ -6,15 +6,36 @@
   "description": "Een Versnellingscoach brengt gemeente, ontwikkelaar en woningcorporatie aan tafel en versnelt uw woningbouwproject. Bereken direct uw besparingsindicatie.",
   "owner": {
     "name": "Silver Power",
-    "address": null,
-    "kvk": null,
-    "btw": null
+    "address": {
+      "street": "Druivenstraat 3",
+      "postalCode": "4816 KB",
+      "city": "Breda"
+    },
+    "kvk": "87465620",
+    "btw": "NL864302149B01"
   },
-  "phone": { "display": "085 071 77 10", "e164": "+31850717710" },
+  "phone": {
+    "display": "085 071 77 10",
+    "e164": "+31850717710"
+  },
   "email": "office@silverpower.nl",
   "links": {
     "magazine": "https://publicaties.brabant.nl/brabant-magazine/68/versnellingscoach",
     "flyer": "https://www.brabant.nl/publish/pages/16480/flyer_versnellingscoach.pdf"
   },
-  "video": null
+  "video": null,
+  "credits": [
+    {
+      "label": "Powered by",
+      "name": "Silver Power",
+      "url": "https://silverpower.nl",
+      "logo": null
+    },
+    {
+      "label": "Support website powered by",
+      "name": "Van Gestel Digitaal",
+      "url": null,
+      "logo": null
+    }
+  ]
 }
