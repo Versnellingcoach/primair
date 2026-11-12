@@ -1,21 +1,59 @@
 name: CI
+
 on:
   push:
+    branches: [main]
   pull_request:
+
 permissions:
   contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
+    name: Build en controle
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm install --no-audit --no-fund
-      - run: npm ls astro @astrojs/sitemap
-      - run: npm run build
+          cache: ${{ hashFiles('package-lock.json') != '' && 'npm' || '' }}
+      - name: Afhankelijkheden installeren
+        run: |
+          if [ -f package-lock.json ]; then npm ci --no-audit --no-fund; else npm install --no-audit --no-fund; fi
+      - name: Bekende kwetsbaarheden (productie-afhankelijkheden)
+        run: npm audit --omit=dev --audit-level=high
+      - name: Build
+        run: npm run build
+      - name: Kwaliteitscontrole (SEO, CSP, links)
+        run: npm run check
       - uses: actions/upload-artifact@v4
         with:
-          name: package-lock
-          path: package-lock.json
+          name: dist
+          path: dist
+          retention-days: 3
+
+  lighthouse:
+    name: Lighthouse
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+      - uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: ./lighthouserc.json
+          temporaryPublicStorage: false

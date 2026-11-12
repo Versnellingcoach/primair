@@ -1,0 +1,24 @@
+---
+import { Picture } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import { coaches } from "../data/site";
+
+const images = import.meta.glob<{ default: ImageMetadata }>("../assets/coaches/*.jpg", { eager: true });
+const imageFor = (slug: string) => {
+  const img = images[`../assets/coaches/${slug}.jpg`];
+  if (!img) throw new Error(`Portret ontbreekt: src/assets/coaches/${slug}.jpg`);
+  return img.default;
+};
+---
+<div class="grid-3">
+  {coaches.map((c) => (
+    <article class="card coach">
+      <Picture class="portrait" src={imageFor(c.slug)} alt={c.alt} widths={[400, 640, 900]} sizes="(max-width: 900px) 92vw, 340px" formats={["avif", "webp"]} loading="lazy" />
+      <div class="stack-xs">
+        <h3>{c.name}</h3>
+        <p class="role">{c.role}</p>
+      </div>
+      {c.experience && <p>{c.experience}</p>}
+    </article>
+  ))}
+</div>

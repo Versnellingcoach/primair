@@ -1,0 +1,7 @@
+Lato
+Copyright (c) 2010-2015 by tyPoland Lukasz Dziedzic (team@latofonts.com) with Reserved Font Name "Lato".
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+The full license text is available at: https://openfontlicense.org/open-font-license-official-text/
+
+The files in this folder are subsets (Latin) of Lato 2.015, converted to WOFF.

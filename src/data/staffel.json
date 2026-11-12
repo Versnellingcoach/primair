@@ -1,0 +1,12 @@
+{
+  "_toelichting": "Indicatieve brutobesparing per project. Intern voorstel: niet als tabel op de site tonen. Let op: de rekentool rekent in de browser, dus deze bedragen staan in het gepubliceerde JavaScript.",
+  "prijsGrenzen": [350000, 500000],
+  "rijen": [
+    { "van": 1, "tot": 10, "bedragen": [15000, 17500, 20000] },
+    { "van": 11, "tot": 25, "bedragen": [20000, 22500, 25000] },
+    { "van": 26, "tot": 75, "bedragen": [25000, 27500, 30000] },
+    { "van": 76, "tot": 150, "bedragen": [30000, 32500, 35000] },
+    { "van": 151, "tot": 300, "bedragen": [35000, 37500, 40000] },
+    { "van": 301, "tot": null, "bedragen": [40000, 42500, 45000] }
+  ]
+}

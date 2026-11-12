@@ -1,0 +1,37 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHead from "../components/PageHead.astro";
+import ContactLines from "../components/ContactLines.astro";
+import TelButton from "../components/TelButton.astro";
+import trainingen from "../data/trainingen.json";
+import { mail, serviceSchema } from "../data/site";
+const schema = trainingen.map((t) => serviceSchema(t.naam, t.tekst, "/trainingen#" + t.id));
+---
+<Base title="Trainingen voor projectteams" crumb="Trainingen" schema={schema}
+  description="Inhousetraining, leren-versnellingstafel en trajectbegeleiding. Breng een eigen woningbouwproject mee en leer uw team sneller samenwerken.">
+  <PageHead crumb="Trainingen" h1="Leer uw team sneller samenwerken" lead="Breng een eigen project mee. Oefen hoe u werk parallel organiseert, rollen scherp maakt en besluiten eerder voorbereidt." />
+  <section class="band" aria-label="Trainingen">
+    <div class="wrap grid-3">
+      {trainingen.map((t) => (
+        <article class="card" id={t.id}>
+          <h2 class="h-card">{t.naam}</h2>
+          <p>{t.tekst}</p>
+          <a class="link-cta" href={mail("Aanmelding " + t.naam.toLowerCase())}>{t.cta}</a>
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="band dark" aria-labelledby="aanmelden">
+    <div class="wrap grid-2">
+      <div class="stack">
+        <h2 id="aanmelden">Meld uw team aan</h2>
+        <p>Mail ons de gewenste training en organisatie. We stemmen de datum en prijs met u af.</p>
+        <div class="btn-row mt">
+          <a class="btn btn-primary" href={mail("Aanmelding training", "Beste Versnellingscoach,\n\nWij willen graag een training aanvragen.\n\nGewenste training:\nOrganisatie:\nAantal deelnemers:\nTelefoonnummer:\n")}>Meld uw team aan</a>
+          <TelButton variant="secondary" />
+        </div>
+      </div>
+      <ContactLines />
+    </div>
+  </section>
+</Base>

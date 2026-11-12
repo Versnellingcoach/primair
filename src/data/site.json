@@ -1,0 +1,20 @@
+{
+  "_toelichting": "Centrale sitegegevens. Velden met null zijn nog niet aangeleverd: de site laat die onderdelen dan weg en `npm run check` meldt ze.",
+  "name": "Versnellingscoach",
+  "url": "https://versnellingscoach.nl",
+  "tagline": "Onafhankelijke procesregie voor woningbouw",
+  "description": "Een Versnellingscoach brengt gemeente, ontwikkelaar en woningcorporatie aan tafel en versnelt uw woningbouwproject. Bereken direct uw besparingsindicatie.",
+  "owner": {
+    "name": "Silver Power",
+    "address": null,
+    "kvk": null,
+    "btw": null
+  },
+  "phone": { "display": "085 071 77 10", "e164": "+31850717710" },
+  "email": "office@silverpower.nl",
+  "links": {
+    "magazine": "https://publicaties.brabant.nl/brabant-magazine/68/versnellingscoach",
+    "flyer": "https://www.brabant.nl/publish/pages/16480/flyer_versnellingscoach.pdf"
+  },
+  "video": null
+}

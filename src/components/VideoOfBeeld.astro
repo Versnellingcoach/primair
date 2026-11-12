@@ -1,0 +1,19 @@
+---
+import { Picture } from "astro:assets";
+import { site } from "../data/site";
+import bouwplaats from "../assets/beeld/bouwplaats-marleen.jpg";
+const v = site.video;
+---
+{v ? (
+  <figure class="video">
+    <video controls preload="none" playsinline poster={v.poster} width="1280" height="720">
+      <source src={v.src} type="video/mp4" />
+      {v.captions && <track kind="captions" src={v.captions} srclang="nl" label="Nederlands" default />}
+    </video>
+    <figcaption class="small muted">Video: Provincie Noord-Brabant</figcaption>
+  </figure>
+) : (
+  <figure class="beeld">
+    <Picture src={bouwplaats} alt="Versnellingscoach Marleen Zantingh op de bouwplaats" widths={[640, 960, 1280]} sizes="(max-width: 820px) 92vw, 520px" formats={["avif", "webp"]} loading="lazy" />
+  </figure>
+)}

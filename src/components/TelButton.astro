@@ -1,0 +1,5 @@
+---
+import { site, telHref } from "../data/site";
+const { variant = "primary" } = Astro.props;
+---
+<a class={`btn btn-${variant}`} href={telHref}>Bel {site.phone.display}</a>
