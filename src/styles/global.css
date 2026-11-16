@@ -388,3 +388,5 @@ img.head-img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 .case-detail > *, .case-verhaal, .foto-rij > *, .resultaat-cijfers > * { min-width: 0; }
 .ph-foto { width: 100%; }
 .resultaat-cijfers .ph strong { font-size: inherit; }
+.grid-2 > *, .grid-3 > * { min-width: 0; }
+img.media-small { width: 100%; }
