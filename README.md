@@ -15,7 +15,10 @@ Website van Versnellingscoach, een merk van Silver Power. Gebouwd met [Astro](ht
 | Telefoon, e-mail, adres, KvK, links, video | `src/data/site.json` |
 | Team (voornaam, rol, ervaring) | `src/data/coaches.json` + portret in `src/assets/coaches/<slug>.jpg` |
 | Logo's in de schuivende banner | `src/data/klanten.json` + bestand in `public/logos/` |
-| Cases | `src/data/cases.json` |
+| Cases (met `"detail": true` krijgt een case een eigen pagina) | `src/data/cases.json` |
+| Profieltekst coaches (intro, achtergrond, expertise, projecten, quote, LinkedIn) | `src/data/coaches.json` |
+| Tijdwinst per traject (rekentool, Aanpak) | `src/data/tijdwinst.json` |
+| Regelingen in andere provincies | `src/data/site.json` → `andereRegios` |
 | Credits onderaan (Silver Power, Van Gestel Digitaal) | `src/data/site.json` → `credits` |
 | Trainingen | `src/data/trainingen.json` |
 | Staffel van de rekentool | `src/data/staffel.json` |
@@ -24,6 +27,10 @@ Website van Versnellingscoach, een merk van Silver Power. Gebouwd met [Astro](ht
 | Security headers | `vercel.json` |
 
 Een coach toevoegen: zet een portret als `src/assets/coaches/<slug>.jpg` en voeg een regel toe aan `coaches.json` met dezelfde `slug`. Astro maakt er automatisch AVIF- en WebP-versies in de juiste maten van.
+
+## Invulblokken
+
+Waar nog content ontbreekt, staat een oranje gestippeld blok met **Plaatsen tekst** of **Plaatsen foto** en een korte uitleg wat er moet komen. Vul de bijbehorende velden in de data-bestanden; het blok verdwijnt dan vanzelf. `npm run check` meldt per pagina hoeveel invulblokken er nog staan.
 
 ## Beeld zonder bevestigde toestemming
 

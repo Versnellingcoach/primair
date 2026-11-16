@@ -1,16 +1,17 @@
 ---
 import { site, mail, telHref } from "../data/site";
 import staffel from "../data/staffel.json";
-import ExtLink from "./ExtLink.astro";
+import tijdwinst from "../data/tijdwinst.json";
 // Alleen de rekendata gaat naar de browser, zonder interne toelichting.
-const rekendata = JSON.stringify({ prijsGrenzen: staffel.prijsGrenzen, rijen: staffel.rijen });
+const rekendata = JSON.stringify({ prijsGrenzen: staffel.prijsGrenzen, rijen: staffel.rijen, trajecten: tijdwinst.trajecten });
+const [eerste] = tijdwinst.trajecten;
 ---
 <section class="band" id="rekentool" aria-labelledby="rekentool-titel">
   <div class="wrap stack-lg">
     <div class="stack measure">
-      <p class="eyebrow">Besparingsindicatie in 10 seconden</p>
-      <h2 id="rekentool-titel">Wat kunt u besparen op uw woningbouwplan?</h2>
-      <p>Vul twee getallen in en zie direct wat versnellen uw project kan opleveren.</p>
+      <p class="eyebrow">Uw winst in 10 seconden</p>
+      <h2 id="rekentool-titel">Wat levert versnellen uw project op, in geld én tijd?</h2>
+      <p>Vul twee getallen in, kies uw traject en zie direct een indicatie van uw besparing en tijdwinst.</p>
     </div>
     <div class="calc" data-calc data-staffel={rekendata} data-email={site.email}>
       <div class="calc-in">
@@ -26,31 +27,39 @@ const rekendata = JSON.stringify({ prijsGrenzen: staffel.prijsGrenzen, rijen: st
           <p class="hint" id="hint-prijs">Een schatting is voldoende.</p>
           <p class="err" id="fout-prijs" hidden></p>
         </div>
+        <fieldset class="field segment">
+          <legend>Traject</legend>
+          <div class="segment-opties">
+            {tijdwinst.trajecten.map((t, i) => (
+              <label class="segment-optie">
+                <input type="radio" name="traject" value={String(t.dagen)} checked={i === 0} />
+                <span><b>{t.dagen} dagen</b> {t.resultaat}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
         <p class="hint privacy-hint">Uw cijfers blijven in uw browser. Er wordt niets verstuurd of opgeslagen.</p>
       </div>
       <div class="calc-out" aria-live="polite">
-        <div class="stack-xs">
-          <p class="result-label">Indicatieve brutobesparing per project</p>
-          <p class="result-amt" data-calc-out>€ 32.500</p>
-        </div>
-        <div class="phases">
-          <span class="chip"><b>100 dagen</b> · Gebiedsperspectief</span>
-          <span class="chip"><b>200 dagen</b> · Ontwikkelvisie</span>
-        </div>
-        <div class="timewin">
-          <strong>Plus tijdwinst</strong>
-          <p>Rucphen Noordwest pakte de planontwikkeling aan in 2 × 100 dagen. Thuisvester noemt 4 jaar gebruikelijk voor zo’n project.</p>
+        <div class="uitkomsten">
+          <div class="uitkomst">
+            <p class="uitkomst-label">Kostenbesparing</p>
+            <p class="uitkomst-waarde num" data-calc-out>€ 32.500</p>
+            <p class="uitkomst-sub">indicatief, per project</p>
+          </div>
+          <div class="uitkomst">
+            <p class="uitkomst-label">Tijdwinst</p>
+            <p class="uitkomst-waarde num" data-calc-tijd>{eerste.tijdwinst}</p>
+            <p class="uitkomst-sub">minder voorbereiding</p>
+          </div>
         </div>
         <div class="btn-row">
-          <a class="btn btn-primary" data-calc-mail href={mail("Bespreek mijn woningbouwproject")}>Bespreek deze besparing</a>
+          <a class="btn btn-primary" data-calc-mail href={mail("Bespreek mijn project")}>Bespreek deze uitkomst</a>
           <a class="btn btn-secondary" href={telHref}>Bel {site.phone.display}</a>
         </div>
-        <p class="small muted">Dit is een inschatting. De besparing hangt af van het project en van hoeveel externe diensten u afneemt voor de voorbereiding.</p>
+        <p class="bron">Indicatief. Elk project is anders, dus ook de besparing en tijdwinst. Voorbeeld: Rucphen Noordwest pakte de planontwikkeling aan in 2 × 100 dagen, waar 4 jaar gebruikelijk is.</p>
         <noscript><p class="small">Zet JavaScript aan voor een directe indicatie, of bel ons voor een inschatting van uw project.</p></noscript>
       </div>
-    </div>
-    <div class="note measure">
-      <p><strong>Praktijkvoorbeeld.</strong> Bij Rucphen Noordwest, een wijk van circa 265 woningen, beschrijft Thuisvester hoe het team de planontwikkeling in twee trajecten van 100 dagen oppakte. De ontwikkelmanager noemt vier jaar als gebruikelijke doorlooptijd voor zo’n project. <ExtLink href={site.links.magazine} class="">Lees de praktijkcase in Brabant Magazine</ExtLink></p>
     </div>
   </div>
 </section>

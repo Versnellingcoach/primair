@@ -4,7 +4,7 @@ import ExtLink from "./ExtLink.astro";
 import { site } from "../data/site";
 interface Props { limit?: number }
 const { limit } = Astro.props;
-const list = limit ? cases.filter((c) => c.woningen).slice(0, limit) : cases;
+const list = (limit ? cases.filter((c) => c.woningen).slice(0, limit) : cases) as Array<Record<string, any>>;
 const nl = new Intl.NumberFormat("nl-NL");
 ---
 <div class="cases">
@@ -16,7 +16,9 @@ const nl = new Intl.NumberFormat("nl-NL");
       <p class="case-key">{c.kernpunt}</p>
       {!limit && <p>{c.tekst}</p>}
       {!limit && c.partners && <p class="small muted">Met {c.partners}</p>}
-      {!limit && <ExtLink href={site.links.magazine} class="link-cta">Lees het interview</ExtLink>}
+      {c.detail
+        ? <a class="link-cta" href={`/cases/${c.id}`}>Lees de case</a>
+        : !limit && <ExtLink href={site.links.magazine} class="link-cta">Lees het interview</ExtLink>}
     </article>
   ))}
 </div>

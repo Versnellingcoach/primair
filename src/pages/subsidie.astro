@@ -5,10 +5,11 @@ import ExtLink from "../components/ExtLink.astro";
 import VideoOfBeeld from "../components/VideoOfBeeld.astro";
 import CtaBand from "../components/CtaBand.astro";
 import { site, mail, videoSchema } from "../data/site";
+const regios = site.andereRegios.links;
 ---
-<Base title="Subsidie Versnellingscoach Brabant" crumb="Brabant" schema={videoSchema()}
-  description="Brabantse gemeente? Uw Woondealregio kan bij de provincie Noord-Brabant subsidie aanvragen voor een regionale Versnellingscoach. Bekijk hoe het werkt.">
-  <PageHead crumb="Brabant" h1="Brabantse gemeente? Check de subsidie." lead="Wilt u een woningbouwproject versnellen? Uw Woondealregio kan bij de provincie subsidie aanvragen voor een regionale Versnellingscoach." />
+<Base title="Subsidie voor een Versnellingscoach" crumb="Subsidie" schema={videoSchema()}
+  description="Brabantse gemeente? Uw Woondealregio kan subsidie aanvragen voor een Versnellingscoach. Ook andere provincies vergoeden inhuur voor woningbouwversnelling.">
+  <PageHead crumb="Subsidie" h1="Brabantse gemeente? Check de subsidie." lead="Wilt u een woningbouwproject versnellen? Uw Woondealregio kan bij de provincie subsidie aanvragen voor een regionale Versnellingscoach." />
   <section class="band" aria-labelledby="zo-werkt-het">
     <div class="wrap grid-2">
       <div class="prose">
@@ -28,6 +29,16 @@ import { site, mail, videoSchema } from "../data/site";
       </div>
     </div>
   </section>
+  <section class="band andere-provincies" id="andere-provincies" aria-labelledby="andere-titel">
+    <div class="wrap stack measure">
+      <h2 id="andere-titel" class="h-small">Buiten Brabant? Ook andere provincies vergoeden inhuur.</h2>
+      <p class="small">Meer provincies vergoeden (een deel van) de inhuur van extra capaciteit om woningbouw te versnellen. Voorwaarden en budget verschillen per regeling en veranderen regelmatig. Wij zoeken graag met u uit wat in uw provincie mogelijk is.</p>
+      <ul class="regio-links small">
+        {regios.map((r) => <li><ExtLink href={r.url} class="">{r.naam}: {r.titel}</ExtLink></li>)}
+      </ul>
+      <a class="link-cta self-start small" href={mail("Subsidie in onze provincie")}>Vraag het na voor uw provincie</a>
+    </div>
+  </section>
   <section class="band dark" aria-labelledby="bouwplaats">
     <div class="wrap grid-2">
       <div class="stack">
@@ -44,5 +55,5 @@ import { site, mail, videoSchema } from "../data/site";
       </div>
     </div>
   </section>
-  <CtaBand title="Uw project aanmelden voor de subsidie?" text="We helpen u bepalen of uw project geschikt is en wat u bij uw Woondealregio moet aanleveren." />
+  <CtaBand title="Uw project aanmelden voor de subsidie?" text="We helpen u bepalen of uw project geschikt is en wat u bij uw regio of provincie moet aanleveren." />
 </Base>

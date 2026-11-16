@@ -67,6 +67,13 @@
   var errWon = document.getElementById("fout-woningen");
   var errPrijs = document.getElementById("fout-prijs");
   var out = calc.querySelector("[data-calc-out]");
+  var outTijd = calc.querySelector("[data-calc-tijd]");
+  var radios = calc.querySelectorAll('input[name="traject"]');
+  function traject() {
+    var gekozen = calc.querySelector('input[name="traject"]:checked');
+    var dagen = gekozen ? parseInt(gekozen.value, 10) : 100;
+    return (staffel.trajecten || []).find(function (t) { return t.dagen === dagen; }) || staffel.trajecten[0];
+  }
   var mailBtn = calc.querySelector("[data-calc-mail]");
   var nl = new Intl.NumberFormat("nl-NL");
   var euro = function (n) { return "€ " + nl.format(n); };
@@ -88,14 +95,18 @@
     var okP = p >= 50000 && p <= 10000000;
     setError(inWon, errWon, okW ? "" : "Vul een aantal woningen in tussen 1 en 20.000.");
     setError(inPrijs, errPrijs, okP ? "" : "Vul een gemiddelde verkoopprijs in tussen € 50.000 en € 10.000.000.");
+    var t = traject();
+    if (outTijd && t) outTijd.textContent = t.tijdwinst;
     if (!okW || !okP) { out.textContent = "€ –"; return; }
     var bedrag = lookup(w, p);
     out.textContent = euro(bedrag);
     var body = "Beste Versnellingscoach,\n\nIk wil graag ons woningbouwproject bespreken.\n\n" +
       "Aantal woningen: " + nl.format(w) + "\nGemiddelde verkoopprijs: " + euro(p) +
+      "\nTraject: " + t.dagen + " dagen (" + t.resultaat.toLowerCase() + ")" +
       "\nIndicatieve besparing volgens de rekentool: " + euro(bedrag) +
+      "\nIndicatieve tijdwinst: " + t.tijdwinst +
       "\n\nOrganisatie:\nProject:\nTelefoonnummer:\n";
-    mailBtn.href = "mailto:" + email + "?subject=" + encodeURIComponent("Bespreek mijn woningbouwproject") + "&body=" + encodeURIComponent(body);
+    mailBtn.href = "mailto:" + email + "?subject=" + encodeURIComponent("Bespreek mijn project") + "&body=" + encodeURIComponent(body);
   }
   inWon.addEventListener("input", function () { inWon.value = digits(inWon.value).slice(0, 5); update(); });
   inPrijs.addEventListener("input", function () {
@@ -103,5 +114,6 @@
     inPrijs.value = raw ? nl.format(parseInt(raw, 10)) : "";
     update();
   });
+  radios.forEach(function (r) { r.addEventListener("change", update); });
   update();
 })();

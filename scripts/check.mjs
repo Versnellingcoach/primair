@@ -127,6 +127,13 @@ for (const c of site.credits) {
 }
 void coaches;
 
+// Invulblokken ("Plaatsen tekst" / "Plaatsen foto") per pagina melden.
+for (const file of htmlFiles) {
+  const html = readFileSync(file, "utf8");
+  const n = (html.match(/data-placeholder="|class="ph-inline"/g) || []).length;
+  if (n) warnings.push(`Invulblokken: ${n} op /${relative(dist, file)}`);
+}
+
 console.log(`Gecontroleerd: ${htmlFiles.length} pagina's.`);
 for (const w of warnings) console.log("::warning::" + w);
 for (const e of errors) console.log("::error::" + e);

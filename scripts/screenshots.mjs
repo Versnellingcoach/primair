@@ -3,7 +3,7 @@
 import { chromium } from "playwright";
 import { mkdirSync, readFileSync } from "node:fs";
 
-const pages = (process.env.PAGES || "index,aanpak,cases,team,brabant").split(",");
+const pages = (process.env.PAGES || "index,aanpak,subsidie,team,team/marleen-zantingh,cases,cases/blossem").split(",");
 const viewports = [
   { name: "desktop", width: 1280, height: 800 },
   { name: "mobiel", width: 390, height: 844 },
@@ -21,7 +21,17 @@ for (const vp of viewports) {
       window.scrollTo(0, 0);
     });
     await page.waitForLoadState("networkidle");
-    const file = `screenshots/${p}-${vp.name}.jpg`;
+    // Elementen die buiten het scherm uitsteken (horizontale scroll) melden.
+    const breed = await page.evaluate(() => {
+      const w = document.documentElement.clientWidth;
+      if (document.documentElement.scrollWidth <= w) return [];
+      return [...document.querySelectorAll("body *")]
+        .filter((el) => el.getBoundingClientRect().right > w + 1 && getComputedStyle(el).position !== "fixed" && !el.closest(".marquee"))
+        .slice(0, 8)
+        .map((el) => `${el.tagName.toLowerCase()}.${[...el.classList].join(".")} (${Math.round(el.getBoundingClientRect().right)}px)`);
+    });
+    if (breed.length) console.log(`OVERFLOW ${p} ${vp.name}: ${breed.join(" | ")}`);
+    const file = `screenshots/${p.replace(/\//g, "_")}-${vp.name}.jpg`;
     await page.screenshot({ path: file, fullPage: true, type: "jpeg", quality: 55 });
     if (process.env.LOG_BASE64 !== "0") {
       console.log(`=====BEGIN ${file}=====`);

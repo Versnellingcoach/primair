@@ -1,18 +1,16 @@
 ---
-import Base from "../layouts/Base.astro";
 import { Picture } from "astro:assets";
-import luchtfoto from "../assets/sfeer/bouwlocatie-luchtfoto.jpg";
-import inAanbouw from "../assets/sfeer/woningen-in-aanbouw.jpg";
+import Base from "../layouts/Base.astro";
+import ProbleemOplossing from "../components/ProbleemOplossing.astro";
 import LogoMarquee from "../components/LogoMarquee.astro";
-import Rekentool from "../components/Rekentool.astro";
 import Traject from "../components/Traject.astro";
+import Rekentool from "../components/Rekentool.astro";
 import CaseCards from "../components/CaseCards.astro";
-import CoachCards from "../components/CoachCards.astro";
 import VideoOfBeeld from "../components/VideoOfBeeld.astro";
 import CtaBand from "../components/CtaBand.astro";
 import ExtLink from "../components/ExtLink.astro";
-import trainingen from "../data/trainingen.json";
-import { site, mail, kennismaking, telHref, videoSchema } from "../data/site";
+import { site, mail, start, videoSchema } from "../data/site";
+import luchtfoto from "../assets/sfeer/bouwlocatie-luchtfoto.jpg";
 ---
 <Base title="Versnellingscoach | Versnel uw woningbouwproject" schema={videoSchema()}>
   <section class="hero dark" aria-labelledby="home-titel">
@@ -21,16 +19,12 @@ import { site, mail, kennismaking, telHref, videoSchema } from "../data/site";
       <div class="stack-lg">
         <p class="eyebrow">Voor gemeenten, ontwikkelaars en woningcorporaties</p>
         <h1 id="home-titel">Versnel uw woningbouwproject<span class="dot">.</span></h1>
-        <p class="lead">Loopt uw woningbouwplan vast? Een Versnellingscoach brengt de juiste mensen aan tafel, maakt knelpunten zichtbaar en laat onderzoek en afstemming parallel lopen. In 100 of 200 dagen komt uw project weer in beweging.</p>
+        <p class="lead">Kan uw woningbouwplan sneller? Een Versnellingscoach brengt de juiste mensen aan tafel, maakt knelpunten zichtbaar en laat onderzoek en afstemming parallel lopen. In 100 of 200 dagen komt uw project in een hogere versnelling.</p>
         <div class="btn-row">
-          <a class="btn btn-primary btn-lg" href={kennismaking}>Plan een kennismaking</a>
-          <a class="btn btn-ghost btn-lg" href="#rekentool">Bereken uw besparing</a>
+          <a class="btn btn-primary btn-lg" href={start.href}>{start.label}</a>
+          <a class="btn btn-ghost btn-lg" href="#rekentool">Bereken uw winst</a>
         </div>
-        <ul class="checks">
-          <li>Onafhankelijke procesregie</li>
-          <li>Resultaat in 100 of 200 dagen</li>
-          <li>Actief in Breda, Moerdijk en Roosendaal</li>
-        </ul>
+        <p class="hero-breder">Wonen is ons vertrekpunt. De aanpak werkt voor elk ruimtelijk dossier. <a href="/aanpak#breder">Lees meer</a></p>
       </div>
       <div class="hero-card" aria-hidden="true">
         <p class="hero-card-num">100<span>dagen</span></p>
@@ -39,34 +33,11 @@ import { site, mail, kennismaking, telHref, videoSchema } from "../data/site";
     </div>
   </section>
 
+  <ProbleemOplossing />
+
   <LogoMarquee />
 
-  <Rekentool />
-
-  <section class="band sand" aria-labelledby="herkent-titel">
-    <div class="wrap grid-2">
-      <div class="stack">
-        <p class="eyebrow">Herkent u dit?</p>
-        <h2 id="herkent-titel">Iedereen wil bouwen. Toch staat het plan stil.</h2>
-        <ul class="pains">
-          <li>Gemeente, ontwikkelaar en corporatie wachten op elkaar.</li>
-          <li>Onderzoeken lopen na elkaar in plaats van tegelijk.</li>
-          <li>Besluiten schuiven steeds een overleg op.</li>
-        </ul>
-        <Picture class="rounded sfeer" src={inAanbouw} alt="Rijwoningen in aanbouw met steigers en bouwmaterialen" widths={[480, 720]} sizes="(max-width: 820px) 92vw, 520px" formats={["avif", "webp"]} loading="lazy" />
-      </div>
-      <div class="stack">
-        <p class="eyebrow">Zo trekt de Versnellingscoach uw project vlot</p>
-        <ol class="steps">
-          <li><strong>De juiste mensen aan tafel.</strong> Uw coach brengt alle partijen bij elkaar en houdt de regie.</li>
-          <li><strong>Knelpunten op tafel.</strong> Wat het project ophoudt, wordt zichtbaar en bespreekbaar.</li>
-          <li><strong>Parallel werken, eerder besluiten.</strong> Onderzoek en afstemming lopen tegelijk, zodat besluiten eerder klaarliggen.</li>
-        </ol>
-      </div>
-    </div>
-  </section>
-
-  <section class="band" aria-labelledby="product-titel">
+  <section class="band sand" aria-labelledby="product-titel">
     <div class="wrap stack-lg">
       <div class="stack measure">
         <p class="eyebrow">De Versnellingscoach</p>
@@ -86,34 +57,31 @@ import { site, mail, kennismaking, telHref, videoSchema } from "../data/site";
           <p>Er ligt een gedragen ontwikkelvisie en de bestuurlijke besluitvorming is voorbereid.</p>
         </div>
       </div>
-      <div class="btn-row">
-        <a class="btn btn-primary" href={mail("Welk traject past bij ons project?", "Beste Versnellingscoach,\n\nWe twijfelen tussen 100 en 200 dagen. Kunnen we dat samen bespreken?\n\nOrganisatie:\nProject en aantal woningen:\nTelefoonnummer:\n")}>Ontdek welk traject bij u past</a>
-        <a class="link-cta" href="/aanpak">Zo werkt de aanpak</a>
-      </div>
+      <a class="link-cta self-start" href="/aanpak">Zo werkt de aanpak</a>
     </div>
   </section>
+
+  <Rekentool />
 
   <section class="band sand" aria-labelledby="cases-titel">
     <div class="wrap stack-lg">
       <div class="stack measure">
         <p class="eyebrow">Resultaten uit de praktijk</p>
-        <h2 id="cases-titel">Ruim 880 woningen weer in beweging</h2>
-        <p>Drie Brabantse projecten die met een Versnellingscoach versnelden, beschreven in Brabant Magazine.</p>
+        <h2 id="cases-titel">Ruim 880 woningen in een hogere versnelling</h2>
+        <p>Brabantse projecten die met een Versnellingscoach versnelden.</p>
       </div>
       <CaseCards limit={3} />
-      <div class="btn-row">
-        <a class="btn btn-secondary" href="/cases">Bekijk alle cases</a>
-      </div>
+      <a class="btn btn-secondary self-start" href="/cases">Bekijk alle cases</a>
     </div>
   </section>
 
-  <section class="band dark" aria-labelledby="brabant-titel">
+  <section class="band dark" aria-labelledby="subsidie-titel">
     <div class="wrap grid-2">
       <div class="stack">
-        <p class="eyebrow">Subsidie voor Brabantse gemeenten</p>
-        <h2 id="brabant-titel">Brabantse gemeente? Check de subsidie.</h2>
-        <p>Wilt u een woningbouwproject versnellen? Uw Woondealregio kan bij de provincie subsidie aanvragen voor een regionale Versnellingscoach. Stem met uw regio af of er ruimte is om uw project aan te melden.</p>
-        <p class="note">Volgens de provinciale flyer kan per gemeente maximaal één project worden aangemeld. Wacht dus niet te lang.</p>
+        <p class="eyebrow">Subsidie</p>
+        <h2 id="subsidie-titel">Brabantse gemeente? Check de subsidie.</h2>
+        <p>Uw Woondealregio kan bij de provincie subsidie aanvragen voor een regionale Versnellingscoach. Per gemeente kan maximaal één project worden aangemeld, dus wacht niet te lang.</p>
+        <p class="small muted">Ook in andere provincies zijn regelingen. <a href="/subsidie#andere-provincies">Bekijk de mogelijkheden</a></p>
         <div class="btn-row mt">
           <a class="btn btn-primary" href={mail("Komt ons project in aanmerking voor de subsidie?")}>Check of uw project in aanmerking komt</a>
           <ExtLink href={site.links.flyer} class="link-cta">Bekijk de provinciale flyer</ExtLink>
@@ -122,40 +90,27 @@ import { site, mail, kennismaking, telHref, videoSchema } from "../data/site";
       <div class="stack media-small">
         <VideoOfBeeld />
         <p class="small muted">Op de bouwplaats van Blossem in Breda laat Marleen zien hoe een onafhankelijke procesregisseur gemeente, ontwikkelaar en woningcorporatie samen laat werken.</p>
-        <ExtLink href={site.links.magazine} class="link-cta">Lees de interviews in Brabant Magazine</ExtLink>
       </div>
     </div>
   </section>
 
-  <section class="band" aria-labelledby="training-titel">
-    <div class="wrap grid-2">
-      <div class="stack">
-        <p class="eyebrow">Trainingen</p>
-        <h2 id="training-titel">Leer uw team sneller samenwerken</h2>
-        <p>Breng een eigen project mee. Oefen hoe u werk parallel organiseert, rollen scherp maakt en besluiten eerder voorbereidt.</p>
-        <div class="btn-row mt">
-          <a class="btn btn-primary" href={mail("Aanmelding training")}>Meld uw team aan</a>
-          <a class="link-cta" href="/trainingen">Bekijk de trainingen</a>
-        </div>
-      </div>
-      <div class="training-list">
-        {trainingen.map((t) => <div><h3>{t.naam}</h3><p>{t.tekst}</p></div>)}
-      </div>
-    </div>
-  </section>
-
-  <section class="band sand" aria-labelledby="team-titel">
-    <div class="wrap stack-lg">
-      <div class="stack measure">
-        <p class="eyebrow">Het team</p>
-        <h2 id="team-titel">Hands-on coaches die partijen in beweging krijgen</h2>
-        <p>Onafhankelijk, praktisch en met de voeten in de klei. Uw coach staat tussen gemeente, ontwikkelaar en woningcorporatie in.</p>
-      </div>
-      <CoachCards />
-      <div class="btn-row">
-        <a class="btn btn-primary" href={kennismaking}>Spreek een coach</a>
-        <a class="btn btn-secondary" href={telHref}>Bel {site.phone.display}</a>
-      </div>
+  <section class="band" aria-label="Meer over Versnellingscoach">
+    <div class="wrap teasers">
+      <a class="teaser" href="/trainingen">
+        <span class="eyebrow">Trainingen</span>
+        <strong>Leer uw team sneller samenwerken</strong>
+        <span class="teaser-pijl" aria-hidden="true">→</span>
+      </a>
+      <a class="teaser" href="/team">
+        <span class="eyebrow">Team</span>
+        <strong>Maak kennis met onze hands-on coaches</strong>
+        <span class="teaser-pijl" aria-hidden="true">→</span>
+      </a>
+      <a class="teaser" href="/aanpak#breder">
+        <span class="eyebrow">Meer dan wonen</span>
+        <strong>De aanpak voor elk ruimtelijk dossier</strong>
+        <span class="teaser-pijl" aria-hidden="true">→</span>
+      </a>
     </div>
   </section>
 

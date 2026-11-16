@@ -3,21 +3,36 @@
     "slug": "marleen-zantingh",
     "name": "Marleen",
     "role": "Versnellingscoach",
-    "experience": null,
-    "alt": "Marleen, Versnellingscoach, op een bouwplaats"
+    "alt": "Marleen, Versnellingscoach, op een bouwplaats",
+    "intro": null,
+    "achtergrond": null,
+    "expertise": [],
+    "projecten": [],
+    "quote": null,
+    "linkedin": null
   },
   {
     "slug": "nora",
     "name": "Nora",
     "role": "Versnellingscoach",
-    "experience": null,
-    "alt": "Nora, Versnellingscoach"
+    "alt": "Nora, Versnellingscoach",
+    "intro": null,
+    "achtergrond": null,
+    "expertise": [],
+    "projecten": [],
+    "quote": null,
+    "linkedin": null
   },
   {
     "slug": "paul",
     "name": "Paul",
     "role": "Versnellingscoach",
-    "experience": null,
-    "alt": "Paul, Versnellingscoach"
+    "alt": "Paul, Versnellingscoach",
+    "intro": null,
+    "achtergrond": null,
+    "expertise": [],
+    "projecten": [],
+    "quote": null,
+    "linkedin": null
   }
 ]

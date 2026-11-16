@@ -1,10 +1,10 @@
 ---
 import { Picture } from "astro:assets";
-import { site, telHref, kennismaking } from "../data/site";
+import { site, telHref, start } from "../data/site";
 import wijk from "../assets/sfeer/nieuwe-wijk.jpg";
 interface Props { title?: string; text?: string }
 const {
-  title = "Zit uw woningbouwproject vast? Laten we het vlottrekken.",
+  title = "Klaar om uw project te versnellen?",
   text = "In een kort gesprek kijken we waar uw project staat en wat 100 of 200 dagen voor u kunnen opleveren.",
 } = Astro.props;
 ---
@@ -16,7 +16,7 @@ const {
       <p class="lead">{text}</p>
     </div>
     <div class="cta-actions">
-      <a class="btn btn-primary btn-lg" href={kennismaking}>Plan een kennismaking</a>
+      <a class="btn btn-primary btn-lg" href={start.href}>{start.label}</a>
       <a class="btn btn-ghost btn-lg" href={telHref}>Bel direct: {site.phone.display}</a>
     </div>
   </div>
