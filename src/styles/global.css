@@ -383,3 +383,8 @@ img.head-img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 .ph-169 { aspect-ratio: 16 / 9; }
 .ph-foto svg { color: #C2620A; }
 .ph-inline { font-weight: 400; font-size: 0.85rem; color: #8A4A0B; background: #FFF1E4; border: 1px dashed #F2A65A; border-radius: 4px; padding: 1px 6px; }
+
+/* Mobiel: grid-kinderen mogen niet breder worden dan het scherm */
+.case-detail > *, .case-verhaal, .foto-rij > *, .resultaat-cijfers > * { min-width: 0; }
+.ph-foto { width: 100%; }
+.resultaat-cijfers .ph strong { font-size: inherit; }
