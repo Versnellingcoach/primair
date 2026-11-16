@@ -2,8 +2,8 @@
   "_toelichting": "Centrale sitegegevens. Velden met null zijn nog niet aangeleverd: de site laat die onderdelen dan weg en `npm run check` meldt ze.",
   "name": "Versnellingscoach",
   "url": "https://versnellingscoach.nl",
-  "tagline": "Onafhankelijke procesregie voor woningbouw",
-  "description": "Een Versnellingscoach brengt gemeente, ontwikkelaar en woningcorporatie aan tafel en versnelt uw woningbouwproject. Bereken direct uw besparingsindicatie.",
+  "tagline": "Onafhankelijke procesregie voor woningbouw en gebiedsontwikkeling",
+  "description": "Een Versnellingscoach brengt gemeente, ontwikkelaar en woningcorporatie aan tafel en versnelt uw woningbouwproject of gebiedsontwikkeling. Bereken direct uw besparing.",
   "owner": {
     "name": "Silver Power",
     "address": {
@@ -44,5 +44,20 @@
       "url": "https://vangesteldigitaal.nl/",
       "logo": "/logos/van-gestel-digitaal-wit.svg"
     }
-  ]
+  ],
+  "andereRegios": {
+    "_toelichting": "Regelingen in andere provincies. Klein getoond op /subsidie. Controleer elk kwartaal of ze nog open zijn.",
+    "links": [
+      {
+        "naam": "Overijssel",
+        "titel": "Flexpools versnellen woningbouw",
+        "url": "https://regelen.overijssel.nl/Producten_en_diensten/Subsidies/Wonen_en_leefbaarheid/Flexpools_versnellen_woningbouw"
+      },
+      {
+        "naam": "Noord-Holland",
+        "titel": "Flexibele schil versnelling woningbouw",
+        "url": "https://www.noord-holland.nl/Actueel/Archief/2025/Februari_2025/Ruim_8_miljoen_voor_versnellen_woningbouw"
+      }
+    ]
+  }
 }

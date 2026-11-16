@@ -3,12 +3,12 @@ import Base from "../layouts/Base.astro";
 import PageHead from "../components/PageHead.astro";
 import CoachCards from "../components/CoachCards.astro";
 import CtaBand from "../components/CtaBand.astro";
-import { coaches, orgId } from "../data/site";
-const schema = coaches.map((c) => ({ "@type": "Person", name: c.name, jobTitle: c.role, worksFor: { "@id": orgId } }));
+import { coaches, orgId, site } from "../data/site";
+const schema = coaches.map((c) => ({ "@type": "Person", "@id": `${site.url}/team/${c.slug}#persoon`, name: c.name, jobTitle: c.role, worksFor: { "@id": orgId }, url: `${site.url}/team/${c.slug}` }));
 ---
 <Base title="Het team" crumb="Team" schema={schema}
-  description="Maak kennis met de Versnellingscoaches: hands-on, onafhankelijk en met de voeten in de klei. Plan een kennismaking of bel direct.">
-  <PageHead crumb="Team" h1="Hands-on coaches die partijen in beweging krijgen" lead="Onafhankelijk, praktisch en met de voeten in de klei. Uw coach staat tussen gemeente, ontwikkelaar en woningcorporatie in." />
+  description="Maak kennis met de Versnellingscoaches: hands-on, onafhankelijk en met de voeten in de klei. Lees wie ze zijn en wat ze voor uw project kunnen doen.">
+  <PageHead crumb="Team" h1="Hands-on coaches die partijen in beweging krijgen" lead="Onafhankelijk, praktisch en met de voeten in de klei. Klik op een coach om te lezen wie hij of zij is en welke projecten hij of zij begeleidde." />
   <section class="band" aria-label="Coaches">
     <div class="wrap">
       <CoachCards />

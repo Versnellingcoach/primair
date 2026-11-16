@@ -1,0 +1,73 @@
+---
+import { Picture } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import Base from "../../layouts/Base.astro";
+import CtaBand from "../../components/CtaBand.astro";
+import Placeholder from "../../components/Placeholder.astro";
+import ExtLink from "../../components/ExtLink.astro";
+import { coaches, cases, orgId, site, type Coach } from "../../data/site";
+
+export function getStaticPaths() {
+  return coaches.map((c) => ({ params: { slug: c.slug }, props: { coach: c } }));
+}
+const { coach } = Astro.props as { coach: Coach };
+const images = import.meta.glob<{ default: ImageMetadata }>("../../assets/coaches/*.jpg", { eager: true });
+const foto = images[`../../assets/coaches/${coach.slug}.jpg`].default;
+const coachCases = cases.filter((x) => x.coach === coach.slug);
+const schema = [{
+  "@type": "Person",
+  "@id": `${site.url}/team/${coach.slug}#persoon`,
+  name: coach.name,
+  jobTitle: coach.role,
+  worksFor: { "@id": orgId },
+  ...(coach.intro && { description: coach.intro }),
+  ...(coach.expertise.length && { knowsAbout: coach.expertise }),
+  ...(coach.linkedin && { sameAs: [coach.linkedin] }),
+}];
+---
+<Base title={`${coach.name}, ${coach.role}`} crumb="Team" schema={schema}
+  description={coach.intro ?? `Maak kennis met ${coach.name}, ${coach.role.toLowerCase()} bij Versnellingscoach. Hands-on procesregie voor woningbouw en gebiedsontwikkeling.`}>
+  <section class="page-head">
+    <div class="wrap profiel-kop">
+      <Picture class="profiel-foto" src={foto} alt={coach.alt} widths={[400, 640, 900]} sizes="(max-width: 820px) 70vw, 360px" formats={["avif", "webp"]} loading="eager" />
+      <div class="stack">
+        <nav class="crumbs" aria-label="Kruimelpad"><a href="/">Home</a> <span aria-hidden="true">/</span> <a href="/team">Team</a> <span aria-hidden="true">/</span> <span aria-current="page">{coach.name}</span></nav>
+        <h1>{coach.name}</h1>
+        <p class="profiel-rol">{coach.role}</p>
+        {coach.intro ? <p class="lead">{coach.intro}</p> : <Placeholder label="korte intro (3 à 4 zinnen)" hint="Wie is deze coach en wat maakt hem of haar sterk als versneller? Schrijf in de derde persoon of in de ik-vorm, maar consequent voor alle coaches." />}
+        {coach.linkedin && <ExtLink href={coach.linkedin} class="link-cta self-start">Bekijk het LinkedIn-profiel</ExtLink>}
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap grid-2">
+      <div class="stack">
+        <h2 class="h-card">Achtergrond</h2>
+        {coach.achtergrond ? <p>{coach.achtergrond}</p> : <Placeholder label="achtergrond (ca. 80 woorden)" hint="Opleiding, eerdere functies en hoe deze coach in de ruimtelijke ontwikkeling terechtkwam. Noem bij voorkeur bekende organisaties of type opdrachtgevers." />}
+
+        <h2 class="h-card">Waarom ik versnel</h2>
+        {coach.quote ? <blockquote class="quote"><p>“{coach.quote}”</p></blockquote> : <Placeholder label="persoonlijke quote (1 à 2 zinnen)" hint="Wat drijft deze coach? Bijvoorbeeld: wat geeft de meeste voldoening in een traject?" />}
+      </div>
+      <div class="stack">
+        <h2 class="h-card">Expertise</h2>
+        {coach.expertise.length
+          ? <ul class="tags">{coach.expertise.map((e) => <li>{e}</li>)}</ul>
+          : <Placeholder label="expertise in 4 à 6 trefwoorden" hint="Bijvoorbeeld: procesregie, gebiedsontwikkeling, anterieure overeenkomsten, participatie, bestuurlijke advisering." />}
+
+        <h2 class="h-card">Projecten</h2>
+        {coach.projecten.length || coachCases.length ? (
+          <ul class="list">
+            {coachCases.map((x) => <li><a href={x.detail ? `/cases/${x.id}` : "/cases"}>{x.project}</a>, {x.plaats}</li>)}
+            {coach.projecten.map((p) => <li>{p}</li>)}
+          </ul>
+        ) : null}
+        {coach.projecten.length === 0 && <Placeholder label="1 à 3 projecten" hint="Projectnaam, gemeente en in één zin de rol of het resultaat." />}
+
+        <Placeholder soort="foto" label={`${coach.name} aan het werk: aan tafel met partijen of op een bouwlocatie (liggend, 4:3)`} />
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title={`Spreek ${coach.name} over uw project`} />
+</Base>

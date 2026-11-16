@@ -1,0 +1,17 @@
+{
+  "_toelichting": "Indicatieve tijdwinst in de voorbereiding per traject. Onderbouwing bij Silver Power.",
+  "trajecten": [
+    {
+      "dagen": 100,
+      "resultaat": "Gebiedsperspectief",
+      "tijdwinst": "tot 1,5 jaar",
+      "maanden": 18
+    },
+    {
+      "dagen": 200,
+      "resultaat": "Ontwikkelvisie",
+      "tijdwinst": "tot 2,5 jaar",
+      "maanden": 30
+    }
+  ]
+}

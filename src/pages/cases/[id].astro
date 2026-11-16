@@ -1,0 +1,112 @@
+---
+import Base from "../../layouts/Base.astro";
+import CtaBand from "../../components/CtaBand.astro";
+import Placeholder from "../../components/Placeholder.astro";
+import VideoOfBeeld from "../../components/VideoOfBeeld.astro";
+import ExtLink from "../../components/ExtLink.astro";
+import { cases, coaches, site, videoSchema } from "../../data/site";
+
+// Alleen cases met "detail": true in src/data/cases.json krijgen een eigen pagina.
+export function getStaticPaths() {
+  return cases.filter((c) => c.detail).map((c) => ({ params: { id: c.id }, props: { c } }));
+}
+const { c } = Astro.props as { c: Record<string, any> };
+const coach = coaches.find((x) => x.slug === c.coach);
+const nl = new Intl.NumberFormat("nl-NL");
+const kenmerken = [
+  { label: "Gemeente", waarde: c.plaats },
+  { label: "Partijen", waarde: c.partijen, hint: "bijv. ontwikkelaar en corporatie" },
+  { label: "Woningen", waarde: c.woningen ? `ca. ${nl.format(c.woningen)}` : null, hint: "aantal" },
+  { label: "Type", waarde: c.type, hint: "bijv. binnenstedelijke herontwikkeling" },
+  { label: "Traject", waarde: c.start, hint: "100 of 200 dagen, en startjaar" },
+  { label: "Coach", waarde: coach?.name },
+];
+const schema = [{
+  "@type": "Article",
+  headline: `${c.project}: ${c.kernpunt}`,
+  about: c.plaats,
+  author: { "@id": site.url + "/#organisatie" },
+  publisher: { "@id": site.url + "/#organisatie" },
+  inLanguage: "nl-NL",
+}, ...(c.id === "blossem" ? videoSchema() : [])];
+---
+<Base title={`Case ${c.project}, ${c.plaats.replace("Gemeente ", "")}`} crumb="Cases" schema={schema}
+  description={`${c.project} in ${c.plaats.replace("Gemeente ", "")}: ${c.kernpunt.toLowerCase()}. Zo werkte de Versnellingscoach in dit project.`}>
+  <section class="page-head">
+    <div class="wrap stack">
+      <nav class="crumbs" aria-label="Kruimelpad"><a href="/">Home</a> <span aria-hidden="true">/</span> <a href="/cases">Cases</a> <span aria-hidden="true">/</span> <span aria-current="page">{c.project}</span></nav>
+      <p class="eyebrow">{c.plaats}</p>
+      <h1>{c.project}</h1>
+      <p class="lead">{c.kernpunt}.</p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap case-detail">
+      <aside class="case-kenmerken" aria-label="Kenmerken van het project">
+        <dl>
+          {kenmerken.map((k) => (
+            <div>
+              <dt>{k.label}</dt>
+              <dd>{k.waarde ?? <span class="ph-inline">Plaatsen tekst{k.hint ? `: ${k.hint}` : ""}</span>}</dd>
+            </div>
+          ))}
+        </dl>
+        {coach && <a class="link-cta" href={`/team/${coach.slug}`}>Over {coach.name}</a>}
+      </aside>
+
+      <div class="stack-lg case-verhaal">
+        <div class="stack">
+          <h2 class="h-card">De vraag</h2>
+          {c.vraag ? <p>{c.vraag}</p> : <Placeholder label="de vraag (60 à 100 woorden)" hint="Wat was de situatie vooraf? Waar liep het project op vast of waarom moest het sneller? Wie vroeg om een Versnellingscoach?" />}
+        </div>
+
+        <div class="stack">
+          <h2 class="h-card">De aanpak</h2>
+          {c.aanpak ? <p>{c.aanpak}</p> : <Placeholder label="de aanpak (80 à 120 woorden)" hint="Wat deed de coach concreet? Welke partijen zaten aan tafel, wat liep parallel, welke knopen werden doorgehakt?" />}
+          {site.video && c.id === "blossem" ? <div class="media-small"><VideoOfBeeld /></div> : null}
+        </div>
+
+        <div class="stack">
+          <h2 class="h-card">Het resultaat</h2>
+          {c.resultaat ? <p>{c.resultaat}</p> : <Placeholder label="het resultaat (60 à 100 woorden)" hint="Wat ligt er nu? Bijvoorbeeld een gebiedsperspectief, ontwikkelvisie of besluit, en hoeveel sneller dan gebruikelijk." />}
+          {c.resultaatCijfers?.length ? (
+            <ul class="resultaat-cijfers">{c.resultaatCijfers.map((r: { waarde: string; label: string }) => <li><strong>{r.waarde}</strong><span>{r.label}</span></li>)}</ul>
+          ) : (
+            <div class="resultaat-cijfers">
+              <Placeholder label="cijfer 1: bijv. maanden tijdwinst" />
+              <Placeholder label="cijfer 2: bijv. aantal woningen" />
+              <Placeholder label="cijfer 3: bijv. partijen aan tafel" />
+            </div>
+          )}
+        </div>
+
+        <figure class="quote-blok">
+          {c.quoteOpdrachtgever ? (
+            <>
+              <blockquote class="quote"><p>“{c.quoteOpdrachtgever.tekst}”</p></blockquote>
+              <figcaption>{c.quoteOpdrachtgever.naam}, {c.quoteOpdrachtgever.rol}</figcaption>
+            </>
+          ) : (
+            <Placeholder label="quote van de opdrachtgever" hint="Eén of twee zinnen, met naam, functie en organisatie. Vraag vooraf toestemming voor publicatie." />
+          )}
+        </figure>
+
+        {c.quote && (
+          <figure class="quote-blok quote-coach">
+            <blockquote class="quote"><p>“{c.quote.tekst}”</p></blockquote>
+            <figcaption>{c.quote.naam}, {c.quote.rol} · <ExtLink href={site.links.magazine} class="">{c.quote.bron}</ExtLink></figcaption>
+          </figure>
+        )}
+
+        <div class="foto-rij">
+          <Placeholder soort="foto" label="de projectlocatie, bij voorkeur een luchtfoto (liggend, 16:9)" ratio="16 / 9" />
+          <Placeholder soort="foto" label="het team aan tafel of op de bouwplaats (liggend, 4:3)" />
+          <Placeholder soort="foto" label="het resultaat: plankaart, impressie of opgeleverde woningen (liggend, 4:3)" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Wordt uw project de volgende case?" />
+</Base>

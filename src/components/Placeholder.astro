@@ -1,0 +1,18 @@
+---
+// Zichtbaar invulblok voor content die nog moet worden aangeleverd.
+// Wordt gemeld door `npm run check`; vervang door echte content via de data-bestanden.
+interface Props { soort?: "tekst" | "foto"; label: string; hint?: string; ratio?: string }
+const { soort = "tekst", label, hint, ratio = "4 / 3" } = Astro.props;
+---
+{soort === "foto" ? (
+  <div class={ratio === "16 / 9" ? "ph ph-foto ph-169" : "ph ph-foto"} data-placeholder="foto">
+    <svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h3l2-2h6l2 2h3v12H4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+    <strong>Plaatsen foto</strong>
+    <span>{label}</span>
+  </div>
+) : (
+  <div class="ph ph-tekst" data-placeholder="tekst">
+    <strong>Plaatsen tekst: {label}</strong>
+    {hint && <span>{hint}</span>}
+  </div>
+)}

@@ -3,7 +3,7 @@
 import { chromium } from "playwright";
 import { mkdirSync, readFileSync } from "node:fs";
 
-const pages = (process.env.PAGES || "index,aanpak,cases,team,brabant").split(",");
+const pages = (process.env.PAGES || "index,aanpak,subsidie,team,team/marleen-zantingh,cases,cases/blossem").split(",");
 const viewports = [
   { name: "desktop", width: 1280, height: 800 },
   { name: "mobiel", width: 390, height: 844 },
@@ -21,7 +21,7 @@ for (const vp of viewports) {
       window.scrollTo(0, 0);
     });
     await page.waitForLoadState("networkidle");
-    const file = `screenshots/${p}-${vp.name}.jpg`;
+    const file = `screenshots/${p.replace(/\//g, "_")}-${vp.name}.jpg`;
     await page.screenshot({ path: file, fullPage: true, type: "jpeg", quality: 55 });
     if (process.env.LOG_BASE64 !== "0") {
       console.log(`=====BEGIN ${file}=====`);

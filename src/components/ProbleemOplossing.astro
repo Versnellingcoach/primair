@@ -1,0 +1,24 @@
+---
+interface Props { titel?: string; compact?: boolean }
+const { titel = "Herkent u dit? Zo trekt de Versnellingscoach het vlot.", compact = false } = Astro.props;
+const paren = [
+  { probleem: "Partijen wachten op elkaar", oplossing: "Iedereen aan één tafel, met één onafhankelijke regisseur" },
+  { probleem: "Onderzoeken lopen na elkaar", oplossing: "Onderzoek en afstemming lopen parallel" },
+  { probleem: "Besluiten schuiven steeds op", oplossing: "Besluiten liggen eerder en beter voorbereid op tafel" },
+];
+---
+<section class={compact ? "po po-compact" : "po"} aria-labelledby="po-titel">
+  <div class="wrap stack">
+    <h2 id="po-titel" class="po-titel">{titel}</h2>
+    <div class="po-grid" role="list">
+      <p class="po-kop" aria-hidden="true">Herkent u dit?</p>
+      <p class="po-kop" aria-hidden="true">Zo lost de coach het op</p>
+      {paren.map((p) => (
+        <div class="po-rij" role="listitem">
+          <p class="po-probleem"><span class="sr-only">Probleem: </span>{p.probleem}</p>
+          <p class="po-oplossing"><span class="sr-only">Oplossing: </span>{p.oplossing}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

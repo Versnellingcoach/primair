@@ -1,5 +1,6 @@
 import data from "./site.json";
 import coachData from "./coaches.json";
+import caseData from "./cases.json";
 
 export interface Address { street: string; postalCode: string; city: string }
 export interface Video { src: string; poster: string; captions?: string; duration: string; uploadDate: string; bron: string; toestemming: boolean }
@@ -10,15 +11,25 @@ export const site = data as typeof data & {
   credits: Credit[];
   owner: { name: string; address: Address | null; kvk: string | null; btw: string | null };
   video: Video | null;
+  andereRegios: { links: { naam: string; titel: string; url: string }[] };
 };
-export const coaches = coachData;
+export interface Coach {
+  slug: string; name: string; role: string; alt: string;
+  intro: string | null; achtergrond: string | null; expertise: string[]; projecten: string[];
+  quote: string | null; linkedin: string | null;
+}
+export const coaches = coachData as Coach[];
+export const cases = caseData as Array<Record<string, any>>;
+
+/** Hoofdactie op de hele site: naar de contactpagina. */
+export const start = { href: "/contact", label: "Start de versnelling" };
 export const telHref = "tel:" + site.phone.e164;
 
 export const nav = [
   { href: "/aanpak", label: "Aanpak" },
   { href: "/cases", label: "Cases" },
   { href: "/trainingen", label: "Trainingen" },
-  { href: "/brabant", label: "Subsidie Brabant" },
+  { href: "/subsidie", label: "Subsidie" },
   { href: "/team", label: "Team" },
   { href: "/contact", label: "Contact" },
 ];
