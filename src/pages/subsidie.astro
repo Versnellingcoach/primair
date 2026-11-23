@@ -9,7 +9,7 @@ import regelingen from "../data/regelingen.json";
 
 type Regeling = {
   naam: string; organisatie?: string; provincie?: string; id?: string; wat?: string; voorWie: string;
-  begeleiding: "ja" | "beperkt" | "nee"; begeleidingTekst: string; status: string; url: string; brabantRoute?: boolean;
+  begeleiding: "ja" | "beperkt" | "nee"; begeleidingTekst: string; status: string; url: string; brabantRoute?: boolean; vraagProvincie?: boolean;
 };
 const landelijk = regelingen.landelijk as Regeling[];
 const provinciaal = regelingen.provinciaal as Regeling[];
@@ -78,11 +78,11 @@ const vraagMail = mail("Welke regeling past bij ons project?", "Beste Versnellin
                 <ExtLink href={site.links.flyer} class="link-cta self-start">Bekijk de provinciale flyer</ExtLink>
               </div>
             )}
-            <ExtLink href={r.url}>Officiële regeling</ExtLink>
+            <ExtLink href={r.url}>{r.vraagProvincie ? "Naar het woningbouwloket van de provincie" : "Officiële regeling"}</ExtLink>
           </article>
         ))}
       </div>
-      <p class="small">Staat uw provincie er niet bij? Ook andere provincies zetten rijksmiddelen in voor capaciteit en expertise. <a href={mail("Ondersteuning in onze provincie")}>Vraag het ons</a>, dan zoeken we het met u uit.</p>
+      <p class="small">Twijfelt u wat er in uw provincie mogelijk is? Vraag het uw provincie, of <a href={mail("Ondersteuning in onze provincie")}>vraag het ons</a>, dan zoeken we het met u uit.</p>
     </div>
   </section>
 

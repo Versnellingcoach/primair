@@ -1,17 +1,59 @@
 {
-  "_toelichting": "Rekentool op de homepage. INTERN VOORSTEL, nog te valideren door Paul: staffelgrenzen en bedragen niet verhogen of aanvullen zonder zijn akkoord. De bedragen zijn ongewijzigd overgenomen uit het eerdere model (laagste en hoogste bedrag per woningstaffel; voorheen afhankelijk van de verkoopprijs). Zet een bedrag op null om voor die staffel geen bedrag te tonen maar een contactoptie. Zet toonBedragen op false om alle bedragen te verbergen. Let op: de rekentool rekent in de browser, dus deze bedragen staan in het gepubliceerde JavaScript.",
+  "_toelichting": "Rekentool op de homepage. Bedragen worden getoond; Paul valideert ze later: staffelgrenzen en bedragen niet verhogen of aanvullen zonder zijn akkoord. De bedragen zijn ongewijzigd overgenomen uit het eerdere model (laagste en hoogste bedrag per woningstaffel; voorheen afhankelijk van de verkoopprijs). Zet een bedrag op null om voor die staffel geen bedrag te tonen maar een contactoptie. Zet toonBedragen op false om alle bedragen te verbergen. Let op: de rekentool rekent in de browser, dus deze bedragen staan in het gepubliceerde JavaScript.",
   "gevalideerd": false,
   "toonBedragen": true,
   "standaard": "76-150",
   "soort": "bruto",
   "voorWie": null,
   "staffels": [
-    { "id": "1-10", "label": "1 tot 10", "van": 1, "tot": 10, "bedragVan": 15000, "bedragTot": 20000 },
-    { "id": "11-25", "label": "11 tot 25", "van": 11, "tot": 25, "bedragVan": 20000, "bedragTot": 25000 },
-    { "id": "26-75", "label": "26 tot 75", "van": 26, "tot": 75, "bedragVan": 25000, "bedragTot": 30000 },
-    { "id": "76-150", "label": "76 tot 150", "van": 76, "tot": 150, "bedragVan": 30000, "bedragTot": 35000 },
-    { "id": "151-300", "label": "151 tot 300", "van": 151, "tot": 300, "bedragVan": 35000, "bedragTot": 40000 },
-    { "id": "301", "label": "301 of meer", "van": 301, "tot": null, "bedragVan": 40000, "bedragTot": 45000 }
+    {
+      "id": "1-10",
+      "label": "1 tot 10",
+      "van": 1,
+      "tot": 10,
+      "bedragVan": 15000,
+      "bedragTot": 20000
+    },
+    {
+      "id": "11-25",
+      "label": "11 tot 25",
+      "van": 11,
+      "tot": 25,
+      "bedragVan": 20000,
+      "bedragTot": 25000
+    },
+    {
+      "id": "26-75",
+      "label": "26 tot 75",
+      "van": 26,
+      "tot": 75,
+      "bedragVan": 25000,
+      "bedragTot": 30000
+    },
+    {
+      "id": "76-150",
+      "label": "76 tot 150",
+      "van": 76,
+      "tot": 150,
+      "bedragVan": 30000,
+      "bedragTot": 35000
+    },
+    {
+      "id": "151-300",
+      "label": "151 tot 300",
+      "van": 151,
+      "tot": 300,
+      "bedragVan": 35000,
+      "bedragTot": 40000
+    },
+    {
+      "id": "301",
+      "label": "301 of meer",
+      "van": 301,
+      "tot": null,
+      "bedragVan": 40000,
+      "bedragTot": 45000
+    }
   ],
   "aannames": [
     "Indicatieve brutobesparing per project, op basis van een intern voorstel per woningstaffel.",

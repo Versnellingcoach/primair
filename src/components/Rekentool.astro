@@ -69,8 +69,8 @@ const eerste = staffels.find((s) => s.id === staffel.standaard) ?? staffels[0];
         </div>
         <ul class="aannames">
           {staffel.aannames.map((a) => <li>{a}</li>)}
-          <li>Voor wie de besparing geldt: {staffel.voorWie ?? <span class="ph-inline">nog aan te leveren</span>}</li>
-          <li>De tijdwinst is {tijdTekst} en gebaseerd op {tijdwinst.bron}. Deze staat los van de financiële indicatie.{tijdwinst.fase && <> Het gaat om tijdwinst in {tijdwinst.fase}.</>}</li>
+          {staffel.voorWie && <li>De besparing geldt voor {staffel.voorWie}.</li>}
+          <li>De tijdwinst is {tijdTekst} en gebaseerd op {tijdwinst.bron}. Het gaat om tijdwinst in {tijdwinst.fase}. Deze staat los van de financiële indicatie.{tijdwinst.onderbouwing && <> {tijdwinst.onderbouwing}</>}</li>
         </ul>
         <noscript><p class="small">Zonder JavaScript ziet u de indicatie voor {woningen(eerste)}. Bel of mail ons voor een inschatting van uw project.</p></noscript>
       </div>
