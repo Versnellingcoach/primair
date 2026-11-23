@@ -10,8 +10,8 @@ type Staffel = { id: string; label: string; van: number; tot: number | null; bed
 const staffels = staffel.staffels as Staffel[];
 const nl = new Intl.NumberFormat("nl-NL");
 const toon = (s: Staffel) => staffel.toonBedragen && s.bedragVan !== null && s.bedragTot !== null;
-// Vaste spaties: als het bedrag niet op één regel past, breekt het netjes vóór het streepje.
-const bereik = (s: Staffel) => (s.bedragVan === s.bedragTot ? `€\u00a0${nl.format(s.bedragVan!)}` : `€\u00a0${nl.format(s.bedragVan!)} –\u00a0${nl.format(s.bedragTot!)}`);
+// Vaste spaties: als het bedrag niet op één regel past, breekt het netjes vóór "tot".
+const bereik = (s: Staffel) => (s.bedragVan === s.bedragTot ? `€\u00a0${nl.format(s.bedragVan!)}` : `€\u00a0${nl.format(s.bedragVan!)} tot\u00a0${nl.format(s.bedragTot!)}`);
 const woningen = (s: Staffel) => `${s.label} woningen`;
 const tijdTekst = `${tijdwinst.gemiddeldOnderbouwd ? "gemiddeld" : "circa"} ${tijdwinst.zin.replace(/^(circa|gemiddeld)\s+/, "")}`;
 
