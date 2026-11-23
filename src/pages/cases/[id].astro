@@ -4,7 +4,7 @@ import CtaBand from "../../components/CtaBand.astro";
 import Placeholder from "../../components/Placeholder.astro";
 import VideoOfBeeld from "../../components/VideoOfBeeld.astro";
 import ExtLink from "../../components/ExtLink.astro";
-import { cases, coaches, site, videoSchema } from "../../data/site";
+import { cases, coaches, site, video, videoSchema } from "../../data/site";
 
 // Alleen cases met "detail": true in src/data/cases.json krijgen een eigen pagina.
 export function getStaticPaths() {
@@ -28,7 +28,7 @@ const schema = [{
   author: { "@id": site.url + "/#organisatie" },
   publisher: { "@id": site.url + "/#organisatie" },
   inLanguage: "nl-NL",
-}, ...(c.id === "blossem" ? videoSchema() : [])];
+}, ...(c.id === "blossem" ? videoSchema("blossem") : [])];
 ---
 <Base title={`Case ${c.project}, ${c.plaats.replace("Gemeente ", "")}`} crumb="Cases" schema={schema}
   description={`${c.project} in ${c.plaats.replace("Gemeente ", "")}: ${c.kernpunt.toLowerCase()}. Zo werkte de Versnellingscoach in dit project.`}>
@@ -64,7 +64,7 @@ const schema = [{
         <div class="stack">
           <h2 class="h-card">De aanpak</h2>
           {c.aanpak ? <p>{c.aanpak}</p> : <Placeholder label="de aanpak (80 à 120 woorden)" hint="Wat deed de coach concreet? Welke partijen zaten aan tafel, wat liep parallel, welke knopen werden doorgehakt?" />}
-          {site.video && c.id === "blossem" ? <div class="media-small"><VideoOfBeeld /></div> : null}
+          {video("blossem") && c.id === "blossem" ? <div class="media-small"><VideoOfBeeld /></div> : null}
         </div>
 
         <div class="stack">

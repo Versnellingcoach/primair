@@ -3,7 +3,7 @@
 import { chromium } from "playwright";
 import { mkdirSync, readFileSync } from "node:fs";
 
-const pages = (process.env.PAGES || "index,aanbod,aanbod/projecten-versnellen,aanbod/organisaties-versterken,aanbod/opleiden-en-trainen,subsidie,contact,cases").split(",");
+const pages = (process.env.PAGES || "index,aanbod,aanbod/projecten-versnellen,aanbod/organisaties-versterken,aanbod/opleiden-en-trainen,subsidie,contact,cases,team/paul").split(",");
 const viewports = [
   { name: "desktop", width: 1280, height: 800 },
   { name: "mobiel", width: 390, height: 844 },

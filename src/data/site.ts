@@ -4,14 +4,14 @@ import caseData from "./cases.json";
 import aanbodData from "./aanbod.json";
 
 export interface Address { street: string; postalCode: string; city: string }
-export interface Video { src: string; poster: string; captions?: string; duration: string; uploadDate: string; bron: string; toestemming: boolean }
+export interface Video { id: string; titel: string; beschrijving: string; coach?: string; src: string; poster: string; captions?: string; duration: string; uploadDate: string; bron: string; toestemming: boolean; ondertiteling?: boolean }
 
 export interface Credit { label: string; name: string; url: string | null; logo: string | null }
 
 export const site = data as typeof data & {
   credits: Credit[];
   owner: { name: string; address: Address | null; kvk: string | null; btw: string | null };
-  video: Video | null;
+  videos: Video[];
 };
 export interface Coach {
   slug: string; name: string; role: string; alt: string;
@@ -73,17 +73,22 @@ export function serviceSchema(name: string, description: string, path: string) {
   };
 }
 
-export function videoSchema() {
-  const v = site.video;
-  if (!v || !mag(v)) return [];
-  return [{
+/** Video op id, alleen als die getoond mag worden (toestemming of preview). */
+export function video(id: string): Video | null {
+  const v = site.videos.find((x) => x.id === id);
+  return v && mag(v) ? v : null;
+}
+
+/** Structured data voor de video's die op een pagina staan. */
+export function videoSchema(...ids: string[]) {
+  return ids.map(video).filter((v): v is Video => !!v).map((v) => ({
     "@type": "VideoObject",
-    name: "Zo brengt een Versnellingscoach woningbouw in beweging",
-    description: "Op de bouwplaats van Blossem in Breda laat Marleen Zantingh zien hoe een onafhankelijke procesregisseur gemeente, ontwikkelaar en woningcorporatie samen laat werken.",
+    name: v.titel,
+    description: v.beschrijving,
     thumbnailUrl: site.url + v.poster,
     contentUrl: site.url + v.src,
     uploadDate: v.uploadDate,
     duration: v.duration,
     inLanguage: "nl-NL",
-  }];
+  }));
 }

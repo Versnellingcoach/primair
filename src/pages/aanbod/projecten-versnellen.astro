@@ -6,7 +6,8 @@ import Traject from "../../components/Traject.astro";
 import BrederDanWonen from "../../components/BrederDanWonen.astro";
 import AanbodKaarten from "../../components/AanbodKaarten.astro";
 import CtaBand from "../../components/CtaBand.astro";
-import { site, start, mail } from "../../data/site";
+import VideoBand from "../../components/VideoBand.astro";
+import { site, start, mail, videoSchema } from "../../data/site";
 import luchtfoto from "../../assets/sfeer/woningen-in-aanbouw.jpg";
 const schema = [{
   "@type": "Service",
@@ -16,7 +17,7 @@ const schema = [{
   description: "Een onafhankelijke Versnellingscoach regisseert de samenwerking tussen gemeente, ontwikkelaar en woningcorporatie, in een traject van 100 dagen (gebiedsperspectief) of 200 dagen (ontwikkelvisie).",
   provider: { "@id": site.url + "/#versnellingscoach" },
   areaServed: { "@type": "Country", name: "Nederland" },
-}];
+}, ...videoSchema("versnellingsdag-west-brabant")];
 ---
 <Base title="Projecten versnellen in 100 of 200 dagen" crumb="Projecten versnellen" schema={schema}
   description="Onafhankelijke procesregie bij woningbouw en gebiedsontwikkeling. Na 100 dagen een gebiedsperspectief, na 200 dagen een gedragen ontwikkelvisie.">
@@ -69,6 +70,8 @@ const schema = [{
       </ul>
     </div>
   </section>
+
+  <VideoBand id="versnellingsdag-west-brabant" achtergrond="donker" eyebrow="In beeld: Versnellingsdag West-Brabant" />
 
   <BrederDanWonen />
 

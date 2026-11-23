@@ -1,21 +1,24 @@
 ---
+// Video uit src/data/site.json → videos. Zonder toestemming (op productie) toont de Blossem-video
+// een foto met link naar Brabant Magazine; andere video's verdwijnen dan.
 import { Picture } from "astro:assets";
-import { site, mag } from "../data/site";
+import { site, video } from "../data/site";
 import ExtLink from "./ExtLink.astro";
 import bouwplaats from "../assets/beeld/bouwplaats-marleen.jpg";
-const v = site.video;
-const toon = v && mag(v);
+interface Props { id?: string }
+const { id = "blossem" } = Astro.props;
+const v = video(id);
 ---
-{toon ? (
+{v ? (
   <figure class="video">
-    <video controls preload="none" playsinline poster={v.poster} width="1280" height="720" aria-label="Video: zo brengt een Versnellingscoach woningbouw in beweging">
+    <video controls preload="none" playsinline poster={v.poster} width="1280" height="720" aria-label={`Video: ${v.titel}`}>
       <source src={v.src} type="video/mp4" />
     </video>
-    <figcaption class="small muted">Video: {v.bron}. Met ondertiteling in beeld.</figcaption>
+    <figcaption class="small muted">Video: {v.bron}.{v.ondertiteling && " Met ondertiteling in beeld."}</figcaption>
   </figure>
-) : (
+) : id === "blossem" ? (
   <figure class="beeld">
     <Picture src={bouwplaats} alt="Marleen, Versnellingscoach, op de bouwplaats" widths={[480, 720]} sizes="(max-width: 820px) 92vw, 420px" formats={["avif", "webp"]} loading="lazy" />
     <figcaption class="small muted"><ExtLink href={site.links.magazine} class="">Bekijk de video bij Brabant Magazine</ExtLink></figcaption>
   </figure>
-)}
+) : null}

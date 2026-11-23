@@ -8,10 +8,11 @@ import Rekentool from "../components/Rekentool.astro";
 import CaseCards from "../components/CaseCards.astro";
 import VideoOfBeeld from "../components/VideoOfBeeld.astro";
 import CtaBand from "../components/CtaBand.astro";
+import VideoBand from "../components/VideoBand.astro";
 import { start, videoSchema } from "../data/site";
 import luchtfoto from "../assets/sfeer/bouwlocatie-luchtfoto.jpg";
 ---
-<Base title="Versnellingscoach | Sneller van plan naar uitvoering" schema={videoSchema()}>
+<Base title="Versnellingscoach | Sneller van plan naar uitvoering" schema={videoSchema("blossem", "versnellingsdag-west-brabant")}>
   <section class="hero dark" aria-labelledby="home-titel">
     <Picture class="hero-bg" src={luchtfoto} alt="" widths={[768, 1280, 1672]} sizes="100vw" formats={["avif", "webp"]} loading="eager" fetchpriority="high" />
     <div class="wrap">
@@ -60,6 +61,8 @@ import luchtfoto from "../assets/sfeer/bouwlocatie-luchtfoto.jpg";
       <a class="btn btn-secondary self-start" href="/cases">Bekijk alle cases</a>
     </div>
   </section>
+
+  <VideoBand id="versnellingsdag-west-brabant" eyebrow="In beeld: Versnellingsdag West-Brabant" link={{ href: "/aanbod/projecten-versnellen", label: "Bekijk projecten versnellen" }} />
 
   <section class="band dark" aria-labelledby="subsidie-titel">
     <div class="wrap grid-2">
