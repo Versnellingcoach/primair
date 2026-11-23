@@ -11,7 +11,7 @@ const items = (klanten as { name: string; logo: string | null; toestemming?: boo
   <div class="wrap logos-head">
     <p class="eyebrow" id="logos-titel">{title}</p>
   </div>
-  <div class="marquee" style={`--marquee-duur: ${Math.max(32, items.length * 4)}s`}>
+  <div class="marquee">
     {[false, true].map((kopie) => (
       <ul class="marquee-track" aria-hidden={kopie ? "true" : undefined}>
         {items.map((k) => (
