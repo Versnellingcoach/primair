@@ -1,11 +1,17 @@
 ---
 // Schuivende banner met opdrachtgevers. Een logo verschijnt pas op productie als in
 // src/data/klanten.json "toestemming": true staat; tot die tijd toont de banner de naam.
+// Geen loading="lazy": logo's buiten de zichtbare strook zouden pas laden als ze binnenschuiven,
+// waardoor ze in groepjes verschijnen. Vaste breedte/hoogte per logo voorkomt verspringen.
 import klanten from "../data/klanten.json";
 import { mag } from "../data/site";
+import { logoMaat } from "./logoMaat";
 interface Props { title?: string }
 const { title = "Zij gingen u voor" } = Astro.props;
-const items = (klanten as { name: string; logo: string | null; toestemming?: boolean }[]).map((k) => ({ ...k, toonLogo: !!k.logo && mag(k) }));
+const items = (klanten as { name: string; logo: string | null; toestemming?: boolean }[]).map((k) => {
+  const toonLogo = !!k.logo && mag(k);
+  return { ...k, toonLogo, maat: toonLogo ? logoMaat(k.logo!) : null };
+});
 ---
 <section class="logos" aria-labelledby="logos-titel">
   <div class="wrap logos-head">
@@ -15,7 +21,7 @@ const items = (klanten as { name: string; logo: string | null; toestemming?: boo
     {[false, true].map((kopie) => (
       <ul class="marquee-track" aria-hidden={kopie ? "true" : undefined}>
         {items.map((k) => (
-          <li class="logo-item">{k.toonLogo ? <img src={k.logo} alt={kopie ? "" : k.name} height="48" width="180" loading="lazy" decoding="async" /> : <span class="logo-name">{k.name}</span>}</li>
+          <li class="logo-item">{k.toonLogo ? <img src={k.logo} alt={kopie ? "" : k.name} width={k.maat!.width} height={k.maat!.height} decoding="async" fetchpriority="low" /> : <span class="logo-name">{k.name}</span>}</li>
         ))}
       </ul>
     ))}
