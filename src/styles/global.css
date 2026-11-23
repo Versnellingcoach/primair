@@ -446,7 +446,7 @@ img.media-small { width: 100%; }
 @media (max-width: 420px) { .staffels .segment-opties { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .staffels .segment-optie span { text-align: center; padding: 12px 8px; }
 .staffels .segment-optie b { font-size: 1rem; }
-.uitkomst-waarde.bereik { font-size: clamp(1.4rem, 2.6vw, 1.9rem); }
+.uitkomst-waarde.bereik { font-size: clamp(1.4rem, 2.3vw, 1.75rem); }
 .uitkomst-contact { color: var(--white); font-weight: 700; }
 .aannames { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; font-size: 0.8rem; color: var(--muted); }
 
