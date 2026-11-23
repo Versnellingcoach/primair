@@ -17,14 +17,18 @@ Website van Versnellingscoach, een merk van Silver Power. Gebouwd met [Astro](ht
 | Logo's in de schuivende banner | `src/data/klanten.json` + bestand in `public/logos/` |
 | Cases (met `"detail": true` krijgt een case een eigen pagina) | `src/data/cases.json` |
 | Profieltekst coaches (intro, achtergrond, expertise, projecten, quote, LinkedIn) | `src/data/coaches.json` |
-| Tijdwinst per traject (rekentool, Aanpak) | `src/data/tijdwinst.json` |
-| Regelingen in andere provincies | `src/data/site.json` → `andereRegios` |
+| Drie onderdelen van het aanbod (kaarten, menu, footer) | `src/data/aanbod.json` |
+| Tijdwinst uit de praktijk (rekentool; enige algemene tijdwinstclaim) | `src/data/tijdwinst.json` |
+| Regelingen en kennisbronnen op /subsidie (landelijk, provinciaal, kennis) | `src/data/regelingen.json` |
+| Toepassingsgebieden "Meer dan woningbouw" (uitklapbaar) | `src/data/toepassingen.json` |
 | Credits onderaan (Silver Power, Van Gestel Digitaal) | `src/data/site.json` → `credits` |
-| Trainingen | `src/data/trainingen.json` |
-| Staffel van de rekentool | `src/data/staffel.json` |
+| Opleiden en trainen (status `beschikbaar` of `in-ontwikkeling`) | `src/data/trainingen.json` |
+| Woningstaffels, bedragen en aannames van de rekentool | `src/data/staffel.json` |
 | Teksten per pagina | `src/pages/*.astro` |
 | Kleuren, lettertype, opmaak | `src/styles/global.css` |
 | Security headers | `vercel.json` |
+
+Oude adressen: `/aanpak` en `/trainingen` sturen op Vercel met een 301 door naar `/aanbod/projecten-versnellen` en `/aanbod/opleiden-en-trainen` (`vercel.json`). De pagina's zelf verwijzen in de demo door met behoud van het #anker.
 
 Een coach toevoegen: zet een portret als `src/assets/coaches/<slug>.jpg` en voeg een regel toe aan `coaches.json` met dezelfde `slug`. Astro maakt er automatisch AVIF- en WebP-versies in de juiste maten van.
 

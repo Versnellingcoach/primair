@@ -1,36 +1,17 @@
 ---
+// Verhuisd naar /aanbod/opleiden-en-trainen. Op Vercel stuurt vercel.json met een 301 door;
+// deze pagina vangt de demo en oude links op en houdt #ankers (zoals #inhousetraining) intact.
 import Base from "../layouts/Base.astro";
 import PageHead from "../components/PageHead.astro";
-import ContactLines from "../components/ContactLines.astro";
-import trainingen from "../data/trainingen.json";
-import { site, mail, start, serviceSchema } from "../data/site";
-const schema = trainingen.map((t) => serviceSchema(t.naam, t.tekst, "/trainingen#" + t.id));
+const naar = "/aanbod/opleiden-en-trainen";
 ---
-<Base title="Trainingen voor projectteams" crumb="Trainingen" schema={schema}
-  description="Inhousetraining, leren-versnellingstafel en trajectbegeleiding. Breng een eigen woningbouwproject mee en leer uw team sneller samenwerken.">
-  <PageHead crumb="Trainingen" h1="Leer uw team sneller samenwerken" lead="Breng een eigen project mee. Oefen hoe u werk parallel organiseert, rollen scherp maakt en besluiten eerder voorbereidt." />
-  <section class="band" aria-label="Trainingen">
-    <div class="wrap grid-3">
-      {trainingen.map((t) => (
-        <article class="card" id={t.id}>
-          <h2 class="h-card">{t.naam}</h2>
-          <p>{t.tekst}</p>
-          <a class="link-cta" href={mail("Aanmelding " + t.naam.toLowerCase())}>{t.cta}</a>
-        </article>
-      ))}
-    </div>
-  </section>
-  <section class="band dark" aria-labelledby="aanmelden">
-    <div class="wrap grid-2">
-      <div class="stack">
-        <h2 id="aanmelden">Klaar om sneller samen te werken?</h2>
-        <p>Mail ons de gewenste training en organisatie. We stemmen de datum en prijs met u af.</p>
-        <div class="btn-row mt">
-          <a class="btn btn-primary" href={start.href}>{start.label}</a>
-          <a class="btn btn-ghost" href={mail("Aanmelding training", "Beste Versnellingscoach,\n\nWij willen graag een training aanvragen.\n\nGewenste training:\nOrganisatie:\nAantal deelnemers:\nTelefoonnummer:\n")}>Meld uw team aan per mail</a>
-        </div>
-      </div>
-      <ContactLines />
+<Base title="Trainingen zijn verhuisd" noindex redirect={naar}
+  description="Trainingen staan nu onder Aanbod, bij Opleiden en trainen. U wordt automatisch doorgestuurd naar de nieuwe pagina.">
+  <PageHead crumb="Trainingen" h1="Deze pagina is verhuisd" lead="Trainingen vindt u nu onder Aanbod, bij Opleiden en trainen." />
+  <section class="band">
+    <div class="wrap btn-row">
+      <a class="btn btn-primary" href={naar}>Naar Opleiden en trainen</a>
+      <a class="btn btn-secondary" href="/aanbod">Bekijk het hele aanbod</a>
     </div>
   </section>
 </Base>

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "projecten-versnellen",
+    "nr": "01",
+    "naam": "Projecten versnellen",
+    "kort": "Onafhankelijke procesregie bij woningbouw en gebiedsontwikkeling. In 100 dagen naar een gebiedsperspectief, in 200 dagen naar een gedragen ontwikkelvisie.",
+    "voor": "Voor een concreet project of gebied",
+    "cta": "Bekijk projecten versnellen"
+  },
+  {
+    "id": "organisaties-versterken",
+    "nr": "02",
+    "naam": "Organisaties versterken",
+    "kort": "Advies en begeleiding voor gemeenten, ontwikkelaars en corporaties die hun organisatie beter willen toerusten op versnelling: samenwerking, rollen, werkprocessen en besluitvorming.",
+    "voor": "Voor uw organisatie of afdeling",
+    "cta": "Bekijk organisaties versterken"
+  },
+  {
+    "id": "opleiden-en-trainen",
+    "nr": "03",
+    "naam": "Opleiden en trainen",
+    "kort": "Praktijkgericht leren voor professionals en teams, met uw eigen projecten als vertrekpunt. Het aanbod werken we verder uit; we stemmen graag af wat past.",
+    "voor": "Voor professionals en teams",
+    "cta": "Bekijk opleiden en trainen"
+  }
+]

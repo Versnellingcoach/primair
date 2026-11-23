@@ -1,0 +1,21 @@
+---
+// De drie onderdelen van het aanbod als gelijkwaardige, klikbare kaarten (teksten in src/data/aanbod.json).
+import { aanbod } from "../data/site";
+interface Props { kop?: "h2" | "h3"; zonder?: string }
+const { kop = "h3", zonder } = Astro.props;
+const Kop = kop;
+const lijst = zonder ? aanbod.filter((a) => a.id !== zonder) : aanbod;
+---
+<ul class={lijst.length === 2 ? "aanbod-kaarten aanbod-twee" : "aanbod-kaarten"}>
+  {lijst.map((a) => (
+    <li>
+      <a class="aanbod-kaart" href={a.href}>
+        <span class="aanbod-nr" aria-hidden="true">{a.nr}</span>
+        <Kop>{a.naam}</Kop>
+        <span class="aanbod-voor">{a.voor}</span>
+        <span>{a.kort}</span>
+        <span class="link-cta" aria-hidden="true">{a.cta}</span>
+      </a>
+    </li>
+  ))}
+</ul>

@@ -3,72 +3,58 @@ import { Picture } from "astro:assets";
 import Base from "../layouts/Base.astro";
 import ProbleemOplossing from "../components/ProbleemOplossing.astro";
 import LogoMarquee from "../components/LogoMarquee.astro";
-import Traject from "../components/Traject.astro";
+import AanbodKaarten from "../components/AanbodKaarten.astro";
 import Rekentool from "../components/Rekentool.astro";
 import CaseCards from "../components/CaseCards.astro";
 import VideoOfBeeld from "../components/VideoOfBeeld.astro";
 import CtaBand from "../components/CtaBand.astro";
-import ExtLink from "../components/ExtLink.astro";
-import { site, mail, start, videoSchema } from "../data/site";
+import { start, videoSchema } from "../data/site";
 import luchtfoto from "../assets/sfeer/bouwlocatie-luchtfoto.jpg";
 ---
-<Base title="Versnellingscoach | Versnel uw woningbouwproject" schema={videoSchema()}>
+<Base title="Versnellingscoach | Sneller van plan naar uitvoering" schema={videoSchema()}>
   <section class="hero dark" aria-labelledby="home-titel">
     <Picture class="hero-bg" src={luchtfoto} alt="" widths={[768, 1280, 1672]} sizes="100vw" formats={["avif", "webp"]} loading="eager" fetchpriority="high" />
     <div class="wrap">
       <div class="stack-lg">
-        <p class="eyebrow">Voor gemeenten, ontwikkelaars en woningcorporaties</p>
-        <h1 id="home-titel">Versnel uw woningbouwproject<span class="dot">.</span></h1>
-        <p class="lead">Kan uw woningbouwplan sneller? Een Versnellingscoach brengt de juiste mensen aan tafel, maakt knelpunten zichtbaar en laat onderzoek en afstemming parallel lopen. In 100 of 200 dagen komt uw project in een hogere versnelling.</p>
+        <p class="eyebrow">Woningbouw en gebiedsontwikkeling in heel Nederland</p>
+        <h1 id="home-titel">Sneller van plan naar uitvoering<span class="dot">.</span></h1>
+        <p class="lead">Voor gemeenten, ontwikkelaars en woningcorporaties. Wij versnellen uw project met onafhankelijke procesregie, versterken uw organisatie en trainen uw professionals en teams.</p>
         <div class="btn-row">
           <a class="btn btn-primary btn-lg" href={start.href}>{start.label}</a>
-          <a class="btn btn-ghost btn-lg" href="#rekentool">Bereken uw winst</a>
+          <a class="btn btn-ghost btn-lg" href="#aanbod">Bekijk ons aanbod</a>
         </div>
-        <p class="hero-breder">Wonen is ons vertrekpunt. De aanpak werkt voor elk ruimtelijk dossier. <a href="/aanpak#breder">Lees meer</a></p>
+        <p class="hero-breder">Wonen is ons vertrekpunt. De aanpak werkt voor elk ruimtelijk dossier. <a href="/aanbod/projecten-versnellen#breder">Lees meer</a></p>
       </div>
       <div class="hero-card" aria-hidden="true">
-        <p class="hero-card-num">100<span>dagen</span></p>
-        <p>tot een gebiedsperspectief</p>
+        <p class="hero-card-num">880+<span>woningen</span></p>
+        <p>in een hogere versnelling</p>
       </div>
     </div>
   </section>
 
-  <ProbleemOplossing />
-
-  <LogoMarquee />
-
-  <section class="band sand" aria-labelledby="product-titel">
+  <section class="band sand" id="aanbod" aria-labelledby="aanbod-titel">
     <div class="wrap stack-lg">
       <div class="stack measure">
-        <p class="eyebrow">De Versnellingscoach</p>
-        <h2 id="product-titel">Eén coach. Een traject van 100 of 200 dagen.</h2>
-        <p class="lead">U krijgt altijd hetzelfde: een onafhankelijke coach die de samenwerking regisseert en het team helpt besluiten voor te bereiden. U kiest alleen hoe ver u wilt komen.</p>
+        <p class="eyebrow">Ons aanbod</p>
+        <h2 id="aanbod-titel">Voor uw project, uw organisatie en uw team</h2>
+        <p class="lead">Drie manieren om sneller tot resultaat te komen. U kiest wat past, los of in combinatie.</p>
       </div>
-      <Traject />
-      <div class="grid-2">
-        <div class="milestone">
-          <p class="tag">100<small>dagen</small></p>
-          <h3>Gebiedsperspectief</h3>
-          <p>De haalbaarheid is getoetst en er ligt een gebiedsperspectief waar alle partijen mee verder kunnen.</p>
-        </div>
-        <div class="milestone milestone-dark">
-          <p class="tag">200<small>dagen</small></p>
-          <h3>Ontwikkelvisie</h3>
-          <p>Er ligt een gedragen ontwikkelvisie en de bestuurlijke besluitvorming is voorbereid.</p>
-        </div>
-      </div>
-      <a class="link-cta self-start" href="/aanpak">Zo werkt de aanpak</a>
+      <AanbodKaarten />
     </div>
   </section>
 
   <Rekentool />
+
+  <LogoMarquee />
+
+  <ProbleemOplossing />
 
   <section class="band sand" aria-labelledby="cases-titel">
     <div class="wrap stack-lg">
       <div class="stack measure">
         <p class="eyebrow">Resultaten uit de praktijk</p>
         <h2 id="cases-titel">Ruim 880 woningen in een hogere versnelling</h2>
-        <p>Brabantse projecten die met een Versnellingscoach versnelden.</p>
+        <p>Projecten in Noord-Brabant die met een Versnellingscoach versnelden. Die ervaring zetten we in voor opdrachtgevers in heel Nederland.</p>
       </div>
       <CaseCards limit={3} />
       <a class="btn btn-secondary self-start" href="/cases">Bekijk alle cases</a>
@@ -78,13 +64,12 @@ import luchtfoto from "../assets/sfeer/bouwlocatie-luchtfoto.jpg";
   <section class="band dark" aria-labelledby="subsidie-titel">
     <div class="wrap grid-2">
       <div class="stack">
-        <p class="eyebrow">Subsidie</p>
-        <h2 id="subsidie-titel">Brabantse gemeente? Check de subsidie.</h2>
-        <p>Uw Woondealregio kan bij de provincie subsidie aanvragen voor een regionale Versnellingscoach. Per gemeente kan maximaal één project worden aangemeld, dus wacht niet te lang.</p>
-        <p class="small muted">Ook in andere provincies zijn regelingen. <a href="/subsidie#andere-provincies">Bekijk de mogelijkheden</a></p>
+        <p class="eyebrow">Subsidie en ondersteuning</p>
+        <h2 id="subsidie-titel">Kijk welke ondersteuning er is voor versnelling</h2>
+        <p>Rijk en provincies bieden regelingen en kennis om woningbouw te versnellen. Sommige provinciale regelingen kunnen de inzet van externe capaciteit of expertise ondersteunen. Voorwaarden, budget en openstelling verschillen per regeling.</p>
         <div class="btn-row mt">
-          <a class="btn btn-primary" href={mail("Komt ons project in aanmerking voor de subsidie?")}>Check of uw project in aanmerking komt</a>
-          <ExtLink href={site.links.flyer} class="link-cta">Bekijk de provinciale flyer</ExtLink>
+          <a class="btn btn-primary" href="/subsidie">Bekijk de mogelijkheden</a>
+          <a class="link-cta" href="/subsidie#noord-brabant">Regeling in Noord-Brabant</a>
         </div>
       </div>
       <div class="stack media-small">
@@ -96,19 +81,19 @@ import luchtfoto from "../assets/sfeer/bouwlocatie-luchtfoto.jpg";
 
   <section class="band" aria-label="Meer over Versnellingscoach">
     <div class="wrap teasers">
-      <a class="teaser" href="/trainingen">
-        <span class="eyebrow">Trainingen</span>
-        <strong>Leer uw team sneller samenwerken</strong>
-        <span class="teaser-pijl" aria-hidden="true">→</span>
-      </a>
       <a class="teaser" href="/team">
         <span class="eyebrow">Team</span>
         <strong>Maak kennis met onze hands-on coaches</strong>
         <span class="teaser-pijl" aria-hidden="true">→</span>
       </a>
-      <a class="teaser" href="/aanpak#breder">
-        <span class="eyebrow">Meer dan wonen</span>
+      <a class="teaser" href="/aanbod/projecten-versnellen#breder">
+        <span class="eyebrow">Meer dan woningbouw</span>
         <strong>De aanpak voor elk ruimtelijk dossier</strong>
+        <span class="teaser-pijl" aria-hidden="true">→</span>
+      </a>
+      <a class="teaser" href="/subsidie#kennis">
+        <span class="eyebrow">Kennis</span>
+        <strong>Landelijke kennis en praktijkondersteuning</strong>
         <span class="teaser-pijl" aria-hidden="true">→</span>
       </a>
     </div>

@@ -1,0 +1,83 @@
+---
+import Base from "../../layouts/Base.astro";
+import PageHead from "../../components/PageHead.astro";
+import ProbleemOplossing from "../../components/ProbleemOplossing.astro";
+import Traject from "../../components/Traject.astro";
+import BrederDanWonen from "../../components/BrederDanWonen.astro";
+import AanbodKaarten from "../../components/AanbodKaarten.astro";
+import CtaBand from "../../components/CtaBand.astro";
+import { site, start, mail } from "../../data/site";
+import luchtfoto from "../../assets/sfeer/woningen-in-aanbouw.jpg";
+const schema = [{
+  "@type": "Service",
+  "@id": site.url + "/aanbod/projecten-versnellen#dienst",
+  name: "Projecten versnellen",
+  serviceType: "Procesregie woningbouw en gebiedsontwikkeling",
+  description: "Een onafhankelijke Versnellingscoach regisseert de samenwerking tussen gemeente, ontwikkelaar en woningcorporatie, in een traject van 100 dagen (gebiedsperspectief) of 200 dagen (ontwikkelvisie).",
+  provider: { "@id": site.url + "/#versnellingscoach" },
+  areaServed: { "@type": "Country", name: "Nederland" },
+}];
+---
+<Base title="Projecten versnellen in 100 of 200 dagen" crumb="Projecten versnellen" schema={schema}
+  description="Onafhankelijke procesregie bij woningbouw en gebiedsontwikkeling. Na 100 dagen een gebiedsperspectief, na 200 dagen een gedragen ontwikkelvisie.">
+  <PageHead crumb="Projecten versnellen" h1="Projecten versnellen" lead="Onafhankelijke procesregie bij woningbouw en gebiedsontwikkeling. Eén coach, een traject van 100 of 200 dagen. U kiest hoe ver u in één traject wilt komen." image={luchtfoto} imageAlt="Woningen in aanbouw" />
+
+  <ProbleemOplossing titel="Waar de Versnellingscoach het verschil maakt" />
+
+  <section class="band sand" aria-labelledby="traject">
+    <div class="wrap stack-lg">
+      <div class="stack measure">
+        <p class="eyebrow">Het traject</p>
+        <h2 id="traject">Hoe ver wilt u komen?</h2>
+        <p>U krijgt altijd hetzelfde: een onafhankelijke Versnellingscoach die de samenwerking regisseert en het team helpt besluiten voor te bereiden. Het traject is hetzelfde, de eindstreep verschilt. Begin met 100 dagen en kies daarna of u doorloopt naar 200 dagen. De fases zijn los inzetbaar.</p>
+      </div>
+      <Traject />
+      <div class="grid-2">
+        <div class="milestone" id="100-dagen">
+          <p class="tag">100<small>dagen</small></p>
+          <h3>Gebiedsperspectief</h3>
+          <p>Toets de haalbaarheid en maak een gebiedsperspectief waar alle partijen mee verder kunnen. Na 100 dagen weet u of en hoe het project verder kan.</p>
+        </div>
+        <div class="milestone milestone-dark" id="200-dagen">
+          <p class="tag">200<small>dagen</small></p>
+          <h3>Ontwikkelvisie</h3>
+          <p>Werk toe naar een gedragen ontwikkelvisie en bereid de bestuurlijke besluitvorming voor.</p>
+        </div>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-primary" href={start.href}>{start.label}</a>
+        <a class="btn btn-secondary" href={mail("Welk traject past bij ons project?")}>Welk traject past: 100 of 200 dagen?</a>
+        <a class="link-cta" href="/#rekentool">Bereken de besparing voor uw project</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="wat-u-krijgt">
+    <div class="wrap grid-2">
+      <div class="stack">
+        <h2 id="wat-u-krijgt">Wat u krijgt</h2>
+        <p>Een onafhankelijke procesregisseur in uw project. Uw coach brengt gemeente, ontwikkelaar en woningcorporatie aan tafel, maakt knelpunten zichtbaar en organiseert de samenwerking.</p>
+        <p>Bij Rucphen Noordwest, een wijk van circa 265 woningen, pakte het team de planontwikkeling aan in twee trajecten van 100 dagen. De ontwikkelmanager van Thuisvester noemt vier jaar gebruikelijk voor zo’n project.</p>
+        <a class="link-cta self-start" href="/cases">Bekijk alle cases</a>
+      </div>
+      <ul class="checks checks-light">
+        <li>Eén vaste, onafhankelijke coach</li>
+        <li>Alle partijen aan één tafel</li>
+        <li>Knelpunten zichtbaar en bespreekbaar</li>
+        <li>Onderzoek en afstemming parallel</li>
+        <li>Besluiten eerder voorbereid</li>
+      </ul>
+    </div>
+  </section>
+
+  <BrederDanWonen />
+
+  <section class="band" aria-labelledby="ook-titel">
+    <div class="wrap stack-lg">
+      <h2 id="ook-titel" class="h-small">Ook in ons aanbod</h2>
+      <AanbodKaarten zonder="projecten-versnellen" />
+    </div>
+  </section>
+
+  <CtaBand title="Klaar om uw project te versnellen?" text="In een kort gesprek kijken we waar uw project staat en wat 100 of 200 dagen voor u kunnen opleveren." />
+</Base>

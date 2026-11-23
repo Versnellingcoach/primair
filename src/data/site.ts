@@ -1,6 +1,7 @@
 import data from "./site.json";
 import coachData from "./coaches.json";
 import caseData from "./cases.json";
+import aanbodData from "./aanbod.json";
 
 export interface Address { street: string; postalCode: string; city: string }
 export interface Video { src: string; poster: string; captions?: string; duration: string; uploadDate: string; bron: string; toestemming: boolean }
@@ -11,7 +12,6 @@ export const site = data as typeof data & {
   credits: Credit[];
   owner: { name: string; address: Address | null; kvk: string | null; btw: string | null };
   video: Video | null;
-  andereRegios: { links: { naam: string; titel: string; url: string }[] };
 };
 export interface Coach {
   slug: string; name: string; role: string; alt: string;
@@ -25,16 +25,18 @@ export const cases = caseData as Array<Record<string, any>>;
 export const start = { href: "/contact", label: "Start de versnelling" };
 export const telHref = "tel:" + site.phone.e164;
 
-export const nav = [
-  { href: "/aanpak", label: "Aanpak" },
+/** De drie onderdelen van het aanbod (volgorde en teksten in aanbod.json). */
+export const aanbod = aanbodData.map((a) => ({ ...a, href: `/aanbod/${a.id}` }));
+
+export const nav: { href: string; label: string; sub?: { href: string; label: string }[] }[] = [
+  { href: "/aanbod", label: "Aanbod", sub: aanbod.map((a) => ({ href: a.href, label: a.naam })) },
   { href: "/cases", label: "Cases" },
-  { href: "/trainingen", label: "Trainingen" },
   { href: "/subsidie", label: "Subsidie" },
   { href: "/team", label: "Team" },
   { href: "/contact", label: "Contact" },
 ];
 
-export const kennismakingBody = "Beste Versnellingscoach,\n\nIk wil graag kennismaken en ons woningbouwproject bespreken.\n\nOrganisatie:\nProject en aantal woningen:\nWaar loopt het nu vast:\nTelefoonnummer:\n";
+export const kennismakingBody = "Beste Versnellingscoach,\n\nIk wil graag kennismaken.\n\nOrganisatie:\nWaar gaat het om (project, organisatie of training):\nKorte toelichting:\nTelefoonnummer:\n";
 
 const defaultBody = "Beste Versnellingscoach,\n\n\n\nOrganisatie:\nTelefoonnummer:\n";
 

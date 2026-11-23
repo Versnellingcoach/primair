@@ -36,7 +36,8 @@ export default defineConfig({
   vite: { build: { assetsInlineLimit: 0 } },
   devToolbar: { enabled: false },
   integrations: [
-    sitemap({ filter: (page) => !page.includes("/404") }),
+    // Verhuisde pagina's (/aanpak, /trainingen) niet in de sitemap; Vercel stuurt ze met een 301 door.
+    sitemap({ filter: (page) => !page.includes("/404") && !/\/(aanpak|trainingen)$/.test(page.replace(/\/$/, "")) }),
     zonderToestemming(),
   ],
 });

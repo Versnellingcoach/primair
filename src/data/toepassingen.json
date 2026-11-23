@@ -1,0 +1,24 @@
+{
+  "_toelichting": "Toepassingsgebieden bij 'Meer dan woningbouw' (uitklapbaar). Vul 'opgave' en 'bijdrage' alleen met door Paul bevestigde tekst (1 à 2 zinnen elk). Zolang 'opgave' null is, toont het uitklapblok de algemene toelichting hieronder.",
+  "algemeen": "Ook hier brengt een Versnellingscoach gemeente, markt en maatschappelijke partners aan één tafel en regisseert de samenwerking naar een gedragen plan.",
+  "gebieden": [
+    {
+      "id": "woningbouw",
+      "naam": "Woningbouw",
+      "opgave": "Er zijn meer woningen nodig, sneller. Partijen wachten vaak op elkaar en onderzoeken lopen na elkaar.",
+      "bijdrage": "Een onafhankelijke coach brengt gemeente, ontwikkelaar en corporatie aan tafel en laat onderzoek en afstemming parallel lopen. In 100 dagen ligt er een gebiedsperspectief, in 200 dagen een gedragen ontwikkelvisie."
+    },
+    {
+      "id": "gebiedsontwikkeling",
+      "naam": "Gebiedsontwikkeling",
+      "opgave": "In een gebied komen wonen, voorzieningen en openbare ruimte samen. Dat vraagt afstemming tussen veel partijen.",
+      "bijdrage": "De coach maakt knelpunten zichtbaar en werkt met alle partijen toe naar een gebiedsperspectief of ontwikkelvisie, met besluiten die eerder en beter voorbereid op tafel liggen."
+    },
+    { "id": "binnenstedelijk", "naam": "Binnenstedelijke herontwikkeling", "opgave": null, "bijdrage": null },
+    { "id": "bedrijventerreinen", "naam": "Bedrijventerreinen", "opgave": null, "bijdrage": null },
+    { "id": "maatschappelijk-vastgoed", "naam": "Maatschappelijk vastgoed", "opgave": null, "bijdrage": null },
+    { "id": "energie-klimaat", "naam": "Energie en klimaat", "opgave": null, "bijdrage": null },
+    { "id": "mobiliteit", "naam": "Mobiliteit en infrastructuur", "opgave": null, "bijdrage": null },
+    { "id": "landelijk-gebied", "naam": "Landelijk gebied", "opgave": null, "bijdrage": null }
+  ]
+}

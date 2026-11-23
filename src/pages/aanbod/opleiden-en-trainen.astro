@@ -1,0 +1,59 @@
+---
+import Base from "../../layouts/Base.astro";
+import PageHead from "../../components/PageHead.astro";
+import ContactLines from "../../components/ContactLines.astro";
+import AanbodKaarten from "../../components/AanbodKaarten.astro";
+import data from "../../data/trainingen.json";
+import { mail, serviceSchema } from "../../data/site";
+type Training = { id: string; naam: string; tekst: string; status: "beschikbaar" | "in-ontwikkeling"; cta: string };
+const trainingen = data.trainingen as Training[];
+// Alleen bevestigde trainingen gaan als dienst in de structured data.
+const schema = trainingen.filter((t) => t.status === "beschikbaar").map((t) => serviceSchema(t.naam, t.tekst, "/aanbod/opleiden-en-trainen#" + t.id));
+const bespreek = (naam?: string) => mail(naam ? `Mogelijkheden ${naam.toLowerCase()}` : "Mogelijkheden opleiden en trainen",
+  `Beste Versnellingscoach,\n\nWij willen graag de mogelijkheden bespreken${naam ? ` voor: ${naam}` : " voor opleiden en trainen"}.\n\nOrganisatie:\nVoor wie (functies, aantal deelnemers):\nWat wilt u bereiken:\nTelefoonnummer:\n`);
+---
+<Base title="Opleiden en trainen voor teams" crumb="Opleiden en trainen" schema={schema}
+  description="Praktijkgericht leren voor professionals en teams in woningbouw en gebiedsontwikkeling, met uw eigen project als vertrekpunt. Bespreek de mogelijkheden.">
+  <PageHead crumb="Opleiden en trainen" h1="Opleiden en trainen" lead="Praktijkgericht leren voor professionals en teams. Breng een eigen project mee en oefen hoe u werk parallel organiseert, rollen scherp maakt en besluiten eerder voorbereidt." />
+
+  <section class="band" aria-labelledby="vormen">
+    <div class="wrap stack-lg">
+      <div class="stack measure">
+        <h2 id="vormen">Vormen waaraan we werken</h2>
+        <p>Ons opleidingsaanbod werken we op dit moment verder uit. Hieronder staan de vormen die we voorbereiden. Wilt u er nu al mee aan de slag? Dan bespreken we graag wat mogelijk is voor uw organisatie.</p>
+      </div>
+      <div class="grid-3">
+        {trainingen.map((t) => (
+          <article class="card" id={t.id}>
+            {t.status !== "beschikbaar" && <p class="aanbod-voor">In ontwikkeling</p>}
+            <h3 class="h-card">{t.naam}</h3>
+            <p>{t.tekst}</p>
+            {t.status === "beschikbaar"
+              ? <a class="link-cta" href={mail("Aanmelding " + t.naam.toLowerCase())}>{t.cta}</a>
+              : <a class="link-cta" href={bespreek(t.naam)}>Bespreek de mogelijkheden<span class="sr-only"> voor {t.naam.toLowerCase()}</span></a>}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="band dark" aria-labelledby="maatwerk">
+    <div class="wrap grid-2">
+      <div class="stack">
+        <h2 id="maatwerk">Leren met uw eigen projecten als vertrekpunt</h2>
+        <p>Vertel ons wie u wilt laten leren en wat u wilt bereiken. Dan stemmen we de vorm met u af.</p>
+        <div class="btn-row mt">
+          <a class="btn btn-primary" href={bespreek()}>Bespreek de mogelijkheden</a>
+        </div>
+      </div>
+      <ContactLines />
+    </div>
+  </section>
+
+  <section class="band sand" aria-labelledby="ook-titel">
+    <div class="wrap stack-lg">
+      <h2 id="ook-titel" class="h-small">Ook in ons aanbod</h2>
+      <AanbodKaarten zonder="opleiden-en-trainen" />
+    </div>
+  </section>
+</Base>
