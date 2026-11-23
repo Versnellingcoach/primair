@@ -17,7 +17,7 @@ function zonderToestemming() {
         const klanten = read("./src/data/klanten.json");
         const out = fileURLToPath(dir);
         const weg = [];
-        if (site.video && !site.video.toestemming) weg.push(site.video.src, site.video.poster);
+        for (const v of site.videos ?? []) if (!v.toestemming) weg.push(v.src, v.poster);
         for (const k of klanten) if (k.logo && !k.toestemming) weg.push(k.logo);
         for (const p of weg) rmSync(join(out, p), { force: true });
         if (weg.length) logger.info(`${weg.length} bestand(en) zonder bevestigde toestemming niet gepubliceerd`);

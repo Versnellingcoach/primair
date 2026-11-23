@@ -114,8 +114,10 @@ const coaches = JSON.parse(readFileSync(new URL("../src/data/coaches.json", impo
 if (!site.owner.address) warnings.push("Openstaand: bedrijfsadres (src/data/site.json → owner.address)");
 if (!site.owner.kvk) warnings.push("Openstaand: KvK-nummer (src/data/site.json → owner.kvk)");
 if (!site.owner.btw) warnings.push("Openstaand: btw-nummer (src/data/site.json → owner.btw)");
-if (!site.video) warnings.push("Openstaand: video Blossem (MP4 in public/video/ en src/data/site.json → video)");
-else if (!site.video.toestemming) warnings.push("Toestemming nodig: video Blossem opnieuw hosten (Provincie Noord-Brabant). Alleen zichtbaar op previews.");
+for (const v of site.videos ?? []) {
+  if (v.toestemming && !existsSync(join(dist, v.src))) errors.push(`video ontbreekt: ${v.src}`);
+  if (!v.toestemming) warnings.push(`Toestemming nodig: video "${v.titel}" (${v.bron}). Alleen zichtbaar op previews.`);
+}
 const klanten = JSON.parse(readFileSync(new URL("../src/data/klanten.json", import.meta.url), "utf8"));
 for (const k of klanten) {
   if (!k.logo) warnings.push(`Openstaand: logo van ${k.name} (public/logos/ en src/data/klanten.json)`);

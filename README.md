@@ -12,7 +12,7 @@ Website van Versnellingscoach, een merk van Silver Power. Gebouwd met [Astro](ht
 
 | Wat je wilt wijzigen | Bestand |
 |---|---|
-| Telefoon, e-mail, adres, KvK, links, video | `src/data/site.json` |
+| Telefoon, e-mail, adres, KvK, links, video's (`videos`) | `src/data/site.json` |
 | Team (voornaam, rol, ervaring) | `src/data/coaches.json` + portret in `src/assets/coaches/<slug>.jpg` |
 | Logo's in de schuivende banner | `src/data/klanten.json` + bestand in `public/logos/` |
 | Cases (met `"detail": true` krijgt een case een eigen pagina) | `src/data/cases.json` |

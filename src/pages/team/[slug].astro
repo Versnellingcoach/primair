@@ -5,7 +5,8 @@ import Base from "../../layouts/Base.astro";
 import CtaBand from "../../components/CtaBand.astro";
 import Placeholder from "../../components/Placeholder.astro";
 import ExtLink from "../../components/ExtLink.astro";
-import { coaches, cases, orgId, site, type Coach } from "../../data/site";
+import VideoBand from "../../components/VideoBand.astro";
+import { coaches, cases, orgId, site, videoSchema, type Coach } from "../../data/site";
 
 export function getStaticPaths() {
   return coaches.map((c) => ({ params: { slug: c.slug }, props: { coach: c } }));
@@ -14,6 +15,7 @@ const { coach } = Astro.props as { coach: Coach };
 const images = import.meta.glob<{ default: ImageMetadata }>("../../assets/coaches/*.jpg", { eager: true });
 const foto = images[`../../assets/coaches/${coach.slug}.jpg`].default;
 const coachCases = cases.filter((x) => x.coach === coach.slug);
+const coachVideos = site.videos.filter((v) => v.coach === coach.slug).map((v) => v.id);
 const schema = [{
   "@type": "Person",
   "@id": `${site.url}/team/${coach.slug}#persoon`,
@@ -23,7 +25,7 @@ const schema = [{
   ...(coach.intro && { description: coach.intro }),
   ...(coach.expertise.length && { knowsAbout: coach.expertise }),
   ...(coach.linkedin && { sameAs: [coach.linkedin] }),
-}];
+}, ...videoSchema(...coachVideos)];
 ---
 <Base title={`${coach.name}, ${coach.role}`} crumb="Team" schema={schema}
   description={coach.intro ?? `Maak kennis met ${coach.name}, ${coach.role.toLowerCase()} bij Versnellingscoach. Hands-on procesregie voor woningbouw en gebiedsontwikkeling.`}>
@@ -68,6 +70,8 @@ const schema = [{
       </div>
     </div>
   </section>
+
+  {coachVideos.map((id) => <VideoBand id={id} achtergrond="zand" eyebrow={`${coach.name} in beeld`} />)}
 
   <CtaBand title={`Spreek ${coach.name} over uw project`} />
 </Base>

@@ -1,0 +1,25 @@
+---
+// Sectie met één video en korte tekst ernaast (titel en beschrijving uit src/data/site.json → videos).
+import VideoOfBeeld from "./VideoOfBeeld.astro";
+import { video } from "../data/site";
+interface Props { id: string; eyebrow?: string; achtergrond?: "wit" | "zand" | "donker"; link?: { href: string; label: string } }
+const { id, eyebrow = "In beeld", achtergrond = "wit", link } = Astro.props;
+const klasse = { wit: "band", zand: "band sand", donker: "band dark" }[achtergrond];
+const v = video(id);
+const kopId = `video-${id}`;
+---
+{v && (
+  <section class={klasse} aria-labelledby={kopId}>
+    <div class="wrap grid-2 align-center">
+      <div class="stack">
+        <p class="eyebrow">{eyebrow}</p>
+        <h2 id={kopId}>{v.titel}</h2>
+        <p>{v.beschrijving}</p>
+        {link && <a class="link-cta self-start" href={link.href}>{link.label}</a>}
+      </div>
+      <div class="stack media-small">
+        <VideoOfBeeld id={id} />
+      </div>
+    </div>
+  </section>
+)}
