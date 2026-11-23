@@ -1,7 +1,47 @@
 [
   {
-    "name": "Gemeente Breda",
-    "logo": "/logos/gemeente-breda.svg",
+    "name": "De Essentie",
+    "logo": "/logos/de-essentie.svg",
+    "toestemming": true
+  },
+  {
+    "name": "Van Agtmaal",
+    "logo": "/logos/van-agtmaal.svg",
+    "toestemming": true
+  },
+  {
+    "name": "NBU (Nederlandse Bouw Unie)",
+    "logo": "/logos/nbu.png",
+    "toestemming": true
+  },
+  {
+    "name": "Maas & Jacobs",
+    "logo": "/logos/maas-jacobs.svg",
+    "toestemming": true
+  },
+  {
+    "name": "ADSR",
+    "logo": "/logos/adsr.svg",
+    "toestemming": true
+  },
+  {
+    "name": "Gemeente Bergen op Zoom",
+    "logo": "/logos/gemeente-bergen-op-zoom.svg",
+    "toestemming": true
+  },
+  {
+    "name": "Gemeente Woensdrecht",
+    "logo": "/logos/gemeente-woensdrecht.svg",
+    "toestemming": true
+  },
+  {
+    "name": "Versnellingstafel West-Brabant",
+    "logo": "/logos/versnellingstafel-west-brabant.png",
+    "toestemming": true
+  },
+  {
+    "name": "Versnellingstafel Stedelijke Regio Breda-Tilburg",
+    "logo": "/logos/versnellingstafel-srbt.png",
     "toestemming": true
   },
   {
@@ -10,13 +50,78 @@
     "toestemming": true
   },
   {
+    "name": "Gemeente Oosterhout",
+    "logo": "/logos/gemeente-oosterhout.svg",
+    "toestemming": true
+  },
+  {
+    "name": "Gemeente Altena",
+    "logo": "/logos/gemeente-altena.svg",
+    "toestemming": true
+  },
+  {
+    "name": "Gemeente Hilvarenbeek",
+    "logo": "/logos/gemeente-hilvarenbeek.svg",
+    "toestemming": true
+  },
+  {
+    "name": "Gemeente Breda",
+    "logo": "/logos/gemeente-breda.svg",
+    "toestemming": true
+  },
+  {
+    "name": "Gemeente Rucphen",
+    "logo": "/logos/gemeente-rucphen.png",
+    "toestemming": true
+  },
+  {
     "name": "Gemeente Roosendaal",
     "logo": "/logos/gemeente-roosendaal.svg",
     "toestemming": true
   },
   {
-    "name": "Maas & Jacobs",
-    "logo": "/logos/maas-jacobs.svg",
+    "name": "Somnium Real Estate",
+    "logo": "/logos/somnium-real-estate.svg",
+    "toestemming": true
+  },
+  {
+    "name": "Thuisvester",
+    "logo": "/logos/thuisvester.svg",
+    "toestemming": true
+  },
+  {
+    "name": "Alwel",
+    "logo": "/logos/alwel.svg",
+    "toestemming": true
+  },
+  {
+    "name": "Bouwend Nederland",
+    "logo": "/logos/bouwend-nederland.png",
+    "toestemming": true
+  },
+  {
+    "name": "Provincie Noord-Brabant",
+    "logo": "/logos/provincie-noord-brabant.svg",
+    "toestemming": true
+  },
+  {
+    "name": "Deltalinqs",
+    "logo": "/logos/deltalinqs.png",
+    "toestemming": true
+  },
+  {
+    "name": "Ruimte voor Ruimte",
+    "logo": "/logos/ruimte-voor-ruimte.svg",
+    "toestemming": true
+  },
+  {
+    "name": "BPD",
+    "logo": "/logos/bpd.svg",
+    "toestemming": true
+  },
+  {
+    "name": "Midpoint Brabant",
+    "logo": "/logos/midpoint-brabant.png",
     "toestemming": true
   }
 ]
