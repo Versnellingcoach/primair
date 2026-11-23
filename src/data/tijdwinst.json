@@ -1,17 +1,9 @@
 {
-  "_toelichting": "Indicatieve tijdwinst in de voorbereiding per traject. Onderbouwing bij Silver Power.",
-  "trajecten": [
-    {
-      "dagen": 100,
-      "resultaat": "Gebiedsperspectief",
-      "tijdwinst": "tot 1,5 jaar",
-      "maanden": 18
-    },
-    {
-      "dagen": 200,
-      "resultaat": "Ontwikkelvisie",
-      "tijdwinst": "tot 2,5 jaar",
-      "maanden": 30
-    }
-  ]
+  "_toelichting": "Tijdwinst zoals Paul die aangeeft op basis van eerdere trajecten. Wordt getoond als praktijkervaring, los van de financiële staffel. Gebruik 'gemiddeld' pas als de onderbouwing beschikbaar is (zet dan gemiddeldOnderbouwd op true). Vul 'fase' in zodra bevestigd is op welke projectfase de tijdwinst betrekking heeft; die zin verschijnt dan automatisch in de toelichting. Dit is de enige plek op de site met een algemene tijdwinstclaim.",
+  "waarde": "circa 3 jaar",
+  "zin": "circa drie jaar",
+  "gemiddeldOnderbouwd": false,
+  "bron": "praktijkervaring uit meerdere trajecten",
+  "fase": "de planontwikkeling",
+  "onderbouwing": "Bij Rucphen Noordwest pakte het team de planontwikkeling aan in 2 × 100 dagen, waar 4 jaar gebruikelijk is. Vergelijkbare tijdwinst zagen we in meerdere projecten."
 }

@@ -4,8 +4,10 @@
       "staticDistDir": "./dist",
       "url": [
         "http://localhost/index.html",
-        "http://localhost/aanpak.html",
-        "http://localhost/trainingen.html",
+        "http://localhost/aanbod.html",
+        "http://localhost/aanbod/projecten-versnellen.html",
+        "http://localhost/aanbod/organisaties-versterken.html",
+        "http://localhost/aanbod/opleiden-en-trainen.html",
         "http://localhost/subsidie.html",
         "http://localhost/cases.html",
         "http://localhost/team.html"

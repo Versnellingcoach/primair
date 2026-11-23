@@ -1,0 +1,166 @@
+{
+  "_toelichting": "Subsidie- en ondersteuningsmogelijkheden op /subsidie. Alleen officiële bronnen (Rijk, RVO, provincies, overheid.nl). Controleer elk kwartaal status en links en werk 'gecontroleerd' bij. 'begeleiding' zegt of de regeling inzet van begeleiding of expertise kan ondersteunen: ja, nee of beperkt. Met 'vraagProvincie': true toont de kaart 'Vraag het uw provincie' en een link naar het woningbouwloket.",
+  "gecontroleerd": "23 november 2026",
+  "landelijk": [
+    {
+      "naam": "Expertteam Woningbouw",
+      "organisatie": "RVO, in opdracht van het ministerie van VRO",
+      "wat": "Onafhankelijk advies en praktische ondersteuning bij knelpunten in woningbouw en gebiedsontwikkeling.",
+      "voorWie": "Gemeenten en provincies, op aanvraag. Corporaties en ontwikkelaars kunnen contact opnemen met vragen.",
+      "begeleiding": "beperkt",
+      "begeleidingTekst": "Het Expertteam zet eigen adviseurs en experts in, voor kortdurende ondersteuning. Het is geen subsidie om zelf begeleiding in te huren.",
+      "status": "Actief.",
+      "url": "https://www.rvo.nl/onderwerpen/expertteam-woningbouw"
+    },
+    {
+      "naam": "Programma Uitvoeringskracht Woningbouw",
+      "organisatie": "Rijk met VNG, IPO, Platform31, RVO, Aedes en NEPROM",
+      "wat": "Extra capaciteit en kennis voor gemeenten en provincies in 2026 tot en met 2029. Provincies richten met steun van het Rijk één centraal punt in waar gemeenten zich kunnen melden voor kennis of capaciteit.",
+      "voorWie": "Gemeenten en provincies.",
+      "begeleiding": "beperkt",
+      "begeleidingTekst": "Gericht op capaciteit en deskundigheid bij gemeenten. Hoe gemeenten daar gebruik van kunnen maken, is nog niet uitgewerkt.",
+      "status": "In voorbereiding. Het kabinet maakt de invulling later bekend.",
+      "url": "https://www.volkshuisvestingnederland.nl/onderwerpen/aanpak-woningnood/programma-uitvoeringskracht-woningbouw"
+    },
+    {
+      "naam": "Woningbouwimpuls (WBI)",
+      "organisatie": "Ministerie van VRO, uitgevoerd door RVO",
+      "wat": "Rijksbijdrage aan de onrendabele top op een publieke grondexploitatie van woningbouwprojecten.",
+      "voorWie": "Gemeenten.",
+      "begeleiding": "nee",
+      "begeleidingTekst": "De bijdrage is bedoeld voor het tekort op de grondexploitatie, niet voor inhuur van begeleiding of expertise.",
+      "status": "Negende tranche: aanvragen konden van 15 september tot en met 8 oktober 2026.",
+      "url": "https://www.rvo.nl/subsidies-financiering/woningbouwimpuls"
+    }
+  ],
+  "provinciaalIntro": "Het Rijk stelt via de flexpoolregeling middelen beschikbaar aan provincies. Provincies zetten die op hun eigen manier in, meestal als subsidie voor gemeenten die tijdelijk capaciteit of expertise inhuren in de voorfase van woningbouw. Voorwaarden, budget en openstelling verschillen per provincie.",
+  "provinciaal": [
+    {
+      "provincie": "Drenthe",
+      "naam": "Subsidieregeling personele capaciteit woningbouw",
+      "voorWie": "Drentse gemeenten.",
+      "begeleiding": "ja",
+      "begeleidingTekst": "Cofinanciering van extra personele capaciteit in de initiatief- of ontwerpfase van woonplannen, tot € 25.000 per project. Daarnaast ondersteunt het provinciale Impulsteam Wonen.",
+      "status": "Verlengd tot en met 2027.",
+      "url": "https://www.provincie.drenthe.nl/onderwerpen/bouwen-wonen/wonen-elke-drent-huis/subsidies-regelingen/"
+    },
+    {
+      "provincie": "Flevoland",
+      "naam": "Flexibele schil en versnellingstafels",
+      "voorWie": "Flevolandse gemeenten.",
+      "begeleiding": "ja",
+      "begeleidingTekst": "De provincie ondersteunt gemeenten met middelen uit de flexibele schil en met kennis, en organiseert versnellingstafels.",
+      "status": "Vraag het uw provincie.",
+      "url": "https://www.flevoland.nl/wat-doen-we/wonen/ons-plan-voor-wonen",
+      "vraagProvincie": true
+    },
+    {
+      "provincie": "Fryslân",
+      "naam": "Subsidieregeling Flexibele inzet ondersteuning woningbouw derde tranche",
+      "voorWie": "Friese gemeenten.",
+      "begeleiding": "ja",
+      "begeleidingTekst": "Voor het inhuren van extra capaciteit en deskundigheid in de voorfase van nieuwbouw en herstructurering.",
+      "status": "Aanvragen konden tot en met 30 april 2026. Vraag de provincie naar een vervolg.",
+      "url": "https://www.fryslan.frl/subsidieregeling-flexibele-inzet-ondersteuning-woningbouw-derde-tranche"
+    },
+    {
+      "provincie": "Gelderland",
+      "naam": "Versnellingsteam Woningbouw (Actieplan Wonen)",
+      "voorWie": "Gelderse gemeenten en regio's.",
+      "begeleiding": "ja",
+      "begeleidingTekst": "Gemeenten kunnen experts van het provinciale versnellingsteam inzetten. Regio's kunnen met provinciale financiering capaciteit inhuren voor hun projecten.",
+      "status": "Vraag het uw provincie.",
+      "url": "https://www.gelderland.nl/themas/actieplan-wonen/actie-1",
+      "vraagProvincie": true
+    },
+    {
+      "provincie": "Groningen",
+      "naam": "Subsidieregeling Flexpool versnelling voorfase woningbouw 2025-2026",
+      "voorWie": "Gemeenten en waterschappen in Groningen.",
+      "begeleiding": "ja",
+      "begeleidingTekst": "Voor het inhuren van experts om de voorfase van nieuwbouw- of herstructureringsprojecten te versnellen.",
+      "status": "Regeling voor 2025 en 2026. Controleer openstelling en budget bij de provincie.",
+      "url": "https://zoek.officielebekendmakingen.nl/prb-2025-8780.pdf"
+    },
+    {
+      "provincie": "Limburg",
+      "naam": "Nadere subsidieregels flexibele inzet ondersteuning woningbouw 2025-2027",
+      "voorWie": "Limburgse gemeenten en gemeentelijke samenwerkingsverbanden.",
+      "begeleiding": "ja",
+      "begeleidingTekst": "Voor tijdelijke extra capaciteit of expertise in de voorfase, zoals de uitwerking van een woningbouwproject, anterieure overeenkomsten en het omgevingsplan.",
+      "status": "Geldig tot en met 2027. Aanvragen voor deze onderdelen uiterlijk 1 oktober 2027.",
+      "url": "https://lokaleregelgeving.overheid.nl/CVDR729557"
+    },
+    {
+      "provincie": "Noord-Brabant",
+      "id": "noord-brabant",
+      "naam": "Subsidieregeling woningbouwversnelling Noord-Brabant (extra capaciteit voorfase woningbouw)",
+      "voorWie": "Brabantse gemeenten.",
+      "begeleiding": "ja",
+      "begeleidingTekst": "Voor de inzet van extra personele capaciteit gericht op ondersteuning en expertise in de voorfase van woningbouw.",
+      "status": "Het aanvraagtijdvak van 2026 liep van 15 april tot 1 juli 2026. Kosten moeten uiterlijk 31 december 2026 zijn gemaakt.",
+      "url": "https://lokaleregelgeving.overheid.nl/CVDR737778",
+      "brabantRoute": true
+    },
+    {
+      "provincie": "Noord-Holland",
+      "naam": "Uitvoeringsregeling subsidie flexibele schil versnelling woningbouw Noord-Holland 2025",
+      "voorWie": "Gemeenten en regio's in Noord-Holland.",
+      "begeleiding": "ja",
+      "begeleidingTekst": "Voor tijdelijke inhuur van capaciteit en expertise bij woningbouwprojecten uit de Woondeals.",
+      "status": "De openstelling liep tot oktober 2026. Vraag bij de provincie na of er een vervolg komt.",
+      "url": "https://lokaleregelgeving.overheid.nl/CVDR735591"
+    },
+    {
+      "provincie": "Overijssel",
+      "naam": "Flexpools versnellen woningbouw",
+      "voorWie": "Overijsselse gemeenten.",
+      "begeleiding": "ja",
+      "begeleidingTekst": "Voor flexibele inzet van capaciteit en expertise om woningbouw te versnellen.",
+      "status": "De laatste indieningsperiode liep van 7 september tot en met 30 oktober 2026.",
+      "url": "https://regelen.overijssel.nl/Producten_en_diensten/Subsidies/Wonen_en_leefbaarheid/Flexpools_versnellen_woningbouw"
+    },
+    {
+      "provincie": "Utrecht",
+      "naam": "Subsidieregeling Versnelling Woningbouw 2025-2028",
+      "voorWie": "Gemeenten, woningcorporaties en projectontwikkelaars in de provincie Utrecht.",
+      "begeleiding": "ja",
+      "begeleidingTekst": "Onder meer voor de inzet van externe deskundigheid bij gemeenten, of als bijdrage aan de onrendabele top.",
+      "status": "Aanvraagperiode open tot 31 december 2028.",
+      "url": "https://www.provincie-utrecht.nl/loket/subsidies/subsidieregeling-versnelling-woningbouw-2025-2028"
+    },
+    {
+      "provincie": "Zeeland",
+      "naam": "Flexibele inzet voor versnelling van de Zeeuwse woningbouwopgave",
+      "voorWie": "Zeeuwse gemeenten.",
+      "begeleiding": "ja",
+      "begeleidingTekst": "Voor tijdelijke inhuur van capaciteit en externe expertise bij woningbouwprojecten.",
+      "status": "Vraag het uw provincie.",
+      "url": "https://www.zeeland.nl/subsidie-aanvragen/overzicht-subsidieregelingen/flexibele-inzet-versnelling-zeeuwse-woningbouwopgave",
+      "vraagProvincie": true
+    },
+    {
+      "provincie": "Zuid-Holland",
+      "naam": "Subsidieregeling wonen Zuid-Holland (Vliegende Brigade)",
+      "voorWie": "Gemeenten en woningcorporaties in Zuid-Holland.",
+      "begeleiding": "ja",
+      "begeleidingTekst": "Voor tijdelijke inhuur van externe capaciteit en expertise die aantoonbaar leidt tot versnelling van woningbouw.",
+      "status": "Geldende regeling met een subsidieplafond voor 2026. Controleer openstelling bij de provincie.",
+      "url": "https://www.zuid-holland.nl/onderwerpen/ruimte/toolbox-slim/vliegende-brigade"
+    }
+  ],
+  "kennis": [
+    {
+      "naam": "Nationaal Expertisecentrum Woningbouw",
+      "organisatie": "VNG en Platform31, betaald door het Rijk",
+      "wat": "Centrale plek voor praktijkkennis, werkwijzen en instrumenten om woningbouw te versnellen, met bijeenkomsten en gerichte opleidingen. Geopend op 12 oktober 2026.",
+      "url": "https://expertisecentrumwoningbouw.nl/"
+    },
+    {
+      "naam": "Platform31",
+      "organisatie": "Kennis- en netwerkorganisatie voor stad en regio",
+      "wat": "Praktijkvoorbeelden, onderzoek en netwerken over woningbouw, gebiedsontwikkeling en samenwerking tussen publieke en private partijen.",
+      "url": "https://www.platform31.nl/"
+    }
+  ]
+}

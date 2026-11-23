@@ -1,25 +1,36 @@
 ---
-import { start } from "../data/site";
+// Meer dan woningbouw: toepassingsgebieden als uitklapblokken (details/summary).
+// Teksten in src/data/toepassingen.json; zonder bevestigde tekst verschijnt de algemene toelichting.
+import { start, mail } from "../data/site";
+import data from "../data/toepassingen.json";
+const gebieden = data.gebieden as { id: string; naam: string; opgave: string | null; bijdrage: string | null }[];
 ---
-<section class="band sand" aria-labelledby="breder-titel">
-  <div class="wrap grid-2 align-center">
+<section class="band sand" id="breder" aria-labelledby="breder-titel">
+  <div class="wrap grid-2">
     <div class="stack">
       <p class="eyebrow">Meer dan woningbouw</p>
       <h2 id="breder-titel">Wonen is ons vertrekpunt. De aanpak werkt voor elk ruimtelijk dossier.</h2>
       <p>Dezelfde aanpak brengt ook andere gebiedsontwikkelingen in beweging. Overal waar gemeente, markt en maatschappelijke partners samen een plan moeten maken, kan een Versnellingscoach de regie nemen.</p>
+      <p class="small muted">Klik op een onderwerp voor een korte toelichting.</p>
+      <a class="link-cta self-start" href={start.href}>Bespreek uw ruimtelijke opgave</a>
     </div>
-    <ul class="tags" aria-label="Voorbeelden van ruimtelijke dossiers">
-      <li>Woningbouw</li>
-      <li>Gebiedsontwikkeling</li>
-      <li>Binnenstedelijke herontwikkeling</li>
-      <li>Bedrijventerreinen</li>
-      <li>Maatschappelijk vastgoed</li>
-      <li>Energie en klimaat</li>
-      <li>Mobiliteit en infrastructuur</li>
-      <li>Landelijk gebied</li>
-    </ul>
-  </div>
-  <div class="wrap mt-lg">
-    <a class="link-cta" href={start.href}>Bespreek uw ruimtelijke opgave</a>
+    <div class="uitklap-lijst">
+      {gebieden.map((g) => (
+        <details class="uitklap" id={`toepassing-${g.id}`}>
+          <summary>{g.naam}</summary>
+          <div class="uitklap-inhoud">
+            {g.opgave ? (
+              <>
+                <p><strong>De opgave.</strong> {g.opgave}</p>
+                {g.bijdrage && <p><strong>Wat de coach doet.</strong> {g.bijdrage}</p>}
+              </>
+            ) : (
+              <p>{data.algemeen}</p>
+            )}
+            <a class="link-cta self-start small" href={mail(`Versnelling: ${g.naam.toLowerCase()}`)}>Bespreek uw opgave</a>
+          </div>
+        </details>
+      ))}
+    </div>
   </div>
 </section>

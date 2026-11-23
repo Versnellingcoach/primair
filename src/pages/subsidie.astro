@@ -5,40 +5,107 @@ import ExtLink from "../components/ExtLink.astro";
 import VideoOfBeeld from "../components/VideoOfBeeld.astro";
 import CtaBand from "../components/CtaBand.astro";
 import { site, mail, videoSchema } from "../data/site";
-const regios = site.andereRegios.links;
+import regelingen from "../data/regelingen.json";
+
+type Regeling = {
+  naam: string; organisatie?: string; provincie?: string; id?: string; wat?: string; voorWie: string;
+  begeleiding: "ja" | "beperkt" | "nee"; begeleidingTekst: string; status: string; url: string; brabantRoute?: boolean; vraagProvincie?: boolean;
+};
+const landelijk = regelingen.landelijk as Regeling[];
+const provinciaal = regelingen.provinciaal as Regeling[];
+const labels = { ja: "Ja", beperkt: "Beperkt", nee: "Nee" } as const;
+const vraagMail = mail("Welke regeling past bij ons project?", "Beste Versnellingscoach,\n\nWij willen graag weten welke ondersteuning past bij ons project of onze organisatie.\n\nOrganisatie en provincie:\nProject of vraag:\nTelefoonnummer:\n");
 ---
-<Base title="Subsidie voor een Versnellingscoach" crumb="Subsidie" schema={videoSchema()}
-  description="Brabantse gemeente? Uw Woondealregio kan subsidie aanvragen voor een Versnellingscoach. Ook andere provincies vergoeden inhuur voor woningbouwversnelling.">
-  <PageHead crumb="Subsidie" h1="Brabantse gemeente? Check de subsidie." lead="Wilt u een woningbouwproject versnellen? Uw Woondealregio kan bij de provincie subsidie aanvragen voor een regionale Versnellingscoach." />
-  <section class="band" aria-labelledby="zo-werkt-het">
-    <div class="wrap grid-2">
-      <div class="prose">
-        <h2 id="zo-werkt-het">Zo werkt het</h2>
-        <p>Stem met uw Woondealregio af of er ruimte is om uw project aan te melden. Volgens de provinciale flyer kan per gemeente maximaal één project worden aangemeld voor begeleiding.</p>
-        <p>Twijfelt u of uw project in aanmerking komt? Bespreek het met ons, dan kijken we samen naar de mogelijkheden.</p>
-        <div class="btn-row">
-          <a class="btn btn-primary" href={mail("Komt ons project in aanmerking voor de subsidie?")}>Check of uw project in aanmerking komt</a>
-          <ExtLink href={site.links.flyer} class="btn btn-secondary">Bekijk de provinciale flyer</ExtLink>
-        </div>
+<Base title="Subsidie en ondersteuning voor versnelling" crumb="Subsidie en ondersteuning" schema={videoSchema()}
+  description="Landelijke en provinciale regelingen en kennisbronnen voor versnelling van woningbouw, met per regeling of begeleiding of expertise in aanmerking komt.">
+  <PageHead crumb="Subsidie en ondersteuning" h1="Subsidie en ondersteuning voor versnelling" lead="Rijk en provincies bieden regelingen, capaciteit en kennis om woningbouw te versnellen. Per regeling ziet u voor wie die is, wat de status is en of die de inzet van begeleiding of expertise kan ondersteunen." />
+
+  <section class="band" aria-label="Snel naar">
+    <div class="wrap stack">
+      <nav class="subnav" aria-label="Onderdelen van deze pagina">
+        <a class="link-cta" href="#landelijk">Landelijke mogelijkheden</a>
+        <a class="link-cta" href="#provinciaal">Provinciale regelingen</a>
+        <a class="link-cta" href="#kennis">Kennis en praktijkondersteuning</a>
+      </nav>
+      <p class="small muted">Voorwaarden, budget en openstelling veranderen regelmatig. Wij geven geen garantie op toekenning of vergoeding. Controleer altijd de actuele informatie bij de officiële bron. Laatst gecontroleerd: {regelingen.gecontroleerd}.</p>
+    </div>
+  </section>
+
+  <section class="band sand" id="landelijk" aria-labelledby="landelijk-titel">
+    <div class="wrap stack-lg">
+      <div class="sectie-kop">
+        <p class="eyebrow">Rijk en RVO</p>
+        <h2 id="landelijk-titel">Landelijke financierings- en ondersteuningsmogelijkheden</h2>
       </div>
-      <div class="card">
-        <h3>Vragen over de subsidie?</h3>
-        <p>Uw Woondealregio vraagt de subsidie aan bij de provincie. Bij de provincie Noord-Brabant is Christel Tax-Gloudemans, adviseur Ruimte en Wonen, het aanspreekpunt. Per gemeente kan maximaal één project worden aangemeld.</p>
-        <p>Wilt u eerst weten of uw project geschikt is? Bespreek het met ons.</p>
-        <a class="link-cta" href={mail("Komt ons project in aanmerking voor de subsidie?")}>Laat ons meekijken</a>
+      <div class="regelingen">
+        {landelijk.map((r) => (
+          <article class="regeling">
+            <h3>{r.naam}</h3>
+            {r.organisatie && <p class="regeling-org">{r.organisatie}</p>}
+            {r.wat && <p>{r.wat}</p>}
+            <dl>
+              <div><dt>Voor wie</dt><dd>{r.voorWie}</dd></div>
+              <div><dt>Begeleiding of expertise</dt><dd><span class={`label-begeleiding label-${r.begeleiding}`}>{labels[r.begeleiding]}</span>{r.begeleidingTekst}</dd></div>
+              <div><dt>Status</dt><dd>{r.status}</dd></div>
+            </dl>
+            <ExtLink href={r.url}>Officiële informatie</ExtLink>
+          </article>
+        ))}
       </div>
     </div>
   </section>
-  <section class="band andere-provincies" id="andere-provincies" aria-labelledby="andere-titel">
-    <div class="wrap stack measure">
-      <h2 id="andere-titel" class="h-small">Buiten Brabant? Ook andere provincies vergoeden inhuur.</h2>
-      <p class="small">Meer provincies vergoeden (een deel van) de inhuur van extra capaciteit om woningbouw te versnellen. Voorwaarden en budget verschillen per regeling en veranderen regelmatig. Wij zoeken graag met u uit wat in uw provincie mogelijk is.</p>
-      <ul class="regio-links small">
-        {regios.map((r) => <li><ExtLink href={r.url} class="">{r.naam}: {r.titel}</ExtLink></li>)}
-      </ul>
-      <a class="link-cta self-start small" href={mail("Subsidie in onze provincie")}>Vraag het na voor uw provincie</a>
+
+  <section class="band" id="provinciaal" aria-labelledby="provinciaal-titel">
+    <div class="wrap stack-lg">
+      <div class="sectie-kop">
+        <p class="eyebrow">Provincies</p>
+        <h2 id="provinciaal-titel">Provinciale regelingen</h2>
+        <p>{regelingen.provinciaalIntro}</p>
+      </div>
+      <div class="regelingen">
+        {provinciaal.map((r) => (
+          <article class="regeling" id={r.id}>
+            <p class="eyebrow">{r.provincie}</p>
+            <h3>{r.naam}</h3>
+            <dl>
+              <div><dt>Voor wie</dt><dd>{r.voorWie}</dd></div>
+              <div><dt>Begeleiding of expertise</dt><dd><span class={`label-begeleiding label-${r.begeleiding}`}>{labels[r.begeleiding]}</span>{r.begeleidingTekst}</dd></div>
+              <div><dt>Status</dt><dd>{r.status}</dd></div>
+            </dl>
+            {r.brabantRoute && (
+              <div class="stack-s note">
+                <p><strong>Regionale Versnellingscoach.</strong> Volgens de provinciale flyer kan een Woondealregio tijdelijk een Versnellingscoach aanstellen. Uw Woondealregio stemt dit af met de provincie; per gemeente kan maximaal één project worden aangemeld. Aanspreekpunt bij de provincie is Christel Tax-Gloudemans, adviseur Ruimte en Wonen.</p>
+                <ExtLink href={site.links.flyer} class="link-cta self-start">Bekijk de provinciale flyer</ExtLink>
+              </div>
+            )}
+            <ExtLink href={r.url}>{r.vraagProvincie ? "Naar het woningbouwloket van de provincie" : "Officiële regeling"}</ExtLink>
+          </article>
+        ))}
+      </div>
+      <p class="small">Twijfelt u wat er in uw provincie mogelijk is? Vraag het uw provincie, of <a href={mail("Ondersteuning in onze provincie")}>vraag het ons</a>, dan zoeken we het met u uit.</p>
     </div>
   </section>
+
+  <section class="band sand" id="kennis" aria-labelledby="kennis-titel">
+    <div class="wrap stack-lg">
+      <div class="sectie-kop">
+        <p class="eyebrow">Kennis</p>
+        <h2 id="kennis-titel">Kennis en praktijkondersteuning</h2>
+        <p>Deze organisaties bundelen kennis, werkwijzen en praktijkvoorbeelden. Het zijn geen subsidieregelingen.</p>
+      </div>
+      <div class="regelingen">
+        {regelingen.kennis.map((k) => (
+          <article class="regeling">
+            <h3>{k.naam}</h3>
+            <p class="regeling-org">{k.organisatie}</p>
+            <p>{k.wat}</p>
+            <ExtLink href={k.url}>Naar de website</ExtLink>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section class="band dark" aria-labelledby="bouwplaats">
     <div class="wrap grid-2">
       <div class="stack">
@@ -55,5 +122,14 @@ const regios = site.andereRegios.links;
       </div>
     </div>
   </section>
-  <CtaBand title="Uw project aanmelden voor de subsidie?" text="We helpen u bepalen of uw project geschikt is en wat u bij uw regio of provincie moet aanleveren." />
+
+  <section class="band" aria-labelledby="meedenken">
+    <div class="wrap stack measure">
+      <h2 id="meedenken" class="h-small">Twijfelt u welke regeling past?</h2>
+      <p>We denken mee over de inzet van een Versnellingscoach en over wat u bij uw regio, provincie of het Rijk kunt aanvragen.</p>
+      <a class="link-cta self-start" href={vraagMail}>Leg uw vraag aan ons voor</a>
+    </div>
+  </section>
+
+  <CtaBand />
 </Base>

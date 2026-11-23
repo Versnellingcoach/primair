@@ -198,7 +198,9 @@ img.head-img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 .site-footer a { color: #E5ECF6; }
 .site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
 @media (max-width: 820px) { .site-footer .wrap:first-child { grid-template-columns: 1fr; } }
-.credits { border-top: 1px solid rgba(255, 255, 255, 0.12); padding-block: 20px 110px; display: flex; flex-direction: column; gap: 12px; font-size: 0.85rem; }
+/* Onderste footerregel: Silver Power links, Van Gestel Digitaal rechts op dezelfde hoogte; op mobiel onder elkaar */
+.credits { border-top: 1px solid rgba(255, 255, 255, 0.12); padding-block: 20px 110px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 32px; font-size: 0.85rem; }
+@media (max-width: 640px) { .credits { flex-direction: column; align-items: flex-start; gap: 14px; } }
 .credits p { display: flex; align-items: center; gap: 8px; }
 .credits img { height: 28px; width: auto; }
 .credits strong { color: #E5ECF6; }
@@ -391,3 +393,85 @@ img.head-img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
 .resultaat-cijfers .ph strong { font-size: inherit; }
 .grid-2 > *, .grid-3 > * { min-width: 0; }
 img.media-small { width: 100%; }
+
+/* Hoofdmenu: Aanbod met drie onderdelen */
+.nav-groep { position: relative; display: flex; align-items: center; }
+.nav a.nav-actief { color: var(--blue); box-shadow: inset 0 -3px 0 var(--orange); border-radius: 0; }
+.nav-sub-btn { background: none; border: 0; color: var(--ink); padding: 8px 6px; margin-left: -8px; border-radius: 6px; cursor: pointer; display: grid; place-items: center; }
+.nav-sub-btn:hover { background: var(--bluegrey); }
+.nav-sub-btn svg { transition: transform 0.15s; }
+.nav-sub-btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+.nav-sub { list-style: none; margin: 0; padding: 8px; display: none; }
+.nav-sub a { display: block; white-space: nowrap; }
+@media (min-width: 961px) {
+  .nav-sub { position: absolute; top: calc(100% + 6px); left: 0; min-width: 240px; background: var(--white); border: 1px solid var(--line); border-radius: var(--r); box-shadow: 0 12px 28px rgba(0, 45, 102, 0.15); z-index: 60; }
+  .nav-sub::before { content: ""; position: absolute; left: 0; right: 0; top: -8px; height: 8px; }
+  .nav-groep:hover .nav-sub, .nav-groep.open .nav-sub { display: grid; gap: 2px; }
+  .nav-sub a[aria-current="page"] { box-shadow: inset 3px 0 0 var(--orange); border-radius: 0; }
+}
+@media (max-width: 960px) {
+  .nav-groep { flex-wrap: wrap; }
+  .nav-groep > a { flex: 1; }
+  .nav-sub-btn { display: none; }
+  .nav-sub { display: grid; gap: 0; flex: 0 0 calc(100% - 12px); padding: 0 0 4px 16px; border-left: 2px solid var(--bluegrey); margin-left: 12px; }
+  .nav a.nav-actief { box-shadow: inset 3px 0 0 var(--orange); }
+  .nav-sub a { font-weight: 400; }
+}
+
+/* Aanbod: drie gelijkwaardige, klikbare kaarten */
+.aanbod-kaarten { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+@media (max-width: 900px) { .aanbod-kaarten { grid-template-columns: 1fr; } }
+.aanbod-kaart { display: flex; flex-direction: column; gap: 12px; background: var(--white); border: 1px solid var(--line); border-top: 6px solid var(--orange); border-radius: var(--r); padding: 26px; text-decoration: none; color: var(--ink); transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s; }
+.sand .aanbod-kaart { border-color: transparent; border-top-color: var(--orange); }
+.aanbod-kaart:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0, 45, 102, 0.15); }
+.aanbod-nr { font-weight: 700; font-size: 0.85rem; letter-spacing: 0.12em; color: var(--muted); }
+.aanbod-kaart h3 { font-size: 1.4rem; }
+.aanbod-voor { font-weight: 700; font-size: 0.9rem; color: var(--blue); background: var(--bluegrey); border-radius: 999px; padding: 4px 12px; align-self: flex-start; }
+.aanbod-kaart .link-cta { margin-top: auto; align-self: flex-start; }
+.aanbod-kaart:focus-visible { outline-offset: 4px; }
+
+/* Uitklapbare toepassingsgebieden (details/summary: werkt met muis, toetsenbord en touch) */
+.uitklap-lijst { display: grid; gap: 8px; }
+.uitklap { background: var(--white); border: 1px solid var(--line); border-radius: 8px; }
+.uitklap summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; font-weight: 700; color: var(--blue); min-height: 48px; }
+.uitklap summary::-webkit-details-marker { display: none; }
+.uitklap summary::after { content: "+"; flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--bluegrey); color: var(--blue); display: grid; place-items: center; font-size: 1.1rem; line-height: 1; }
+.uitklap[open] summary::after { content: "–"; background: var(--orange); }
+.uitklap summary:hover { background: #F7F9FC; border-radius: 8px; }
+.uitklap-inhoud { padding: 0 16px 16px; display: grid; gap: 8px; font-size: 0.95rem; }
+.uitklap-inhoud strong { color: var(--blue); }
+
+/* Rekentool: woningstaffels */
+.staffels .segment-opties { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 420px) { .staffels .segment-opties { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.staffels .segment-optie span { text-align: center; padding: 12px 8px; }
+.staffels .segment-optie b { font-size: 1rem; }
+.uitkomst-waarde.bereik { font-size: clamp(1.4rem, 2.3vw, 1.75rem); }
+.uitkomst-contact { color: var(--white); font-weight: 700; }
+.aannames { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; font-size: 0.8rem; color: var(--muted); }
+
+/* Subsidie en ondersteuning */
+.regelingen { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+.regeling { background: var(--white); border: 1px solid var(--line); border-radius: var(--r); padding: 22px; display: flex; flex-direction: column; gap: 10px; }
+.sand .regeling { border-color: transparent; }
+.regeling h3 { font-size: 1.15rem; }
+.regeling-org { font-size: 0.85rem; font-weight: 700; color: var(--muted); }
+.regeling dl { margin: 0; display: grid; gap: 8px; font-size: 0.92rem; }
+.regeling dt { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.regeling dd { margin: 2px 0 0; }
+.regeling .link-cta { margin-top: auto; align-self: flex-start; font-size: 0.95rem; }
+.label-begeleiding { display: inline-block; font-weight: 700; font-size: 0.8rem; border-radius: 999px; padding: 1px 10px; margin-right: 6px; }
+.label-ja { background: #FFE3C7; color: var(--blue); }
+.label-beperkt { background: var(--bluegrey); color: var(--blue); }
+.label-nee { background: #EDEFF3; color: var(--ink); }
+.regeling-brabant { border: 2px solid var(--blue); }
+.brabant-route { grid-column: 1 / -1; background: var(--bluegrey); border-radius: var(--r); padding: 22px; display: grid; gap: 10px; }
+.brabant-route h4 { margin: 0; color: var(--blue); font-size: 1.1rem; }
+.sectie-kop { display: grid; gap: 8px; max-width: 70ch; }
+.subnav { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+ul.aanbod-kaarten { list-style: none; margin: 0; padding: 0; }
+.aanbod-kaarten > li { display: flex; min-width: 0; }
+.aanbod-kaarten > li > .aanbod-kaart { flex: 1; }
+.aanbod-twee { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 900px) { .aanbod-twee { grid-template-columns: 1fr; } }
+.uitkomst a { color: inherit; }

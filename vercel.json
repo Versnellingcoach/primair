@@ -3,6 +3,10 @@
   "framework": "astro",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/aanpak", "destination": "/aanbod/projecten-versnellen", "permanent": true },
+    { "source": "/trainingen", "destination": "/aanbod/opleiden-en-trainen", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",

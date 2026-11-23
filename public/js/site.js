@@ -1,7 +1,36 @@
-// Versnellingscoach: menu, contactbolletje, kopieerknoppen en rekentool.
+// Versnellingscoach: doorverwijzing, menu, contactbolletje, kopieerknoppen en rekentool.
 // Geen externe afhankelijkheden, geen netwerkverkeer, geen opslag.
 (function () {
   "use strict";
+
+  /* Verhuisde pagina (/aanpak, /trainingen): doorsturen met behoud van #anker. Op Vercel gebeurt dit al met een 301. */
+  var door = document.querySelector("[data-doorverwijzing]");
+  if (door) { window.location.replace(door.href + window.location.hash); return; }
+
+  /* Submenu Aanbod (desktop): openen met de knop, sluiten met Escape of klik erbuiten */
+  var groepen = document.querySelectorAll("[data-nav-groep]");
+  function sluitGroepen(behalve) {
+    groepen.forEach(function (g) {
+      if (g === behalve) return;
+      g.classList.remove("open");
+      var b = g.querySelector(".nav-sub-btn");
+      if (b) b.setAttribute("aria-expanded", "false");
+    });
+  }
+  groepen.forEach(function (g) {
+    var b = g.querySelector(".nav-sub-btn");
+    if (!b) return;
+    b.addEventListener("click", function () {
+      var open = !g.classList.contains("open");
+      sluitGroepen(g);
+      g.classList.toggle("open", open);
+      b.setAttribute("aria-expanded", String(open));
+    });
+    g.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && g.classList.contains("open")) { sluitGroepen(); b.focus(); e.stopPropagation(); }
+    });
+  });
+  document.addEventListener("click", function (e) { if (!e.target.closest("[data-nav-groep]")) sluitGroepen(); });
 
   /* Menu op kleine schermen */
   var menuBtn = document.querySelector(".menu-btn");
@@ -56,64 +85,25 @@
     } else { fallback(); }
   });
 
-  /* Rekentool */
+  /* Rekentool: keuze uit woningstaffels. Uitkomst en mailtekst per staffel komen uit de build (data-staffel). */
   var calc = document.querySelector("[data-calc]");
   if (!calc) return;
-  var staffel;
-  try { staffel = JSON.parse(calc.getAttribute("data-staffel")); } catch (_) { return; }
-  var email = calc.getAttribute("data-email");
-  var inWon = document.getElementById("aantal-woningen");
-  var inPrijs = document.getElementById("verkoopprijs");
-  var errWon = document.getElementById("fout-woningen");
-  var errPrijs = document.getElementById("fout-prijs");
+  var data;
+  try { data = JSON.parse(calc.getAttribute("data-staffel")); } catch (_) { return; }
   var out = calc.querySelector("[data-calc-out]");
-  var outTijd = calc.querySelector("[data-calc-tijd]");
-  var radios = calc.querySelectorAll('input[name="traject"]');
-  function traject() {
-    var gekozen = calc.querySelector('input[name="traject"]:checked');
-    var dagen = gekozen ? parseInt(gekozen.value, 10) : 100;
-    return (staffel.trajecten || []).find(function (t) { return t.dagen === dagen; }) || staffel.trajecten[0];
-  }
+  var geen = calc.querySelector("[data-calc-geen]");
+  var geenLink = calc.querySelector("[data-calc-geen-link]");
+  var woningen = calc.querySelector("[data-calc-woningen]");
   var mailBtn = calc.querySelector("[data-calc-mail]");
-  var nl = new Intl.NumberFormat("nl-NL");
-  var euro = function (n) { return "€ " + nl.format(n); };
-  var digits = function (s) { return s.replace(/\D/g, ""); };
-
-  function lookup(won, prijs) {
-    var rij = staffel.rijen.find(function (r) { return won >= r.van && (r.tot === null || won <= r.tot); });
-    var kolom = prijs < staffel.prijsGrenzen[0] ? 0 : prijs < staffel.prijsGrenzen[1] ? 1 : 2;
-    return rij ? rij.bedragen[kolom] : null;
-  }
-  function setError(input, el, msg) {
-    el.textContent = msg || ""; el.hidden = !msg;
-    input.setAttribute("aria-invalid", msg ? "true" : "false");
-  }
   function update() {
-    var w = parseInt(digits(inWon.value) || "0", 10);
-    var p = parseInt(digits(inPrijs.value) || "0", 10);
-    var okW = w >= 1 && w <= 20000;
-    var okP = p >= 50000 && p <= 10000000;
-    setError(inWon, errWon, okW ? "" : "Vul een aantal woningen in tussen 1 en 20.000.");
-    setError(inPrijs, errPrijs, okP ? "" : "Vul een gemiddelde verkoopprijs in tussen € 50.000 en € 10.000.000.");
-    var t = traject();
-    if (outTijd && t) outTijd.textContent = t.tijdwinst;
-    if (!okW || !okP) { out.textContent = "€ –"; return; }
-    var bedrag = lookup(w, p);
-    out.textContent = euro(bedrag);
-    var body = "Beste Versnellingscoach,\n\nIk wil graag ons woningbouwproject bespreken.\n\n" +
-      "Aantal woningen: " + nl.format(w) + "\nGemiddelde verkoopprijs: " + euro(p) +
-      "\nTraject: " + t.dagen + " dagen (" + t.resultaat.toLowerCase() + ")" +
-      "\nIndicatieve besparing volgens de rekentool: " + euro(bedrag) +
-      "\nIndicatieve tijdwinst: " + t.tijdwinst +
-      "\n\nOrganisatie:\nProject:\nTelefoonnummer:\n";
-    mailBtn.href = "mailto:" + email + "?subject=" + encodeURIComponent("Bespreek mijn project") + "&body=" + encodeURIComponent(body);
+    var gekozen = calc.querySelector('input[name="staffel"]:checked');
+    var s = gekozen && (data.staffels || []).find(function (x) { return x.id === gekozen.value; });
+    if (!s) return;
+    if (s.bedrag) { out.textContent = s.bedrag; out.hidden = false; geen.hidden = true; }
+    else { out.hidden = true; geen.hidden = false; geenLink.href = s.mail; }
+    woningen.textContent = s.woningen;
+    mailBtn.href = s.mail;
   }
-  inWon.addEventListener("input", function () { inWon.value = digits(inWon.value).slice(0, 5); update(); });
-  inPrijs.addEventListener("input", function () {
-    var raw = digits(inPrijs.value).slice(0, 8);
-    inPrijs.value = raw ? nl.format(parseInt(raw, 10)) : "";
-    update();
-  });
-  radios.forEach(function (r) { r.addEventListener("change", update); });
+  calc.querySelectorAll('input[name="staffel"]').forEach(function (r) { r.addEventListener("change", update); });
   update();
 })();

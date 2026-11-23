@@ -1,0 +1,48 @@
+---
+import Base from "../layouts/Base.astro";
+import PageHead from "../components/PageHead.astro";
+import AanbodKaarten from "../components/AanbodKaarten.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { aanbod, serviceSchema } from "../data/site";
+import wijk from "../assets/sfeer/nieuwe-wijk.jpg";
+const schema = aanbod.map((a) => serviceSchema(a.naam, a.kort, a.href));
+---
+<Base title="Aanbod: projecten, organisaties en teams" crumb="Aanbod" schema={schema}
+  description="Projecten versnellen, organisaties versterken, opleiden en trainen: zo helpt Versnellingscoach woningbouw en gebiedsontwikkeling vooruit.">
+  <PageHead crumb="Aanbod" h1="Ons aanbod" lead="Voor gemeenten, ontwikkelaars en woningcorporaties in heel Nederland. We versnellen uw project, versterken uw organisatie en trainen uw professionals en teams." image={wijk} imageAlt="Nieuwe woonwijk met groen en een fietspad" />
+
+  <section class="band" aria-labelledby="onderdelen">
+    <div class="wrap stack-lg">
+      <div class="stack measure">
+        <h2 id="onderdelen">Drie onderdelen, één doel: sneller van plan naar uitvoering</h2>
+        <p>De onderdelen zijn los inzetbaar en versterken elkaar. Een project versnellen levert direct resultaat op. Een sterkere organisatie en een getraind team zorgen dat die snelheid blijft.</p>
+      </div>
+      <AanbodKaarten kop="h2" />
+    </div>
+  </section>
+
+  <section class="band sand" aria-labelledby="verschil">
+    <div class="wrap stack-lg">
+      <h2 id="verschil">Wat is het verschil?</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Projecten versnellen</h3>
+          <p>U hebt een concreet project of gebied dat sneller moet. Een onafhankelijke coach regisseert de samenwerking in een traject van 100 of 200 dagen.</p>
+          <a class="link-cta" href="/aanbod/projecten-versnellen">Lees verder</a>
+        </div>
+        <div class="card">
+          <h3>Organisaties versterken</h3>
+          <p>U wilt dat uw organisatie zelf sneller en beter kan werken aan versnelling, over projecten heen. We kijken naar samenwerking, rollen, werkprocessen en besluitvorming.</p>
+          <a class="link-cta" href="/aanbod/organisaties-versterken">Lees verder</a>
+        </div>
+        <div class="card">
+          <h3>Opleiden en trainen</h3>
+          <p>U wilt professionals en teams laten leren in de praktijk, met eigen projecten als vertrekpunt. We stemmen de vorm met u af.</p>
+          <a class="link-cta" href="/aanbod/opleiden-en-trainen">Lees verder</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Welk onderdeel past bij u?" text="Vertel kort waar u staat. Dan denken we mee over de vorm die het meeste oplevert: voor uw project, uw organisatie of uw team." />
+</Base>

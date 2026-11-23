@@ -1,0 +1,84 @@
+---
+import Base from "../../layouts/Base.astro";
+import PageHead from "../../components/PageHead.astro";
+import AanbodKaarten from "../../components/AanbodKaarten.astro";
+import ContactLines from "../../components/ContactLines.astro";
+import { site, mail, start } from "../../data/site";
+import appartementen from "../../assets/sfeer/appartementen-in-aanbouw.jpg";
+const schema = [{
+  "@type": "Service",
+  "@id": site.url + "/aanbod/organisaties-versterken#dienst",
+  name: "Organisaties versterken",
+  serviceType: "Organisatieadvies voor versnelling van woningbouw en gebiedsontwikkeling",
+  description: "Advies en begeleiding voor gemeenten, ontwikkelaars en corporaties om hun organisatie beter toe te rusten op versnelling: samenwerking, rollen, werkprocessen, besluitvorming en uitvoeringskracht.",
+  provider: { "@id": site.url + "/#versnellingscoach" },
+  areaServed: { "@type": "Country", name: "Nederland" },
+}];
+const themas = [
+  { naam: "Samenwerking", tekst: "Tussen afdelingen en met externe partners. Wie zit wanneer aan tafel, en hoe blijven gemeente, ontwikkelaar en corporatie in gesprek als het lastig wordt?" },
+  { naam: "Rollen", tekst: "Wie is opdrachtgever, wie regisseert, wie besluit? Heldere rollen en verwachtingen voorkomen dat partijen op elkaar wachten." },
+  { naam: "Werkprocessen", tekst: "Stappen die nu na elkaar lopen, kunnen vaak parallel. We kijken waar overdrachten en wachttijden zitten en hoe het slimmer kan." },
+  { naam: "Besluitvorming", tekst: "Besluiten eerder en beter voorbereid op tafel, met een bestuurlijke route die past bij het tempo van de opgave." },
+  { naam: "Uitvoeringskracht", tekst: "De juiste capaciteit en expertise op de juiste plek. Wat doet u zelf, wat organiseert u met partners en wat huurt u in?" },
+];
+const mailOrganisatie = mail("Organisatie versterken", "Beste Versnellingscoach,\n\nWij willen graag bespreken hoe onze organisatie beter kan inspelen op versnelling.\n\nOrganisatie:\nWaar loopt het nu vast:\nTelefoonnummer:\n");
+---
+<Base title="Organisaties versterken voor versnelling" crumb="Organisaties versterken" schema={schema}
+  description="Advies en begeleiding voor gemeenten, ontwikkelaars en corporaties: samenwerking, rollen, werkprocessen en besluitvorming ingericht op versnelling.">
+  <PageHead crumb="Organisaties versterken" h1="Organisaties versterken" lead="Advies en begeleiding voor gemeenten, ontwikkelaars en woningcorporaties die hun organisatie beter willen toerusten op versnelling. Zodat sneller werken niet afhangt van één project of één persoon." image={appartementen} imageAlt="Appartementengebouw in aanbouw met bouwkraan" />
+
+  <section class="band" aria-labelledby="themas">
+    <div class="wrap stack-lg">
+      <div class="stack measure">
+        <p class="eyebrow">Waar we naar kijken</p>
+        <h2 id="themas">Vijf knoppen om aan te draaien</h2>
+        <p>In projecten zien we steeds waar het vastloopt. Vaak ligt de oorzaak niet in het project zelf, maar in hoe de organisaties eromheen zijn ingericht. Daar richten we ons op.</p>
+      </div>
+      <div class="grid-3">
+        {themas.map((t) => (
+          <div class="card">
+            <h3>{t.naam}</h3>
+            <p>{t.tekst}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="band sand" aria-labelledby="voor-wie">
+    <div class="wrap grid-2">
+      <div class="stack">
+        <h2 id="voor-wie">Voor wie</h2>
+        <p>Voor organisaties die meer willen dan één project vlot trekken, en die hun manier van werken structureel willen versterken.</p>
+        <p class="note"><strong>Verschil met Projecten versnellen.</strong> Daar regisseert een coach één concreet project of gebied. Hier staat uw organisatie centraal, over projecten heen.</p>
+      </div>
+      <ul class="checks checks-light">
+        <li>Gemeenten: van ambtelijke organisatie tot bestuur</li>
+        <li>Ontwikkelaars: samenwerking met gemeente en corporatie</li>
+        <li>Woningcorporaties: van portefeuille tot project</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="werkwijze">
+    <div class="wrap grid-2">
+      <div class="stack">
+        <h2 id="werkwijze">Hoe we werken</h2>
+        <p>We beginnen met een gesprek over uw vraag en de situatie in uw organisatie. Daarna stemmen we de vorm en omvang van advies en begeleiding af op wat u nodig hebt.</p>
+        <p>Onze ervaring als onafhankelijke procesregisseur in woningbouw en gebiedsontwikkeling is daarbij het vertrekpunt.</p>
+        <div class="btn-row mt">
+          <a class="btn btn-primary" href={mailOrganisatie}>Bespreek de vraag van uw organisatie</a>
+          <a class="link-cta" href={start.href}>Of neem contact op</a>
+        </div>
+      </div>
+      <ContactLines />
+    </div>
+  </section>
+
+  <section class="band sand" aria-labelledby="ook-titel">
+    <div class="wrap stack-lg">
+      <h2 id="ook-titel" class="h-small">Ook in ons aanbod</h2>
+      <AanbodKaarten zonder="organisaties-versterken" />
+    </div>
+  </section>
+</Base>

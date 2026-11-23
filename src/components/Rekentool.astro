@@ -1,64 +1,78 @@
 ---
+// Rekentool voor woningbouwprojecten: keuze uit woningstaffels, financiële indicatie en tijdwinst naast elkaar.
+// Staffels, bedragen en aannames: src/data/staffel.json. Tijdwinst: src/data/tijdwinst.json.
+// De keuze en uitkomst blijven in de browser; er wordt niets verstuurd of opgeslagen.
 import { site, mail, telHref } from "../data/site";
 import staffel from "../data/staffel.json";
 import tijdwinst from "../data/tijdwinst.json";
-// Alleen de rekendata gaat naar de browser, zonder interne toelichting.
-const rekendata = JSON.stringify({ prijsGrenzen: staffel.prijsGrenzen, rijen: staffel.rijen, trajecten: tijdwinst.trajecten });
-const [eerste] = tijdwinst.trajecten;
+
+type Staffel = { id: string; label: string; van: number; tot: number | null; bedragVan: number | null; bedragTot: number | null };
+const staffels = staffel.staffels as Staffel[];
+const nl = new Intl.NumberFormat("nl-NL");
+const toon = (s: Staffel) => staffel.toonBedragen && s.bedragVan !== null && s.bedragTot !== null;
+// Vaste spaties: als het bedrag niet op één regel past, breekt het netjes vóór "tot".
+const bereik = (s: Staffel) => (s.bedragVan === s.bedragTot ? `€\u00a0${nl.format(s.bedragVan!)}` : `€\u00a0${nl.format(s.bedragVan!)} tot\u00a0${nl.format(s.bedragTot!)}`);
+const woningen = (s: Staffel) => `${s.label} woningen`;
+const tijdTekst = `${tijdwinst.gemiddeldOnderbouwd ? "gemiddeld" : "circa"} ${tijdwinst.zin.replace(/^(circa|gemiddeld)\s+/, "")}`;
+
+const mailBody = (s: Staffel) =>
+  "Beste Versnellingscoach,\n\nIk wil graag de mogelijke besparing voor ons woningbouwproject bespreken.\n\n" +
+  `Aantal woningen: ${woningen(s)}\n` +
+  (toon(s) ? `Indicatieve ${staffel.soort}besparing volgens de rekentool: ${bereik(s)}\n` : "Indicatieve besparing: graag in overleg\n") +
+  `Tijdwinst uit de praktijk: ${tijdTekst}\n\nOrganisatie:\nProject en gemeente:\nProjectfase:\nTelefoonnummer:\n`;
+
+// Alleen wat de browser nodig heeft, zonder interne toelichting.
+const rekendata = JSON.stringify({
+  staffels: staffels.map((s) => ({ id: s.id, woningen: woningen(s), bedrag: toon(s) ? bereik(s) : null, mail: mail("Bespreek de besparing voor ons project", mailBody(s)) })),
+});
+const eerste = staffels.find((s) => s.id === staffel.standaard) ?? staffels[0];
 ---
 <section class="band" id="rekentool" aria-labelledby="rekentool-titel">
   <div class="wrap stack-lg">
     <div class="stack measure">
-      <p class="eyebrow">Uw winst in 10 seconden</p>
-      <h2 id="rekentool-titel">Wat levert versnellen uw project op, in geld én tijd?</h2>
-      <p>Vul twee getallen in, kies uw traject en zie direct een indicatie van uw besparing en tijdwinst.</p>
+      <p class="eyebrow">Rekentool woningbouwprojecten</p>
+      <h2 id="rekentool-titel">Wat levert versnellen uw woningbouwproject op, in geld én tijd?</h2>
+      <p>Kies hoeveel woningen uw project telt en zie direct een indicatie van de besparing, met daarnaast de tijdwinst die we in eerdere trajecten zagen.</p>
     </div>
-    <div class="calc" data-calc data-staffel={rekendata} data-email={site.email}>
+    <div class="calc" data-calc data-staffel={rekendata}>
       <div class="calc-in">
-        <div class="field">
-          <label for="aantal-woningen">Aantal woningen</label>
-          <div class="input-wrap"><input id="aantal-woningen" name="woningen" inputmode="numeric" autocomplete="off" value="120" aria-describedby="hint-woningen fout-woningen"></div>
-          <p class="hint" id="hint-woningen">Het totaal aantal woningen in uw plan.</p>
-          <p class="err" id="fout-woningen" hidden></p>
-        </div>
-        <div class="field">
-          <label for="verkoopprijs">Gemiddelde verkoopprijs per woning</label>
-          <div class="input-wrap"><span aria-hidden="true">€</span><input id="verkoopprijs" name="prijs" inputmode="numeric" autocomplete="off" value="420.000" aria-describedby="hint-prijs fout-prijs"></div>
-          <p class="hint" id="hint-prijs">Een schatting is voldoende.</p>
-          <p class="err" id="fout-prijs" hidden></p>
-        </div>
-        <fieldset class="field segment">
-          <legend>Traject</legend>
+        <fieldset class="field segment staffels">
+          <legend>Aantal woningen in uw project</legend>
           <div class="segment-opties">
-            {tijdwinst.trajecten.map((t, i) => (
+            {staffels.map((s) => (
               <label class="segment-optie">
-                <input type="radio" name="traject" value={String(t.dagen)} checked={i === 0} />
-                <span><b>{t.dagen} dagen</b> {t.resultaat}</span>
+                <input type="radio" name="staffel" value={s.id} checked={s.id === eerste.id} />
+                <span><b>{s.label}</b> woningen</span>
               </label>
             ))}
           </div>
         </fieldset>
-        <p class="hint privacy-hint">Uw cijfers blijven in uw browser. Er wordt niets verstuurd of opgeslagen.</p>
+        <p class="hint privacy-hint">Uw keuze blijft in uw browser. Er wordt niets verstuurd of opgeslagen.</p>
       </div>
       <div class="calc-out" aria-live="polite">
         <div class="uitkomsten">
           <div class="uitkomst">
-            <p class="uitkomst-label">Kostenbesparing</p>
-            <p class="uitkomst-waarde num" data-calc-out>€ 32.500</p>
-            <p class="uitkomst-sub">indicatief, per project</p>
+            <p class="uitkomst-label">Financiële indicatie</p>
+            <p class="uitkomst-waarde bereik num" data-calc-out hidden={!toon(eerste)}>{toon(eerste) ? bereik(eerste) : ""}</p>
+            <p class="uitkomst-contact" data-calc-geen hidden={toon(eerste)}><a href={mail("Bespreek de besparing voor ons project", mailBody(eerste))} data-calc-geen-link>Bespreek de besparing voor uw project</a></p>
+            <p class="uitkomst-sub">{staffel.soort}, per project, bij <span data-calc-woningen>{woningen(eerste)}</span></p>
           </div>
           <div class="uitkomst">
             <p class="uitkomst-label">Tijdwinst</p>
-            <p class="uitkomst-waarde num" data-calc-tijd>{eerste.tijdwinst}</p>
-            <p class="uitkomst-sub">minder voorbereiding</p>
+            <p class="uitkomst-waarde num">{tijdwinst.waarde.replace(/^circa/, tijdwinst.gemiddeldOnderbouwd ? "gemiddeld" : "circa")}</p>
+            <p class="uitkomst-sub">{tijdwinst.bron}</p>
           </div>
         </div>
         <div class="btn-row">
-          <a class="btn btn-primary" data-calc-mail href={mail("Bespreek mijn project")}>Bespreek deze uitkomst</a>
+          <a class="btn btn-primary" data-calc-mail href={mail("Bespreek de besparing voor ons project", mailBody(eerste))}>Bespreek deze uitkomst</a>
           <a class="btn btn-secondary" href={telHref}>Bel {site.phone.display}</a>
         </div>
-        <p class="bron">Indicatief. Elk project is anders, dus ook de besparing en tijdwinst. Voorbeeld: Rucphen Noordwest pakte de planontwikkeling aan in 2 × 100 dagen, waar 4 jaar gebruikelijk is.</p>
-        <noscript><p class="small">Zet JavaScript aan voor een directe indicatie, of bel ons voor een inschatting van uw project.</p></noscript>
+        <ul class="aannames">
+          {staffel.aannames.map((a) => <li>{a}</li>)}
+          {staffel.voorWie && <li>De besparing geldt voor {staffel.voorWie}.</li>}
+          <li>De tijdwinst is {tijdTekst} en gebaseerd op {tijdwinst.bron}. Het gaat om tijdwinst in {tijdwinst.fase}. Deze staat los van de financiële indicatie.{tijdwinst.onderbouwing && <> {tijdwinst.onderbouwing}</>}</li>
+        </ul>
+        <noscript><p class="small">Zonder JavaScript ziet u de indicatie voor {woningen(eerste)}. Bel of mail ons voor een inschatting van uw project.</p></noscript>
       </div>
     </div>
   </div>

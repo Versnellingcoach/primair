@@ -1,5 +1,26 @@
-[
-  { "id": "inhousetraining", "naam": "Inhousetraining", "tekst": "Scherp rollen, verwachtingen en besluitvorming aan met uw projectteam.", "cta": "Vraag deze training aan" },
-  { "id": "leren-versnellingstafel", "naam": "Leren-versnellingstafel", "tekst": "Verken praktijkcasussen en oefen met anders samenwerken.", "cta": "Meld u aan" },
-  { "id": "trajectbegeleiding", "naam": "Trajectbegeleiding", "tekst": "Krijg ondersteuning tijdens de 100- of 200-dagenaanpak.", "cta": "Vraag begeleiding aan" }
-]
+{
+  "_toelichting": "Opleiden en trainen. Alle trainingen zijn beschikbaar op aanvraag: de knop opent een mail 'Vraag naar de mogelijkheden'. Zet status op \"in-ontwikkeling\" voor een vorm die nog niet beschikbaar is. Geen data, prijzen of accreditaties toevoegen zonder bevestiging.",
+  "trainingen": [
+    {
+      "id": "inhousetraining",
+      "naam": "Inhousetraining",
+      "tekst": "Scherp rollen, verwachtingen en besluitvorming aan met uw projectteam.",
+      "status": "beschikbaar",
+      "cta": "Vraag naar de mogelijkheden"
+    },
+    {
+      "id": "leren-versnellingstafel",
+      "naam": "Leren-versnellingstafel",
+      "tekst": "Verken praktijkcasussen en oefen met anders samenwerken.",
+      "status": "beschikbaar",
+      "cta": "Vraag naar de mogelijkheden"
+    },
+    {
+      "id": "trajectbegeleiding",
+      "naam": "Trajectbegeleiding",
+      "tekst": "Krijg ondersteuning bij het toepassen van de 100- of 200-dagenaanpak in uw eigen project.",
+      "status": "beschikbaar",
+      "cta": "Vraag naar de mogelijkheden"
+    }
+  ]
+}

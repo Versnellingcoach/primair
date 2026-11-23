@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import { site, nav, mail, telHref, kennismaking, start, indexable, orgId, serviceId } from "../data/site";
+import { site, nav, aanbod, mail, telHref, kennismaking, start, indexable, orgId, serviceId } from "../data/site";
 
 interface Props {
   title: string;          // paginatitel zonder merknaam (homepage: volledige titel)
@@ -8,11 +8,13 @@ interface Props {
   crumb?: string;         // naam in het kruimelpad; leeg op de homepage
   schema?: object[];      // extra JSON-LD voor deze pagina
   noindex?: boolean;
+  redirect?: string;      // verhuisde pagina: doorsturen (met behoud van #anker) naar dit pad
 }
 
-const { title, description = site.description, crumb, schema = [], noindex = false } = Astro.props;
+const { title, description = site.description, crumb, schema = [], noindex = false, redirect } = Astro.props;
 const path = Astro.url.pathname.replace(/\.html$/, "").replace(/\/index$/, "/") || "/";
 const isHome = path === "/";
+const actief = (href: string) => path === href || path.startsWith(href + "/");
 const fullTitle = isHome ? title : `${title} | ${site.name}`;
 const canonical = isHome ? site.url + "/" : site.url + path.replace(/\/$/, "");
 const ogImage = new URL("/img/og-versnellingscoach.jpg", site.url).href;
@@ -29,8 +31,8 @@ const graph = [
     "@type": "ProfessionalService", "@id": serviceId, name: site.name, url: site.url + "/",
     description: site.description, logo: site.url + "/img/brand/icon-512.png", image: ogImage,
     telephone: site.phone.e164, email: site.email, parentOrganization: { "@id": orgId },
-    areaServed: [{ "@type": "AdministrativeArea", name: "Noord-Brabant" }, { "@type": "Country", name: "Nederland" }],
-    knowsAbout: ["woningbouw", "gebiedsontwikkeling", "ruimtelijke ontwikkeling", "procesregie", "gebiedsperspectief", "ontwikkelvisie"],
+    areaServed: { "@type": "Country", name: "Nederland" },
+    knowsAbout: ["woningbouw", "gebiedsontwikkeling", "ruimtelijke ontwikkeling", "procesregie", "gebiedsperspectief", "ontwikkelvisie", "organisatieadvies", "samenwerking", "opleiden en trainen"],
     ...(address && { address }),
   },
   { "@type": "WebSite", "@id": site.url + "/#website", url: site.url + "/", name: site.name, inLanguage: "nl-NL", publisher: { "@id": orgId } },
@@ -83,13 +85,22 @@ const contactMail = mail("Vraag via de website");
       <a class="logo" href="/"><img src="/img/brand/versnellingscoach-logo.png" alt="Versnellingscoach.nl, naar de homepage" width="224" height="56"></a>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="hoofdmenu">Menu</button>
       <nav class="nav" id="hoofdmenu" aria-label="Hoofdmenu">
-        {nav.map((n) => <a href={n.href} aria-current={path === n.href || path.startsWith(n.href + "/") ? "page" : undefined}>{n.label}</a>)}
+        {nav.map((n) => n.sub ? (
+          <div class="nav-groep" data-nav-groep>
+            <a href={n.href} aria-current={path === n.href ? "page" : undefined} class={actief(n.href) ? "nav-actief" : undefined}>{n.label}</a>
+            <button class="nav-sub-btn" type="button" aria-expanded="false" aria-controls={`sub-${n.href.slice(1)}`}><span class="sr-only">Toon onderdelen van {n.label}</span><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <ul class="nav-sub" id={`sub-${n.href.slice(1)}`}>
+              {n.sub.map((s) => <li><a href={s.href} aria-current={actief(s.href) ? "page" : undefined}>{s.label}</a></li>)}
+            </ul>
+          </div>
+        ) : <a href={n.href} aria-current={actief(n.href) ? "page" : undefined}>{n.label}</a>)}
         <a class="btn btn-primary" href={start.href}>{start.label}</a>
       </nav>
     </div>
   </header>
 
   <main id="inhoud">
+    {redirect && <p class="sr-only"><a href={redirect} data-doorverwijzing>Ga naar de nieuwe pagina</a></p>}
     <slot />
   </main>
 
@@ -107,10 +118,9 @@ const contactMail = mail("Vraag via de website");
       <div>
         <h2>Aanbod</h2>
         <ul>
-          <li><a href="/aanpak">Aanpak</a></li>
-          <li><a href="/trainingen">Trainingen</a></li>
+          {aanbod.map((a) => <li><a href={a.href}>{a.naam}</a></li>)}
           <li><a href="/#rekentool">Rekentool</a></li>
-          <li><a href="/subsidie">Subsidie</a></li>
+          <li><a href="/subsidie">Subsidie en ondersteuning</a></li>
         </ul>
       </div>
       <div>
